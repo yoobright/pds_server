@@ -1,0 +1,15 @@
+POST http://localhost:8089/users
+Content-Type: application/json
+
+{
+  "username": "test"
+}
+
+###
+
+
+###
+GET http://localhost:8089/users
+Accept: application/json
+
+###
