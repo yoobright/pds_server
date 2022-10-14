@@ -23,7 +23,7 @@ def hello_world():
 
 
 user_add_parser = reqparse.RequestParser()
-user_add_parser.add_argument('username', type=str, required=True)
+user_add_parser.add_argument('user_name', type=str, required=True)
 user_add_parser.add_argument('email', type=str)
 
 
@@ -39,7 +39,7 @@ class UserResource(Resource):
         print(args)
 
         user = User(
-            username=args.username,
+            user_name=args.user_name,
             email=args.email,
         )
         db.session.add(user)
@@ -49,7 +49,7 @@ class UserResource(Resource):
 
 
 book_add_parser = reqparse.RequestParser()
-book_add_parser.add_argument('bookname', type=str, required=True)
+book_add_parser.add_argument('book_name', type=str, required=True)
 book_add_parser.add_argument('author_id', type=int, required=True)
 
 
@@ -66,7 +66,7 @@ class BookResource(Resource):
         print(args)
 
         book = Book(
-            bookname=args.bookname,
+            book_name=args.book_name,
             author_id=args.author_id,
         )
         db.session.add(book)
@@ -80,4 +80,4 @@ api.add_resource(BookResource, '/books')
 
 
 if __name__ == '__main__':
-    app.run(port='8089')
+    app.run(host="0.0.0.0", port='8089')

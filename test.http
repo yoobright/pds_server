@@ -1,27 +1,31 @@
-POST http://localhost:8089/users
+###
+# @name=addUser
+POST http://{{host}}:8089/users
 Content-Type: application/json
 
 {
-  "username": "test"
+  "user_name": "test",
+  "email": "tt@tt.com"
 }
 
 ###
-POST http://localhost:8089/books
+# @name=addBook
+POST http://{{host}}:8089/books
 Content-Type: application/json
 
 {
-  "bookname": "testbook",
+  "book_name": "testbook",
   "author_id": 1
 }
 
 ###
-
-GET http://localhost:8089/users
+# @name=showUsers
+GET http://{{host}}:8089/users
 Accept: application/json
 
 ###
-
-GET http://localhost:8089/books
+# @name=showBooks
+GET http://{{host}}:8089/books
 Accept: application/json
 
 ###

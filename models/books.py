@@ -3,7 +3,7 @@ from models import db
 
 class Book(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    bookname = db.Column(db.String, nullable=False)
+    book_name = db.Column(db.String, nullable=False)
     author_id = db.Column(db.String, nullable=False)
 
     def as_dict(self):
