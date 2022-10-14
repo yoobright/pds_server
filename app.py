@@ -4,6 +4,7 @@ from flask_restful import Resource, Api
 from flask_restful import reqparse
 
 from models.users import User
+from models.books import Book
 
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///project.db"
@@ -18,7 +19,7 @@ api = Api(app)
 
 @app.route('/')
 def hello_world():
-    return 'Hello World!'
+    return 'Hello World!!!'
 
 
 user_add_parser = reqparse.RequestParser()
@@ -47,7 +48,36 @@ class UserResource(Resource):
         return jsonify({"id": user.id})
 
 
+book_add_parser = reqparse.RequestParser()
+book_add_parser.add_argument('bookname', type=str, required=True)
+book_add_parser.add_argument('author_id', type=int, required=True)
+
+
+class BookResource(Resource):
+
+    def get(self):
+        books = db.session.query(User, Book)\
+            .join(Book, Book.author_id == User.id).all()
+        res = [[b[0].as_dict(), b[1].as_dict()] for b in books]
+        return jsonify(res)
+
+    def post(self):
+        args = book_add_parser.parse_args()
+        print(args)
+
+        book = Book(
+            bookname=args.bookname,
+            author_id=args.author_id,
+        )
+        db.session.add(book)
+        db.session.commit()
+
+        return jsonify({"id": book.id})
+
+
 api.add_resource(UserResource, '/users')
+api.add_resource(BookResource, '/books')
+
 
 if __name__ == '__main__':
     app.run(port='8089')
