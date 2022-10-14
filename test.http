@@ -29,3 +29,14 @@ GET http://{{host}}:8089/books
 Accept: application/json
 
 ###
+# @name=showUserById
+GET http://{{host}}:8089/user/8
+Accept: application/json
+
+###
+# @name=deleteUserById
+DELETE http://{{host}}:8089/user/9
+Accept: application/json
+
+###
+

@@ -22,12 +22,12 @@ def hello_world():
     return 'Hello World!!!'
 
 
-user_add_parser = reqparse.RequestParser()
-user_add_parser.add_argument('user_name', type=str, required=True)
-user_add_parser.add_argument('email', type=str)
-
-
-class UserResource(Resource):
+class UserListResource(Resource):
+    def __init__(self):
+        super(UserListResource, self).__init__()
+        self.user_add_parser = reqparse.RequestParser()
+        self.user_add_parser.add_argument('user_name', type=str, required=True)
+        self.user_add_parser.add_argument('email', type=str)
 
     def get(self):
         users = db.session.query(User).all()
@@ -35,7 +35,7 @@ class UserResource(Resource):
         return jsonify(res)
 
     def post(self):
-        args = user_add_parser.parse_args()
+        args = self.user_add_parser.parse_args()
         print(args)
 
         user = User(
@@ -48,21 +48,37 @@ class UserResource(Resource):
         return jsonify({"id": user.id})
 
 
-book_add_parser = reqparse.RequestParser()
-book_add_parser.add_argument('book_name', type=str, required=True)
-book_add_parser.add_argument('author_id', type=int, required=True)
+class UserByIdResource(Resource):
+    def __init__(self):
+        super(UserByIdResource, self).__init__()
+
+    def get(self, uid):
+        user = db.session.query(User).filter(User.id == uid).one_or_none()
+        if user is not None:
+            return jsonify(user.as_dict())
+        return jsonify(None)
+
+    def delete(self, uid):
+        res = db.session.query(User).filter(User.id == uid).delete()
+        db.session.commit()
+        return jsonify(res)
 
 
 class BookResource(Resource):
+    def __init__(self):
+        super(BookResource, self).__init__()
+        self.book_add_parser = reqparse.RequestParser()
+        self.book_add_parser.add_argument('book_name', type=str, required=True)
+        self.book_add_parser.add_argument('author_id', type=int, required=True)
 
     def get(self):
-        books = db.session.query(User, Book)\
+        books = db.session.query(User, Book) \
             .join(Book, Book.author_id == User.id).all()
         res = [[b[0].as_dict(), b[1].as_dict()] for b in books]
         return jsonify(res)
 
     def post(self):
-        args = book_add_parser.parse_args()
+        args = self.book_add_parser.parse_args()
         print(args)
 
         book = Book(
@@ -75,9 +91,9 @@ class BookResource(Resource):
         return jsonify({"id": book.id})
 
 
-api.add_resource(UserResource, '/users')
+api.add_resource(UserListResource, '/users')
+api.add_resource(UserByIdResource, '/user/<int:uid>')
 api.add_resource(BookResource, '/books')
-
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port='8089')
