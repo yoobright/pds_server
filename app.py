@@ -25,14 +25,19 @@ def hello_world():
 class UserListResource(Resource):
     def __init__(self):
         super(UserListResource, self).__init__()
-        self.user_add_parser = reqparse.RequestParser()
-        self.user_add_parser.add_argument('user_name', type=str, required=True)
-        self.user_add_parser.add_argument('email', type=str)
 
     def get(self):
         users = db.session.query(User).all()
         res = [u.as_dict() for u in users]
         return jsonify(res)
+
+
+class UserResource(Resource):
+    def __init__(self):
+        super(UserResource, self).__init__()
+        self.user_add_parser = reqparse.RequestParser()
+        self.user_add_parser.add_argument('user_name', type=str, required=True)
+        self.user_add_parser.add_argument('email', type=str)
 
     def post(self):
         args = self.user_add_parser.parse_args()
@@ -92,6 +97,7 @@ class BookResource(Resource):
 
 
 api.add_resource(UserListResource, '/users')
+api.add_resource(UserResource, '/user')
 api.add_resource(UserByIdResource, '/user/<int:uid>')
 api.add_resource(BookResource, '/books')
 

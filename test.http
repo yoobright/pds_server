@@ -1,6 +1,6 @@
 ###
 # @name=addUser
-POST http://{{host}}:8089/users
+POST http://{{host}}:8089/user
 Content-Type: application/json
 
 {
