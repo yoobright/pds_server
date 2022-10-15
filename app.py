@@ -40,10 +40,6 @@ class CustomJSONEncoder(JSONEncoder):
 app.json_encoder = CustomJSONEncoder
 
 
-def args2dict(args):
-    return {k: v for k, v in args.items()}
-
-
 @app.route('/')
 def hello_world():
     return 'Hello World!!!'
@@ -79,9 +75,7 @@ class UserListResource(Resource):
         args = self.user_add_parser.parse_args()
         print(args)
 
-        user = User(
-            **args2dict(args)
-        )
+        user = User(**args)
         db.session.add(user)
         db.session.commit()
 
