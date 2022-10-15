@@ -44,6 +44,15 @@ class UserListResource(Resource):
         self.user_get_parser = reqparse.RequestParser()
         self.user_get_parser.add_argument('user_name', type=str)
 
+        self.user_add_parser = reqparse.RequestParser()
+        self.user_add_parser.add_argument('user_name', type=str, required=True)
+        self.user_add_parser.add_argument('email', type=str)
+        self.user_add_parser.add_argument(
+            'submit_time',
+            type=datetime.datetime.fromisoformat,
+            required=True
+        )
+
     def get(self):
         args = self.user_get_parser.parse_args()
 
@@ -54,19 +63,6 @@ class UserListResource(Resource):
         users = query.all()
         res = [u.as_dict() for u in users]
         return jsonify(res)
-
-
-class UserResource(Resource):
-    def __init__(self):
-        super(UserResource, self).__init__()
-        self.user_add_parser = reqparse.RequestParser()
-        self.user_add_parser.add_argument('user_name', type=str, required=True)
-        self.user_add_parser.add_argument('email', type=str)
-        self.user_add_parser.add_argument(
-            'submit_time',
-            type=datetime.datetime.fromisoformat,
-            required=True
-        )
 
     def post(self):
         args = self.user_add_parser.parse_args()
@@ -80,7 +76,7 @@ class UserResource(Resource):
         db.session.add(user)
         db.session.commit()
 
-        return jsonify({"id": user.id})
+        return make_response(jsonify({"id": user.id}), 201)
 
 
 class UserByIdResource(Resource):
@@ -98,7 +94,7 @@ class UserByIdResource(Resource):
     def delete(self, uid: int):
         res = db.session.query(User).filter(User.id == uid).delete()
         db.session.commit()
-        return jsonify(res), 204
+        return make_response(jsonify(res), 204)
 
     def put(self, uid: int):
         args = self.user_put_parser.parse_args()
@@ -107,7 +103,7 @@ class UserByIdResource(Resource):
         if user and user_name:
             user.user_name = user_name
             db.session.commit()
-            return user.id, 201
+            return user.id
         return 0
 
 
@@ -139,8 +135,7 @@ class BookResource(Resource):
 
 
 api.add_resource(UserListResource, '/users')
-api.add_resource(UserResource, '/user')
-api.add_resource(UserByIdResource, '/user/<int:uid>')
+api.add_resource(UserByIdResource, '/users/<int:uid>')
 api.add_resource(BookResource, '/books')
 
 if __name__ == '__main__':

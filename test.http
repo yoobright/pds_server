@@ -1,6 +1,6 @@
 ###
 # @name=addUser
-POST http://{{host}}:8089/user
+POST http://{{host}}:8089/users
 Content-Type: application/json
 
 {
@@ -31,17 +31,17 @@ Accept: application/json
 
 ###
 # @name=showUserById
-GET http://{{host}}:8089/user/8
+GET http://{{host}}:8089/users/8
 Accept: application/json
 
 ###
 # @name=deleteUserById
-DELETE http://{{host}}:8089/user/9
+DELETE http://{{host}}:8089/users/9
 Accept: application/json
 
 ###
 # @name=updateUserById
-PUT http://{{host}}:8089/user/8
+PUT http://{{host}}:8089/users/8
 Content-Type: application/json
 
 {
@@ -57,6 +57,11 @@ Content-Type: application/json
 {
   "user_name": "demo"
 }
+
+###
+# @name=showUsersByName
+GET http://{{host}}:8089/users?user_name=demo
+Accept: application/json
 
 ###
 
