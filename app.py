@@ -20,6 +20,13 @@ with app.app_context():
 api = Api(app)
 
 
+def get_datetime_from_str(s):
+    try:
+        return datetime.datetime.fromtimestamp(int(s))
+    except ValueError:
+        return datetime.datetime.fromisoformat(s)
+        
+
 class CustomJSONEncoder(JSONEncoder):
     def default(self, obj):
         if isinstance(obj, datetime.date):
@@ -49,7 +56,7 @@ class UserListResource(Resource):
         self.user_add_parser.add_argument('email', type=str)
         self.user_add_parser.add_argument(
             'submit_time',
-            type=datetime.datetime.fromisoformat,
+            type=get_datetime_from_str,
             required=True
         )
 
