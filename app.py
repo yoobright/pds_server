@@ -56,17 +56,29 @@ class UserResource(Resource):
 class UserByIdResource(Resource):
     def __init__(self):
         super(UserByIdResource, self).__init__()
+        self.user_put_parser = reqparse.RequestParser()
+        self.user_put_parser.add_argument('user_name', type=str)
 
-    def get(self, uid):
+    def get(self, uid: int):
         user = db.session.query(User).filter(User.id == uid).one_or_none()
         if user is not None:
             return jsonify(user.as_dict())
         return jsonify(None)
 
-    def delete(self, uid):
+    def delete(self, uid: int):
         res = db.session.query(User).filter(User.id == uid).delete()
         db.session.commit()
-        return jsonify(res)
+        return jsonify(res), 204
+
+    def put(self, uid: int):
+        args = self.user_put_parser.parse_args()
+        user = db.session.query(User).filter(User.id == uid).one_or_none()
+        user_name = args.user_name
+        if user and user_name:
+            user.user_name = user_name
+            db.session.commit()
+            return user.id, 201
+        return 0
 
 
 class BookResource(Resource):

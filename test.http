@@ -39,4 +39,13 @@ DELETE http://{{host}}:8089/user/9
 Accept: application/json
 
 ###
+# @name=updateUserById
+PUT http://{{host}}:8089/user/8
+Content-Type: application/json
+
+{
+  "user_name": "demo"
+}
+
+###
 
