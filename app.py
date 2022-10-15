@@ -40,6 +40,10 @@ class CustomJSONEncoder(JSONEncoder):
 app.json_encoder = CustomJSONEncoder
 
 
+def args2dict(args):
+    return {k: v for k, v in args.items()}
+
+
 @app.route('/')
 def hello_world():
     return 'Hello World!!!'
@@ -53,7 +57,7 @@ class UserListResource(Resource):
 
         self.user_add_parser = reqparse.RequestParser()
         self.user_add_parser.add_argument('user_name', type=str, required=True)
-        self.user_add_parser.add_argument('email', type=str)
+        self.user_add_parser.add_argument('age', type=int, required=True)
         self.user_add_parser.add_argument(
             'submit_time',
             type=get_datetime_from_str,
@@ -76,9 +80,7 @@ class UserListResource(Resource):
         print(args)
 
         user = User(
-            user_name=args.user_name,
-            email=args.email,
-            submit_time=args.submit_time
+            **args2dict(args)
         )
         db.session.add(user)
         db.session.commit()
