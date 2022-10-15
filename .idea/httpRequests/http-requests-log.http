@@ -1,5 +1,53 @@
 GET http://localhost:8089/users
 Accept: application/json
+Content-Type: application/json
+
+{
+  "user_name": "demo"
+}
+
+<> 2022-10-15T024053.200.json
+
+###
+
+GET http://localhost:8089/users
+Accept: application/json
+Content-Type: application/json
+
+{
+  "user_name": "demo"
+}
+
+<> 2022-10-15T024021.200.json
+
+###
+
+GET http://localhost:8089/users
+Accept: application/json
+
+<> 2022-10-15T023932.200.json
+
+###
+
+GET http://localhost:8089/users
+Accept: application/json
+
+<> 2022-10-15T023900.500.html
+
+###
+
+POST http://localhost:8089/user
+Content-Type: application/json
+
+{
+  "user_name": "test",
+  "email": "tt@tt.com"
+}
+
+###
+
+GET http://localhost:8089/users
+Accept: application/json
 
 <> 2022-10-15T021729.200.json
 
@@ -359,51 +407,6 @@ GET http://116.62.146.131:8089/books
 Accept: application/json
 
 <> 2022-10-14T055431.200.json
-
-###
-
-GET http://116.62.146.131:8089/books
-Accept: application/json
-
-<> 2022-10-14T055428.200.json
-
-###
-
-GET http://localhost:8089/books
-Accept: application/json
-
-<> 2022-10-14T055423.200.json
-
-###
-
-GET http://116.62.146.131:8089/users
-Accept: application/json
-
-<> 2022-10-14T055420.200.json
-
-###
-
-POST http://116.62.146.131:8089/users
-Content-Type: application/json
-
-{
-  "user_name": "test",
-  "email": "tt@tt.com"
-}
-
-<> 2022-10-14T055408.200.json
-
-###
-
-POST http://localhost:8089/users
-Content-Type: application/json
-
-{
-  "user_name": "test",
-  "email": "tt@tt.com"
-}
-
-<> 2022-10-14T055355.200.json
 
 ###
 

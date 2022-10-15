@@ -25,9 +25,17 @@ def hello_world():
 class UserListResource(Resource):
     def __init__(self):
         super(UserListResource, self).__init__()
+        self.user_get_parser = reqparse.RequestParser()
+        self.user_get_parser.add_argument('user_name', type=str)
 
     def get(self):
-        users = db.session.query(User).all()
+        args = self.user_get_parser.parse_args()
+
+        query = db.session.query(User)
+        if args.user_name:
+            query = query.filter(User.user_name == args.user_name)
+
+        users = query.all()
         res = [u.as_dict() for u in users]
         return jsonify(res)
 
