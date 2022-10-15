@@ -1,4 +1,7 @@
+import datetime
+
 from flask import Flask, jsonify, make_response
+from flask.json import JSONEncoder
 from models import db
 from flask_restful import Resource, Api
 from flask_restful import reqparse
@@ -15,6 +18,19 @@ db.init_app(app)
 with app.app_context():
     db.create_all()
 api = Api(app)
+
+
+class CustomJSONEncoder(JSONEncoder):
+    def default(self, obj):
+        if isinstance(obj, datetime.date):
+            return obj.isoformat()
+        if isinstance(obj, datetime.datetime):
+            return obj.isoformat()
+
+        return JSONEncoder.default(self, obj)
+
+
+app.json_encoder = CustomJSONEncoder
 
 
 @app.route('/')
@@ -46,6 +62,11 @@ class UserResource(Resource):
         self.user_add_parser = reqparse.RequestParser()
         self.user_add_parser.add_argument('user_name', type=str, required=True)
         self.user_add_parser.add_argument('email', type=str)
+        self.user_add_parser.add_argument(
+            'submit_time',
+            type=datetime.datetime.fromisoformat,
+            required=True
+        )
 
     def post(self):
         args = self.user_add_parser.parse_args()
@@ -54,6 +75,7 @@ class UserResource(Resource):
         user = User(
             user_name=args.user_name,
             email=args.email,
+            submit_time=args.submit_time
         )
         db.session.add(user)
         db.session.commit()
