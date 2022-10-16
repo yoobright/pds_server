@@ -1,7 +1,8 @@
-from db import DB as db_cls
+from db import DB_Obj
 from db import models
 
-DB = db_cls.db
+DB = DB_Obj.db
+
 
 def add_patient(values):
     user = models.Patient()

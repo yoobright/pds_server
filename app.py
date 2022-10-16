@@ -2,10 +2,12 @@ import datetime
 
 from flask import Flask, jsonify, make_response
 from flask.json import JSONEncoder
-from db import DB
+from db import DB_Obj
 from flask_restful import Resource, Api
 from flask_restful import reqparse
-from flask_sqlalchemy import SQLAlchemy
+
+from db import api as db_api
+from db.books import Book
 
 
 app = Flask(__name__)
@@ -14,12 +16,10 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['JSON_SORT_KEYS'] = False
 
 
-DB.set_db(SQLAlchemy(app))
-from db import api as db_api
-from db.books import Book
+DB_Obj.set_app(app)
 
 with app.app_context():
-    DB.db.create_all()
+    DB_Obj.db.create_all()
 
 app_api = Api(app)
 
@@ -128,7 +128,7 @@ class BookResource(Resource):
         self.book_add_parser.add_argument('author_id', type=int, required=True)
 
     def get(self):
-        books = DB.db.session.query().all()
+        books = DB_Obj.db.session.query().all()
         res = [[b[0].as_dict(), b[1].as_dict()] for b in books]
         return jsonify(res)
 
@@ -140,8 +140,8 @@ class BookResource(Resource):
             book_name=args.book_name,
             author_id=args.author_id,
         )
-        DB.db.session.add(book)
-        DB.db.session.commit()
+        DB_Obj.db.session.add(book)
+        DB_Obj.db.session.commit()
 
         return jsonify({"id": book.id})
 

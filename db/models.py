@@ -4,9 +4,10 @@ from sqlalchemy import Column
 from sqlalchemy import DateTime, Integer, String, Float
 from sqlalchemy.orm import object_mapper
 
-from db import DB as db_cls
+from db import DB_Obj
 
-DB = db_cls.db
+DB = DB_Obj.db
+
 
 class ModelBase(object):
     """Base class for models."""

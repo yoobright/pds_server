@@ -1,5 +1,44 @@
 GET http://localhost:8089/patients
 Accept: application/json
+Content-Type: application/json
+
+{
+  "user_name": "demo"
+}
+
+<> 2022-10-16T053841.200.json
+
+###
+
+GET http://localhost:8089/patients?user_name=demo
+Accept: application/json
+
+<> 2022-10-16T053837.200.json
+
+###
+
+GET http://localhost:8089/patients
+Accept: application/json
+
+<> 2022-10-16T053832.200.json
+
+###
+
+POST http://localhost:8089/patients
+Content-Type: application/json
+
+{
+  "user_name": "test910",
+  "gender": 1,
+  "age": 22
+}
+
+<> 2022-10-16T053826.201.json
+
+###
+
+GET http://localhost:8089/patients
+Accept: application/json
 
 <> 2022-10-16T042207.200.json
 
@@ -521,50 +560,6 @@ Content-Type: application/json
 }
 
 <> 2022-10-16T113622.200.json
-
-###
-
-PUT http://localhost:8089/users/88
-Content-Type: application/json
-
-{
-  "user_name": "demo"
-}
-
-<> 2022-10-16T113530.500.json
-
-###
-
-PUT http://localhost:8089/users/88
-Content-Type: application/json
-
-{
-  "user_name": "demo"
-}
-
-<> 2022-10-16T113427.500.json
-
-###
-
-PUT http://localhost:8089/users/8
-Content-Type: application/json
-
-{
-  "user_name": "demo"
-}
-
-<> 2022-10-16T113405.200.json
-
-###
-
-PUT http://localhost:8089/users/8
-Content-Type: application/json
-
-{
-  "user_name": "demo"
-}
-
-<> 2022-10-16T113326.500.json
 
 ###
 

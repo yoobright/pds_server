@@ -6,20 +6,17 @@ SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 sys.path.append(os.path.dirname(SCRIPT_DIR))
 
 from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
-from db import DB as db_cls
+from db import DB_Obj
+from db import api as db_api
 
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///project.db"
-db_cls.set_db(SQLAlchemy(app))
-
-DB = db_cls.db
-from db import api as db_api
+DB_Obj.set_app(app)
 
 
 if __name__ == '__main__':
     with app.app_context():
-        DB.create_all()
+        DB_Obj.db.create_all()
         # add durg data from json
         with open('data/drug_data.json', 'r', encoding='utf-8') as f:
             drug_data = json.load(f)
