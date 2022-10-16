@@ -97,7 +97,12 @@ class ModelIterator(object):
         return n, getattr(self.model, n)
 
 
-class User(db.Model, ModelBase):
+class TimestampMixin(object):
+    created_at = Column(DateTime, default=datetime.datetime.now)
+    updated_at = Column(DateTime, onupdate=datetime.datetime.now)
+
+
+class User(db.Model, ModelBase, TimestampMixin):
     __tablename__ = 'user_basic_info'
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True, comment='主键id')
@@ -120,9 +125,6 @@ class User(db.Model, ModelBase):
     cardiac_function = db.Column(db.String, comment='心功能')
     allergy = db.Column(db.String, comment='过敏史')
     physical = db.Column(db.String, comment='身体状况')
-
-    submit_time = db.Column(db.DateTime, nullable=False,
-                            default=datetime.datetime.now)
 
     def to_json(self):
         return {

@@ -73,11 +73,6 @@ class UserListResource(Resource):
         self.user_add_parser.add_argument('cardiac_function', type=str)
         self.user_add_parser.add_argument('allergy', type=str)
         self.user_add_parser.add_argument('physical', type=str)
-        self.user_add_parser.add_argument(
-            'submit_time',
-            type=get_datetime_from_str,
-            required=True
-        )
 
     def get(self):
         args = self.user_get_parser.parse_args()
