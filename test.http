@@ -1,6 +1,6 @@
 ###
-# @name=addUser
-POST http://{{host}}:8089/users
+# @name=addPatient
+POST http://{{host}}:8089/patients
 Content-Type: application/json
 
 {
@@ -20,8 +20,8 @@ Content-Type: application/json
 }
 
 ###
-# @name=showUsers
-GET http://{{host}}:8089/users
+# @name=showPatients
+GET http://{{host}}:8089/patients
 Accept: application/json
 
 ###
@@ -30,18 +30,18 @@ GET http://{{host}}:8089/books
 Accept: application/json
 
 ###
-# @name=showUserById
-GET http://{{host}}:8089/users/8
+# @name=showPatientById
+GET http://{{host}}:8089/patients/8
 Accept: application/json
 
 ###
-# @name=deleteUserById
-DELETE http://{{host}}:8089/users/9
+# @name=deletePatientById
+DELETE http://{{host}}:8089/patients/9
 Accept: application/json
 
 ###
-# @name=updateUserById
-PUT http://{{host}}:8089/users/8
+# @name=updatePatientById
+PUT http://{{host}}:8089/patients/8
 Content-Type: application/json
 
 {
@@ -49,8 +49,8 @@ Content-Type: application/json
 }
 
 ###
-# @name=showUsersByName
-GET http://{{host}}:8089/users
+# @name=showPatientsByName
+GET http://{{host}}:8089/patients
 Accept: application/json
 Content-Type: application/json
 
@@ -59,8 +59,8 @@ Content-Type: application/json
 }
 
 ###
-# @name=showUsersByName
-GET http://{{host}}:8089/users?user_name=demo
+# @name=showPatientsByName
+GET http://{{host}}:8089/patients?user_name=demo
 Accept: application/json
 
 ###

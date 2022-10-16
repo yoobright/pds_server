@@ -102,8 +102,8 @@ class TimestampMixin(object):
     updated_at = Column(DateTime, onupdate=datetime.datetime.now)
 
 
-class User(db.Model, ModelBase, TimestampMixin):
-    __tablename__ = 'user_basic_info'
+class Patient(db.Model, ModelBase, TimestampMixin):
+    __tablename__ = 'patient_basic_info'
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True, comment='主键id')
     user_name = db.Column(db.String, nullable=False, comment='用户名')

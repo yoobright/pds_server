@@ -7,7 +7,7 @@ from flask_restful import Resource, Api
 from flask_restful import reqparse
 
 from db import api as db_api
-from db.models import User
+from db.models import Patient
 from db.books import Book
 
 app = Flask(__name__)
@@ -77,7 +77,7 @@ class UserListResource(Resource):
     def get(self):
         args = self.user_get_parser.parse_args()
 
-        users = db_api.get_all_users(args)
+        users = db_api.get_all_patients(args)
 
         res = [dict(u.items()) for u in users]
         return jsonify(res)
@@ -85,7 +85,7 @@ class UserListResource(Resource):
     def post(self):
         args = self.user_add_parser.parse_args()
         print(args)
-        user = db_api.add_user(args)
+        user = db_api.add_patient(args)
 
         return make_response(jsonify({"id": user.id}), 201)
 
@@ -97,20 +97,20 @@ class UserByIdResource(Resource):
         self.user_put_parser.add_argument('user_name', type=str)
 
     def get(self, uid: int):
-        user = db_api.get_user_by_id(uid)
+        user = db_api.get_patient_by_id(uid)
 
         if user is not None:
             return jsonify(user.as_dict())
         return jsonify(None)
 
     def delete(self, uid: int):
-        res = db_api.delete_user_by_id(uid)
+        res = db_api.delete_patient_by_id(uid)
 
         return make_response(jsonify(res), 204)
 
     def put(self, uid: int):
         args = self.user_put_parser.parse_args()
-        user = db_api.update_user_by_id(uid, args)
+        user = db_api.update_patient_by_id(uid, args)
 
         if user is not None:
             return user.id
@@ -125,8 +125,8 @@ class BookResource(Resource):
         self.book_add_parser.add_argument('author_id', type=int, required=True)
 
     def get(self):
-        books = db.session.query(User, Book) \
-            .join(Book, Book.author_id == User.id).all()
+        books = db.session.query(Patient, Book) \
+            .join(Book, Book.author_id == Patient.id).all()
         res = [[b[0].as_dict(), b[1].as_dict()] for b in books]
         return jsonify(res)
 
@@ -144,8 +144,8 @@ class BookResource(Resource):
         return jsonify({"id": book.id})
 
 
-app_api.add_resource(UserListResource, '/users')
-app_api.add_resource(UserByIdResource, '/users/<int:uid>')
+app_api.add_resource(UserListResource, '/patients')
+app_api.add_resource(UserByIdResource, '/patients/<int:uid>')
 app_api.add_resource(BookResource, '/books')
 
 if __name__ == '__main__':

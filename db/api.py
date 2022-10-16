@@ -2,8 +2,8 @@ from db import db
 from db import models
 
 
-def add_user(values):
-    user = models.User()
+def add_patient(values):
+    user = models.Patient()
     user.update(values)
     db.session.add(user)
     db.session.commit()
@@ -11,34 +11,34 @@ def add_user(values):
     return user
 
 
-def get_all_users(values):
-    query = db.session.query(models.User)
+def get_all_patients(values):
+    query = db.session.query(models.Patient)
     if values.user_name:
-        query = query.filter(models.User.user_name == values.user_name)
+        query = query.filter(models.Patient.user_name == values.user_name)
 
     users = query.all()
 
     return users
 
 
-def get_user_by_id(uid):
-    user = db.session.query(models.User).\
-        filter(models.User.id == uid).one_or_none()
+def get_patient_by_id(uid):
+    user = db.session.query(models.Patient).\
+        filter(models.Patient.id == uid).one_or_none()
 
     return user
 
 
-def delete_user_by_id(uid):
-    res = db.session.query(models.User).\
-        filter(models.User.id == uid).delete()
+def delete_patient_by_id(uid):
+    res = db.session.query(models.Patient).\
+        filter(models.Patient.id == uid).delete()
     db.session.commit()
 
     return res
 
 
-def update_user_by_id(uid, values):
-    user = db.session.query(models.User).\
-        filter(models.User.id == uid).one_or_none()
+def update_patient_by_id(uid, values):
+    user = db.session.query(models.Patient).\
+        filter(models.Patient.id == uid).one_or_none()
 
     if user is not None:
         user.update(values)
