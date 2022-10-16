@@ -124,9 +124,6 @@ class User(db.Model, ModelBase):
     submit_time = db.Column(db.DateTime, nullable=False,
                             default=datetime.datetime.now)
 
-    def as_dict(self):
-        return {c.name: getattr(self, c.name) for c in self.__table__.columns}
-
     def to_json(self):
         return {
             "id": self.id,

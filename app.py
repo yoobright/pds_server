@@ -6,6 +6,7 @@ from db import db
 from flask_restful import Resource, Api
 from flask_restful import reqparse
 
+from db import api as db_api
 from db.models import User
 from db.books import Book
 
@@ -17,7 +18,7 @@ app.config['JSON_SORT_KEYS'] = False
 db.init_app(app)
 with app.app_context():
     db.create_all()
-api = Api(app)
+app_api = Api(app)
 
 
 def get_datetime_from_str(s):
@@ -81,22 +82,15 @@ class UserListResource(Resource):
     def get(self):
         args = self.user_get_parser.parse_args()
 
-        query = db.session.query(User)
-        if args.user_name:
-            query = query.filter(User.user_name == args.user_name)
+        users = db_api.get_all_users(args)
 
-        users = query.all()
         res = [dict(u.items()) for u in users]
         return jsonify(res)
 
     def post(self):
         args = self.user_add_parser.parse_args()
         print(args)
-
-        user = User()
-        user.update(args)
-        db.session.add(user)
-        db.session.commit()
+        user = db_api.add_user(args)
 
         return make_response(jsonify({"id": user.id}), 201)
 
@@ -108,25 +102,24 @@ class UserByIdResource(Resource):
         self.user_put_parser.add_argument('user_name', type=str)
 
     def get(self, uid: int):
-        user = db.session.query(User).filter(User.id == uid).one_or_none()
+        user = db_api.get_user_by_id(uid)
+
         if user is not None:
             return jsonify(user.as_dict())
         return jsonify(None)
 
     def delete(self, uid: int):
-        res = db.session.query(User).filter(User.id == uid).delete()
-        db.session.commit()
+        res = db_api.delete_user_by_id(uid)
+
         return make_response(jsonify(res), 204)
 
     def put(self, uid: int):
         args = self.user_put_parser.parse_args()
-        user = db.session.query(User).filter(User.id == uid).one_or_none()
-        user_name = args.user_name
-        if user and user_name:
-            user.user_name = user_name
-            db.session.commit()
+        user = db_api.update_user_by_id(uid, args)
+
+        if user is not None:
             return user.id
-        return 0
+        return -1
 
 
 class BookResource(Resource):
@@ -156,9 +149,9 @@ class BookResource(Resource):
         return jsonify({"id": book.id})
 
 
-api.add_resource(UserListResource, '/users')
-api.add_resource(UserByIdResource, '/users/<int:uid>')
-api.add_resource(BookResource, '/books')
+app_api.add_resource(UserListResource, '/users')
+app_api.add_resource(UserByIdResource, '/users/<int:uid>')
+app_api.add_resource(BookResource, '/books')
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port='8089')

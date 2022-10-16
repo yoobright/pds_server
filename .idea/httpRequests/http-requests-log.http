@@ -1,5 +1,170 @@
 GET http://localhost:8089/users
 Accept: application/json
+Content-Type: application/json
+
+{
+  "user_name": "demo"
+}
+
+<> 2022-10-16T115956.200.json
+
+###
+
+GET http://localhost:8089/users
+Accept: application/json
+
+<> 2022-10-16T115742.200.json
+
+###
+
+POST http://localhost:8089/users
+Content-Type: application/json
+
+{
+  "user_name": "test319",
+  "gender": 1,
+  "age": 22,
+  "submit_time": "1665891433"
+}
+
+<> 2022-10-16T113716.201.json
+
+###
+
+GET http://localhost:8089/users
+Accept: application/json
+
+<> 2022-10-16T113654.200.json
+
+###
+
+GET http://localhost:8089/users
+Accept: application/json
+Content-Type: application/json
+
+{
+  "user_name": "demo"
+}
+
+<> 2022-10-16T113643.200.json
+
+###
+
+PUT http://localhost:8089/users/8
+Content-Type: application/json
+
+{
+  "user_name": "demo"
+}
+
+<> 2022-10-16T113637.200.json
+
+###
+
+PUT http://localhost:8089/users/88
+Content-Type: application/json
+
+{
+  "user_name": "demo"
+}
+
+<> 2022-10-16T113622.200.json
+
+###
+
+PUT http://localhost:8089/users/88
+Content-Type: application/json
+
+{
+  "user_name": "demo"
+}
+
+<> 2022-10-16T113530.500.json
+
+###
+
+PUT http://localhost:8089/users/88
+Content-Type: application/json
+
+{
+  "user_name": "demo"
+}
+
+<> 2022-10-16T113427.500.json
+
+###
+
+PUT http://localhost:8089/users/8
+Content-Type: application/json
+
+{
+  "user_name": "demo"
+}
+
+<> 2022-10-16T113405.200.json
+
+###
+
+PUT http://localhost:8089/users/8
+Content-Type: application/json
+
+{
+  "user_name": "demo"
+}
+
+<> 2022-10-16T113326.500.json
+
+###
+
+GET http://localhost:8089/users
+Accept: application/json
+
+<> 2022-10-16T112241.200.json
+
+###
+
+POST http://localhost:8089/users
+Content-Type: application/json
+
+{
+  "user_name": "test726",
+  "gender": 1,
+  "age": 22,
+  "submit_time": "1665890199"
+}
+
+<> 2022-10-16T111647.201.json
+
+###
+
+POST http://localhost:8089/users
+Content-Type: application/json
+
+{
+  "user_name": "test774",
+  "gender": 1,
+  "age": 22,
+  "submit_time": "1665890100"
+}
+
+###
+
+POST http://localhost:8089/users
+Content-Type: application/json
+
+{
+  "user_name": "test197",
+  "gender": 1,
+  "age": 22,
+  "submit_time": "1665889983"
+}
+
+<> 2022-10-16T111303.500.json
+
+###
+
+GET http://localhost:8089/users
+Accept: application/json
 
 <> 2022-10-16T110203.200.json
 
@@ -401,182 +566,6 @@ Content-Type: application/json
 }
 
 <> 2022-10-15T090918.201.json
-
-###
-
-POST http://localhost:8089/users
-Content-Type: application/json
-
-{
-  "user_name": "test800",
-  "email": "tt688@tt.com",
-  "submit_time": "1665839356"
-}
-
-<> 2022-10-15T090916.201.json
-
-###
-
-POST http://localhost:8089/users
-Content-Type: application/json
-
-{
-  "user_name": "test679",
-  "email": "tt587@tt.com",
-  "submit_time": "{{timestamp}}"
-}
-
-<> 2022-10-15T090906.400.json
-
-###
-
-GET http://localhost:8089/users
-Accept: application/json
-
-<> 2022-10-15T090710.200.json
-
-###
-
-POST http://localhost:8089/users
-Content-Type: application/json
-
-{
-  "user_name": "test71",
-  "email": "tt97@tt.com",
-  "submit_time": "1665839108"
-}
-
-<> 2022-10-15T090530.201.json
-
-###
-
-POST http://localhost:8089/users
-Content-Type: application/json
-
-{
-  "user_name": "test206",
-  "email": "tt890@tt.com",
-  "submit_time": "DD2011-11-11T00:06:18"
-}
-
-<> 2022-10-15T090446.400.json
-
-###
-
-POST http://localhost:8089/users
-Content-Type: application/json
-
-{
-  "user_name": "test544",
-  "email": "tt494@tt.com",
-  "submit_time": "2011-11-11T00:06:18"
-}
-
-<> 2022-10-15T085347.201.json
-
-###
-
-GET http://localhost:8089/users
-Accept: application/json
-Content-Type: application/json
-
-{
-  "user_name": "demo"
-}
-
-<> 2022-10-15T084522.200.json
-
-###
-
-POST http://localhost:8089/users
-Content-Type: application/json
-
-{
-  "user_name": "test200",
-  "email": "tt344@tt.com",
-  "submit_time": "2011-11-11T00:06:18"
-}
-
-<> 2022-10-15T084223.201.json
-
-###
-
-POST http://localhost:8089/users
-Content-Type: application/json
-
-{
-  "user_name": "test384",
-  "email": "tt@tt.com",
-  "submit_time": "2011-11-11T00:06:18"
-}
-
-<> 2022-10-15T083841.201.json
-
-###
-
-POST http://localhost:8089/users
-Content-Type: application/json
-
-{
-  "user_name": "test596",
-  "email": "tt@tt.com",
-  "submit_time": "1665837477"
-}
-
-<> 2022-10-15T083757.400.json
-
-###
-
-GET http://localhost:8089/users
-Accept: application/json
-
-<> 2022-10-15T083524.200.json
-
-###
-
-POST http://localhost:8089/users
-Content-Type: application/json
-
-{
-  "user_name": "test{{$randomInt % 10}}",
-  "email": "tt@tt.com",
-  "submit_time": "2011-11-11T00:06:18"
-}
-
-<> 2022-10-15T083519.201.json
-
-###
-
-POST http://localhost:8089/users
-Content-Type: application/json
-
-{
-  "user_name": "test{{$randomInt % 10}}",
-  "email": "tt@tt.com",
-  "submit_time": "2011-11-11T00:06:18"
-}
-
-<> 2022-10-15T083513.201.json
-
-###
-
-GET http://localhost:8089/users
-Accept: application/json
-
-<> 2022-10-15T083342.200.json
-
-###
-
-POST http://localhost:8089/users
-Content-Type: application/json
-
-{
-  "user_name": "test46",
-  "email": "tt@tt.com",
-  "submit_time": "2011-11-11T00:06:18"
-}
-
-<> 2022-10-15T083334.201.json
 
 ###
 
