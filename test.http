@@ -5,6 +5,7 @@ Content-Type: application/json
 
 {
   "user_name": "test{{$randomInt}}",
+  "gender": 1,
   "age": 22,
   "submit_time": "{{$timestamp}}"
 }

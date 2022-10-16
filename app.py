@@ -2,12 +2,12 @@ import datetime
 
 from flask import Flask, jsonify, make_response
 from flask.json import JSONEncoder
-from models import db
+from db import db
 from flask_restful import Resource, Api
 from flask_restful import reqparse
 
-from models.users import User
-from models.books import Book
+from db.models import User
+from db.books import Book
 
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///project.db"
@@ -25,7 +25,7 @@ def get_datetime_from_str(s):
         return datetime.datetime.fromtimestamp(int(s))
     except ValueError:
         return datetime.datetime.fromisoformat(s)
-        
+
 
 class CustomJSONEncoder(JSONEncoder):
     def default(self, obj):
@@ -46,6 +46,7 @@ def hello_world():
 
 
 class UserListResource(Resource):
+
     def __init__(self):
         super(UserListResource, self).__init__()
         self.user_get_parser = reqparse.RequestParser()
@@ -53,7 +54,24 @@ class UserListResource(Resource):
 
         self.user_add_parser = reqparse.RequestParser()
         self.user_add_parser.add_argument('user_name', type=str, required=True)
+        self.user_add_parser.add_argument('uid', type=str)
+        self.user_add_parser.add_argument('gender', type=str, required=True)
         self.user_add_parser.add_argument('age', type=int, required=True)
+        self.user_add_parser.add_argument('height', type=float)
+        self.user_add_parser.add_argument('weight', type=float)
+        self.user_add_parser.add_argument('job', type=str)
+        self.user_add_parser.add_argument('edu', type=str)
+        self.user_add_parser.add_argument('special', type=str, default="无")
+        self.user_add_parser.add_argument('tel', type=str)
+        self.user_add_parser.add_argument('tumor', type=str, default="无")
+        self.user_add_parser.add_argument('tumor_metastasis', type=str)
+        self.user_add_parser.add_argument('tumor_treatment', type=str)
+        self.user_add_parser.add_argument('illness', type=str)
+        self.user_add_parser.add_argument('liver_function', type=str)
+        self.user_add_parser.add_argument('kidney_function', type=str)
+        self.user_add_parser.add_argument('cardiac_function', type=str)
+        self.user_add_parser.add_argument('allergy', type=str)
+        self.user_add_parser.add_argument('physical', type=str)
         self.user_add_parser.add_argument(
             'submit_time',
             type=get_datetime_from_str,
@@ -68,14 +86,15 @@ class UserListResource(Resource):
             query = query.filter(User.user_name == args.user_name)
 
         users = query.all()
-        res = [u.as_dict() for u in users]
+        res = [dict(u.items()) for u in users]
         return jsonify(res)
 
     def post(self):
         args = self.user_add_parser.parse_args()
         print(args)
 
-        user = User(**args)
+        user = User()
+        user.update(args)
         db.session.add(user)
         db.session.commit()
 
