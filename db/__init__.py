@@ -1,4 +1,8 @@
-from flask_sqlalchemy import SQLAlchemy
+class DB(object):
+    db = None
+    
+    @classmethod
+    def set_db(cls, db):
+        DB.db = db
 
 
-db = SQLAlchemy()

@@ -1,19 +1,20 @@
-from db import db
+from db import DB as db_cls
 from db import models
 
+DB = db_cls.db
 
 def add_patient(values):
     user = models.Patient()
     user.update(values)
-    db.session.add(user)
-    db.session.commit()
+    DB.session.add(user)
+    DB.session.commit()
 
     return user
 
 
 def get_all_patients(values):
-    query = db.session.query(models.Patient)
-    if values.user_name:
+    query = DB.session.query(models.Patient)
+    if values is not None and values.user_name:
         query = query.filter(models.Patient.user_name == values.user_name)
 
     users = query.all()
@@ -22,27 +23,34 @@ def get_all_patients(values):
 
 
 def get_patient_by_id(uid):
-    user = db.session.query(models.Patient).\
+    user = DB.session.query(models.Patient).\
         filter(models.Patient.id == uid).one_or_none()
 
     return user
 
 
 def delete_patient_by_id(uid):
-    res = db.session.query(models.Patient).\
+    res = DB.session.query(models.Patient).\
         filter(models.Patient.id == uid).delete()
-    db.session.commit()
+    DB.session.commit()
 
     return res
 
 
 def update_patient_by_id(uid, values):
-    user = db.session.query(models.Patient).\
+    user = DB.session.query(models.Patient).\
         filter(models.Patient.id == uid).one_or_none()
 
     if user is not None:
         user.update(values)
-        db.session.commit()
+        DB.session.commit()
 
     return user
 
+def add_drug(values):
+    drug = models.Drug()
+    drug.update(values)
+    DB.session.add(drug)
+    DB.session.commit()
+
+    return drug

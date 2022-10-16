@@ -1,0 +1,1325 @@
+[
+  {
+    "drug_id": "1",
+    "drug_name": "羟考酮缓释片",
+    "spec": "10mg",
+    "unit": "mg",
+    "category": "C/G1",
+    "high_dose": "",
+    "exce_freq": "Qnh(n≤8)"
+  },
+  {
+    "drug_id": "2",
+    "drug_name": "硫酸吗啡缓释片",
+    "spec": "10mg",
+    "unit": "mg",
+    "category": "C/G1",
+    "high_dose": "",
+    "exce_freq": "Qnh(n≤8)"
+  },
+  {
+    "drug_id": "3",
+    "drug_name": "芬太尼透皮贴剂",
+    "spec": "4.2mg",
+    "unit": "mg",
+    "category": "C/G1",
+    "high_dose": "",
+    "exce_freq": "1次/n天(n<3)"
+  },
+  {
+    "drug_id": "4",
+    "drug_name": "盐酸曲马多缓释片",
+    "spec": "100mg",
+    "unit": "mg",
+    "category": "D/I1/J",
+    "high_dose": "400mg/d",
+    "exce_freq": "Qnh(n≤8)"
+  },
+  {
+    "drug_id": "5",
+    "drug_name": "氨酚羟考酮片",
+    "spec": "5mg:325mg",
+    "unit": "mg",
+    "category": "E1",
+    "high_dose": "3960mg/d",
+    "exce_freq": ""
+  },
+  {
+    "drug_id": "6",
+    "drug_name": "双氯芬酸钠双释放肠溶胶囊",
+    "spec": "75mg",
+    "unit": "mg",
+    "category": "A1/A5",
+    "high_dose": "",
+    "exce_freq": "2次/d"
+  },
+  {
+    "drug_id": "7",
+    "drug_name": "塞来昔布胶囊",
+    "spec": "200mg",
+    "unit": "mg",
+    "category": "A1/A8",
+    "high_dose": "400mg/d",
+    "exce_freq": "2次/d"
+  },
+  {
+    "drug_id": "8",
+    "drug_name": "加巴喷丁胶囊",
+    "spec": "300mg",
+    "unit": "mg",
+    "category": "B1",
+    "high_dose": "1800mg/d",
+    "exce_freq": ""
+  },
+  {
+    "drug_id": "9",
+    "drug_name": "硫酸吗啡片",
+    "spec": "10mg",
+    "unit": "mg",
+    "category": "E1/G1",
+    "high_dose": "100mg/d",
+    "exce_freq": ""
+  },
+  {
+    "drug_id": "10",
+    "drug_name": "盐酸阿米替林片",
+    "spec": "25mg",
+    "unit": "mg",
+    "category": "B2",
+    "high_dose": "300mg/d",
+    "exce_freq": "3次/d"
+  },
+  {
+    "drug_id": "11",
+    "drug_name": "盐酸度洛西汀肠溶胶囊",
+    "spec": "30mg",
+    "unit": "mg",
+    "category": "B5",
+    "high_dose": "60mg/d",
+    "exce_freq": "2次/d"
+  },
+  {
+    "drug_id": "12",
+    "drug_name": "艾瑞昔布片",
+    "spec": "100mg",
+    "unit": "mg",
+    "category": "A1",
+    "high_dose": "200mg/d",
+    "exce_freq": "2次/d"
+  },
+  {
+    "drug_id": "13",
+    "drug_name": "尼美舒利片",
+    "spec": "100mg",
+    "unit": "mg",
+    "category": "A1",
+    "high_dose": "200mg/d",
+    "exce_freq": ""
+  },
+  {
+    "drug_id": "14",
+    "drug_name": "洛芬待因片",
+    "spec": "",
+    "unit": "片",
+    "category": "F1",
+    "high_dose": "6片/d",
+    "exce_freq": "4次/d"
+  },
+  {
+    "drug_id": "15",
+    "drug_name": "氨酚曲马多片",
+    "spec": "",
+    "unit": "片",
+    "category": "F1/J",
+    "high_dose": "6片/d",
+    "exce_freq": "4次/d"
+  },
+  {
+    "drug_id": "16",
+    "drug_name": "氨酚双氢可待因片",
+    "spec": "",
+    "unit": "片",
+    "category": "F1/G1",
+    "high_dose": "8片/d",
+    "exce_freq": "4次/d"
+  },
+  {
+    "drug_id": "17",
+    "drug_name": "醋酸泼尼松片",
+    "spec": "5mg",
+    "unit": "mg",
+    "category": "",
+    "high_dose": "",
+    "exce_freq": ""
+  },
+  {
+    "drug_id": "18",
+    "drug_name": "对乙酰氨基酚片",
+    "spec": "100mg",
+    "unit": "mg",
+    "category": "A4",
+    "high_dose": "4000mg/d",
+    "exce_freq": "4次/d"
+  },
+  {
+    "drug_id": "19",
+    "drug_name": "布洛芬缓释胶囊",
+    "spec": "300mg",
+    "unit": "mg",
+    "category": "A1/A5",
+    "high_dose": "3600mg/d",
+    "exce_freq": "2次/d"
+  },
+  {
+    "drug_id": "20",
+    "drug_name": "盐酸布桂嗪片",
+    "spec": "30mg",
+    "unit": "mg",
+    "category": "F1",
+    "high_dose": "",
+    "exce_freq": ""
+  },
+  {
+    "drug_id": "21",
+    "drug_name": "盐酸哌替啶注射液",
+    "spec": "2ml:100mg",
+    "unit": "mg",
+    "category": "E2/G2",
+    "high_dose": "",
+    "exce_freq": ""
+  },
+  {
+    "drug_id": "22",
+    "drug_name": "去痛片",
+    "spec": "",
+    "unit": "片",
+    "category": "",
+    "high_dose": "",
+    "exce_freq": ""
+  },
+  {
+    "drug_id": "23",
+    "drug_name": "地佐辛注射液",
+    "spec": "1ml:5mg",
+    "unit": "mg",
+    "category": "F2/H2",
+    "high_dose": "",
+    "exce_freq": ""
+  },
+  {
+    "drug_id": "24",
+    "drug_name": "盐酸布桂嗪注射液",
+    "spec": "2ml:100mg",
+    "unit": "mg",
+    "category": "F2",
+    "high_dose": "",
+    "exce_freq": "2次/d"
+  },
+  {
+    "drug_id": "25",
+    "drug_name": "美洛昔康片",
+    "spec": "7.5mg",
+    "unit": "mg",
+    "category": "A1/A5",
+    "high_dose": "15mg/d",
+    "exce_freq": "1次/d"
+  },
+  {
+    "drug_id": "26",
+    "drug_name": "地西泮注射液",
+    "spec": "2ml:10mg",
+    "unit": "mg",
+    "category": "K",
+    "high_dose": "",
+    "exce_freq": "4次/d"
+  },
+  {
+    "drug_id": "27",
+    "drug_name": "喷他佐辛注射液",
+    "spec": "1ml:30mg",
+    "unit": "mg",
+    "category": "F2/H2",
+    "high_dose": "240mg/d",
+    "exce_freq": ""
+  },
+  {
+    "drug_id": "28",
+    "drug_name": "丁丙诺菲透皮贴剂",
+    "spec": "5mg",
+    "unit": "mg",
+    "category": "C/H1",
+    "high_dose": "10mg/d",
+    "exce_freq": "1次/n天(n<7)"
+  },
+  {
+    "drug_id": "29",
+    "drug_name": "盐酸氨溴索片",
+    "spec": "30mg",
+    "unit": "mg",
+    "category": "",
+    "high_dose": "",
+    "exce_freq": "3次/d"
+  },
+  {
+    "drug_id": "30",
+    "drug_name": "草乌甲素片",
+    "spec": "0.4mg",
+    "unit": "mg",
+    "category": "",
+    "high_dose": "",
+    "exce_freq": "3次/d"
+  },
+  {
+    "drug_id": "31",
+    "drug_name": "依托考昔片",
+    "spec": "60mg",
+    "unit": "mg",
+    "category": "A1/A8",
+    "high_dose": "30mg/d",
+    "exce_freq": "1次/d"
+  },
+  {
+    "drug_id": "32",
+    "drug_name": "普瑞巴林胶囊",
+    "spec": "75mg",
+    "unit": "mg",
+    "category": "B1",
+    "high_dose": "600mg/d",
+    "exce_freq": "3次/d"
+  },
+  {
+    "drug_id": "33",
+    "drug_name": "可待因桔梗片",
+    "spec": "12mg",
+    "unit": "mg",
+    "category": "F1/G1",
+    "high_dose": "84mg/d",
+    "exce_freq": "3次/d"
+  },
+  {
+    "drug_id": "34",
+    "drug_name": "盐酸吗啡注射液",
+    "spec": "1ml:10mg",
+    "unit": "mg",
+    "category": "E2/G2",
+    "high_dose": "60mg/d",
+    "exce_freq": ""
+  },
+  {
+    "drug_id": "35",
+    "drug_name": "醋酸地塞米松片",
+    "spec": "750mg",
+    "unit": "mg",
+    "category": "L2",
+    "high_dose": "",
+    "exce_freq": "4次/d"
+  },
+  {
+    "drug_id": "36",
+    "drug_name": "盐酸乙哌立松片",
+    "spec": "50mg",
+    "unit": "mg",
+    "category": "",
+    "high_dose": "",
+    "exce_freq": "3次/d"
+  },
+  {
+    "drug_id": "37",
+    "drug_name": "吲哚美辛片",
+    "spec": "25mg",
+    "unit": "mg",
+    "category": "A1/A5",
+    "high_dose": "200mg/d",
+    "exce_freq": "3次/d"
+  },
+  {
+    "drug_id": "38",
+    "drug_name": "巴氯芬片",
+    "spec": "10mg",
+    "unit": "mg",
+    "category": "",
+    "high_dose": "100mg/d",
+    "exce_freq": "5次/d"
+  },
+  {
+    "drug_id": "39",
+    "drug_name": "盐酸吗啡注射液",
+    "spec": "1ml:10mg",
+    "unit": "mg",
+    "category": "E2/G2",
+    "high_dose": "60mg/d",
+    "exce_freq": ""
+  },
+  {
+    "drug_id": "40",
+    "drug_name": "盐酸曲马多注射液",
+    "spec": "1ml:50mg",
+    "unit": "mg",
+    "category": "F2/I2",
+    "high_dose": "",
+    "exce_freq": ""
+  },
+  {
+    "drug_id": "41",
+    "drug_name": "硫酸吗啡栓",
+    "spec": "10mg",
+    "unit": "mg",
+    "category": "E1/G1",
+    "high_dose": "100mg/d",
+    "exce_freq": "4次/d"
+  },
+  {
+    "drug_id": "42",
+    "drug_name": "磷酸可待因片",
+    "spec": "15mg",
+    "unit": "mg",
+    "category": "F1/G1",
+    "high_dose": "250mg/d",
+    "exce_freq": "3次/d"
+  },
+  {
+    "drug_id": "43",
+    "drug_name": "氟比洛芬凝胶贴膏",
+    "spec": "40mg",
+    "unit": "mg",
+    "category": "A2",
+    "high_dose": "",
+    "exce_freq": "2次/d"
+  },
+  {
+    "drug_id": "44",
+    "drug_name": "盐酸替扎尼定片",
+    "spec": "1mg",
+    "unit": "mg",
+    "category": "",
+    "high_dose": "",
+    "exce_freq": ""
+  },
+  {
+    "drug_id": "45",
+    "drug_name": "盐酸文拉法辛缓释胶囊",
+    "spec": "75mg",
+    "unit": "mg",
+    "category": "B5",
+    "high_dose": "350mg/d",
+    "exce_freq": "3次/d"
+  },
+  {
+    "drug_id": "46",
+    "drug_name": "复方利多卡因乳膏",
+    "spec": "",
+    "unit": "支",
+    "category": "",
+    "high_dose": "",
+    "exce_freq": ""
+  },
+  {
+    "drug_id": "47",
+    "drug_name": "苯甲酸利扎曲普坦胶囊",
+    "spec": "5mg",
+    "unit": "mg",
+    "category": "",
+    "high_dose": "",
+    "exce_freq": ""
+  },
+  {
+    "drug_id": "48",
+    "drug_name": "氟比洛芬酯注射液",
+    "spec": "5ml:50mg",
+    "unit": "mg",
+    "category": "A3/A7",
+    "high_dose": "",
+    "exce_freq": ""
+  },
+  {
+    "drug_id": "49",
+    "drug_name": "卡马西平片",
+    "spec": "100mg",
+    "unit": "mg",
+    "category": "",
+    "high_dose": "",
+    "exce_freq": ""
+  },
+  {
+    "drug_id": "50",
+    "drug_name": "利伐沙班片",
+    "spec": "15mg",
+    "unit": "mg",
+    "category": "",
+    "high_dose": "",
+    "exce_freq": ""
+  },
+  {
+    "drug_id": "51",
+    "drug_name": "双氯芬酸栓",
+    "spec": "50mg",
+    "unit": "mg",
+    "category": "A1",
+    "high_dose": "150mg/d",
+    "exce_freq": "2次/d"
+  },
+  {
+    "drug_id": "52",
+    "drug_name": "盐酸纳洛酮注射液",
+    "spec": "1mg:1mg",
+    "unit": "mg",
+    "category": "L6",
+    "high_dose": "",
+    "exce_freq": ""
+  },
+  {
+    "drug_id": "53",
+    "drug_name": "甘露醇注射液",
+    "spec": "250ml:50g",
+    "unit": "ml",
+    "category": "",
+    "high_dose": "",
+    "exce_freq": ""
+  },
+  {
+    "drug_id": "54",
+    "drug_name": "地塞米松针",
+    "spec": "5mg",
+    "unit": "mg",
+    "category": "",
+    "high_dose": "",
+    "exce_freq": ""
+  },
+  {
+    "drug_id": "55",
+    "drug_name": "硫酸四氢帕马丁注射液",
+    "spec": "2ml:60mg",
+    "unit": "mg",
+    "category": "",
+    "high_dose": "",
+    "exce_freq": ""
+  },
+  {
+    "drug_id": "56",
+    "drug_name": "阿普唑仑片",
+    "spec": "400mg",
+    "unit": "mg",
+    "category": "K",
+    "high_dose": "10mg/d",
+    "exce_freq": "2次/d"
+  },
+  {
+    "drug_id": "57",
+    "drug_name": "注射用帕瑞昔布钠",
+    "spec": "30mg",
+    "unit": "mg",
+    "category": "A3/A10",
+    "high_dose": "80mg/d",
+    "exce_freq": ""
+  },
+  {
+    "drug_id": "58",
+    "drug_name": "盐酸曲马多片",
+    "spec": "50mg",
+    "unit": "mg",
+    "category": "F1/I1/J",
+    "high_dose": "400mg/d",
+    "exce_freq": "3次/d"
+  },
+  {
+    "drug_id": "59",
+    "drug_name": "枸橼酸芬太尼注射液",
+    "spec": "2ml:0.1mg",
+    "unit": "mg",
+    "category": "E2",
+    "high_dose": "",
+    "exce_freq": ""
+  },
+  {
+    "drug_id": "60",
+    "drug_name": "酒石酸布托啡诺注射液",
+    "spec": "1ml:1mg",
+    "unit": "mg",
+    "category": "F2/H2",
+    "high_dose": "",
+    "exce_freq": ""
+  },
+  {
+    "drug_id": "61",
+    "drug_name": "布洛芬混悬液",
+    "spec": "30ml:0.6g",
+    "unit": "ml",
+    "category": "A1/A5",
+    "high_dose": "",
+    "exce_freq": "4次/d"
+  },
+  {
+    "drug_id": "62",
+    "drug_name": "吲哚布芬片",
+    "spec": "200mg",
+    "unit": "mg",
+    "category": "",
+    "high_dose": "",
+    "exce_freq": "2次/d"
+  },
+  {
+    "drug_id": "63",
+    "drug_name": "洛索洛芬钠片",
+    "spec": "60mg",
+    "unit": "mg",
+    "category": "A1/A5",
+    "high_dose": "180mg/d",
+    "exce_freq": "2次/d"
+  },
+  {
+    "drug_id": "64",
+    "drug_name": "盐酸氢吗啡酮注射液",
+    "spec": "2ml:2mg",
+    "unit": "mg",
+    "category": "E2/G2",
+    "high_dose": "",
+    "exce_freq": ""
+  },
+  {
+    "drug_id": "65",
+    "drug_name": "双氯芬酸钠盐酸利多卡因注射液",
+    "spec": "2ml",
+    "unit": "mg",
+    "category": "A3/A7",
+    "high_dose": "",
+    "exce_freq": ""
+  },
+  {
+    "drug_id": "66",
+    "drug_name": "复方磷酸可待因口服溶液",
+    "spec": "60ml",
+    "unit": "ml",
+    "category": "F1/G1",
+    "high_dose": "",
+    "exce_freq": "3次/d"
+  },
+  {
+    "drug_id": "67",
+    "drug_name": "地西泮片",
+    "spec": "2.5mg",
+    "unit": "mg",
+    "category": "K",
+    "high_dose": "",
+    "exce_freq": ""
+  },
+  {
+    "drug_id": "68",
+    "drug_name": "盐酸羟考酮注射液",
+    "spec": "2ml:20mg",
+    "unit": "mg",
+    "category": "E2/G2",
+    "high_dose": "",
+    "exce_freq": ""
+  },
+  {
+    "drug_id": "69",
+    "drug_name": "盐酸羟考酮注射液",
+    "spec": "1ml:10mg",
+    "unit": "mg",
+    "category": "E2/G2",
+    "high_dose": "",
+    "exce_freq": ""
+  },
+  {
+    "drug_id": "70",
+    "drug_name": "双氯芬酸钠肠溶片",
+    "spec": "25mg",
+    "unit": "mg",
+    "category": "A1/A5",
+    "high_dose": "150mg/d",
+    "exce_freq": "3次/d"
+  },
+  {
+    "drug_id": "71",
+    "drug_name": "双氯芬酸钠肠溶片",
+    "spec": "75mg",
+    "unit": "mg",
+    "category": "A1/A5",
+    "high_dose": "150mg/d",
+    "exce_freq": "2次/d"
+  },
+  {
+    "drug_id": "72",
+    "drug_name": "双氯芬酸钠凝胶",
+    "spec": "",
+    "unit": "支",
+    "category": "A2/A6",
+    "high_dose": "",
+    "exce_freq": "4次/d"
+  },
+  {
+    "drug_id": "73",
+    "drug_name": "加巴喷丁胶囊",
+    "spec": "100mg",
+    "unit": "mg",
+    "category": "",
+    "high_dose": "1800mg/d",
+    "exce_freq": "3次/d"
+  },
+  {
+    "drug_id": "74",
+    "drug_name": "洛芬待因缓释片",
+    "spec": "0.2g:13mg",
+    "unit": "片",
+    "category": "",
+    "high_dose": "6片/d",
+    "exce_freq": "2次/d"
+  },
+  {
+    "drug_id": "75",
+    "drug_name": "对乙酰氨基酚混悬滴剂",
+    "spec": "15mg:1.5g",
+    "unit": "ml",
+    "category": "A4",
+    "high_dose": "",
+    "exce_freq": "4次/d"
+  },
+  {
+    "drug_id": "76",
+    "drug_name": "对乙酰氨基酚缓释片",
+    "spec": "650mg",
+    "unit": "mg",
+    "category": "A4",
+    "high_dose": "4000mg/d",
+    "exce_freq": "3次/d"
+  },
+  {
+    "drug_id": "77",
+    "drug_name": "酮咯酸氨丁三醇注射液",
+    "spec": "1ml:30mg",
+    "unit": "mg",
+    "category": "A7",
+    "high_dose": "",
+    "exce_freq": "4次/d"
+  },
+  {
+    "drug_id": "78",
+    "drug_name": "吲哚美辛缓释片",
+    "spec": "25mg",
+    "unit": "mg",
+    "category": "A1/A5",
+    "high_dose": "200mg/d",
+    "exce_freq": "2次/d"
+  },
+  {
+    "drug_id": "79",
+    "drug_name": "吲哚美辛巴布膏",
+    "spec": "",
+    "unit": "片",
+    "category": "A6",
+    "high_dose": "",
+    "exce_freq": "2次/d"
+  },
+  {
+    "drug_id": "80",
+    "drug_name": "盐酸舍曲林片",
+    "spec": "50mg",
+    "unit": "mg",
+    "category": "B3",
+    "high_dose": "200mg/d",
+    "exce_freq": "1次/d"
+  },
+  {
+    "drug_id": "81",
+    "drug_name": "盐酸帕罗西汀肠溶缓释片",
+    "spec": "12.5mg",
+    "unit": "mg",
+    "category": "B3",
+    "high_dose": "62.5mg/d",
+    "exce_freq": "1次/d"
+  },
+  {
+    "drug_id": "82",
+    "drug_name": "氢溴酸西酞普兰片",
+    "spec": "20mg",
+    "unit": "mg",
+    "category": "B3",
+    "high_dose": "40mg/d",
+    "exce_freq": "1次/d"
+  },
+  {
+    "drug_id": "83",
+    "drug_name": "盐酸米那普仑片",
+    "spec": "25mg",
+    "unit": "mg",
+    "category": "B5",
+    "high_dose": "",
+    "exce_freq": "3次/d"
+  },
+  {
+    "drug_id": "84",
+    "drug_name": "盐酸多塞平片",
+    "spec": "25mg",
+    "unit": "mg",
+    "category": "B2",
+    "high_dose": "300mg/d",
+    "exce_freq": "3次/d"
+  },
+  {
+    "drug_id": "85",
+    "drug_name": "奥氮平片",
+    "spec": "5mg",
+    "unit": "mg",
+    "category": "L2/L3",
+    "high_dose": "",
+    "exce_freq": "1次/d"
+  },
+  {
+    "drug_id": "86",
+    "drug_name": "盐酸安非他酮片",
+    "spec": "75mg",
+    "unit": "mg",
+    "category": "",
+    "high_dose": "450mg/d",
+    "exce_freq": "4次/d"
+  },
+  {
+    "drug_id": "87",
+    "drug_name": "安非他酮缓释片",
+    "spec": "150mg",
+    "unit": "mg",
+    "category": "",
+    "high_dose": "",
+    "exce_freq": "2次/d"
+  },
+  {
+    "drug_id": "88",
+    "drug_name": "米氮平片",
+    "spec": "30mg",
+    "unit": "mg",
+    "category": "",
+    "high_dose": "",
+    "exce_freq": "2次/d"
+  },
+  {
+    "drug_id": "89",
+    "drug_name": "萘普生片",
+    "spec": "100mg",
+    "unit": "mg",
+    "category": "A5",
+    "high_dose": "",
+    "exce_freq": "4次/d"
+  },
+  {
+    "drug_id": "90",
+    "drug_name": "盐酸氯米帕明注射液",
+    "spec": "2ml:25mg",
+    "unit": "mg",
+    "category": "B2",
+    "high_dose": "200mg/d",
+    "exce_freq": "1次/d"
+  },
+  {
+    "drug_id": "91",
+    "drug_name": "盐酸丙米嗪片",
+    "spec": "12.5mg",
+    "unit": "mg",
+    "category": "B2",
+    "high_dose": "200mg/d",
+    "exce_freq": "2次/d"
+  },
+  {
+    "drug_id": "92",
+    "drug_name": "氟哌噻吨美利曲辛片",
+    "spec": "0.5mg:10mg",
+    "unit": "片",
+    "category": "B2",
+    "high_dose": "4片/d",
+    "exce_freq": "2次/d"
+  },
+  {
+    "drug_id": "93",
+    "drug_name": "盐酸氟西汀胶囊",
+    "spec": "20mg",
+    "unit": "mg",
+    "category": "B3",
+    "high_dose": "",
+    "exce_freq": "1次/d"
+  },
+  {
+    "drug_id": "94",
+    "drug_name": "马来酸氟伏沙明片",
+    "spec": "50mg",
+    "unit": "mg",
+    "category": "B3",
+    "high_dose": "300mg/d",
+    "exce_freq": "3次/d"
+  },
+  {
+    "drug_id": "95",
+    "drug_name": "草酸艾司西酞普兰片",
+    "spec": "10mg",
+    "unit": "mg",
+    "category": "B3",
+    "high_dose": "20mg/d",
+    "exce_freq": "1次/d"
+  },
+  {
+    "drug_id": "96",
+    "drug_name": "吗氯贝胺片",
+    "spec": "100mg",
+    "unit": "mg",
+    "category": "B4",
+    "high_dose": "600mg/d",
+    "exce_freq": "3次/d"
+  },
+  {
+    "drug_id": "97",
+    "drug_name": "盐酸司来吉兰片",
+    "spec": "5mg",
+    "unit": "mg",
+    "category": "B4",
+    "high_dose": "",
+    "exce_freq": "2次/d"
+  },
+  {
+    "drug_id": "98",
+    "drug_name": "氯硝西泮片",
+    "spec": "2mg",
+    "unit": "mg",
+    "category": "K",
+    "high_dose": "20mg/d",
+    "exce_freq": "3次/d"
+  },
+  {
+    "drug_id": "99",
+    "drug_name": "艾司唑仑片",
+    "spec": "1mg",
+    "unit": "mg",
+    "category": "K",
+    "high_dose": "",
+    "exce_freq": "3次/d"
+  },
+  {
+    "drug_id": "100",
+    "drug_name": "比沙可啶栓",
+    "spec": "10mg",
+    "unit": "mg",
+    "category": "L1",
+    "high_dose": "",
+    "exce_freq": "1次/d"
+  },
+  {
+    "drug_id": "101",
+    "drug_name": "通便灵胶囊",
+    "spec": "250mg",
+    "unit": "mg",
+    "category": "L1",
+    "high_dose": "",
+    "exce_freq": "1次/d"
+  },
+  {
+    "drug_id": "102",
+    "drug_name": "麻仁胶囊",
+    "spec": "350mg",
+    "unit": "mg",
+    "category": "L1",
+    "high_dose": "",
+    "exce_freq": "2次/d"
+  },
+  {
+    "drug_id": "103",
+    "drug_name": "乳果糖口服溶液",
+    "spec": "100ml:67g",
+    "unit": "ml",
+    "category": "L1",
+    "high_dose": "",
+    "exce_freq": "3次/d"
+  },
+  {
+    "drug_id": "104",
+    "drug_name": "聚乙二醇",
+    "spec": "4000散",
+    "unit": "袋",
+    "category": "L1",
+    "high_dose": "",
+    "exce_freq": "2次/d"
+  },
+  {
+    "drug_id": "105",
+    "drug_name": "甲氧氯普胺片",
+    "spec": "5mg",
+    "unit": "mg",
+    "category": "L2",
+    "high_dose": "",
+    "exce_freq": "3次/d"
+  },
+  {
+    "drug_id": "106",
+    "drug_name": "氟哌啶醇片",
+    "spec": "2mg",
+    "unit": "mg",
+    "category": "L2/L3",
+    "high_dose": "",
+    "exce_freq": "3次/d"
+  },
+  {
+    "drug_id": "107",
+    "drug_name": "盐酸格拉司琼片",
+    "spec": "3ml:3mg",
+    "unit": "mg",
+    "category": "L2",
+    "high_dose": "9mg/d",
+    "exce_freq": "2次/d"
+  },
+  {
+    "drug_id": "108",
+    "drug_name": "盐酸昂丹司琼片",
+    "spec": "8mg",
+    "unit": "mg",
+    "category": "L2",
+    "high_dose": "",
+    "exce_freq": "3次/d"
+  },
+  {
+    "drug_id": "109",
+    "drug_name": "利培酮片",
+    "spec": "1mg",
+    "unit": "mg",
+    "category": "L3",
+    "high_dose": "16mg/d",
+    "exce_freq": "2次/d"
+  },
+  {
+    "drug_id": "110",
+    "drug_name": "盐酸哌甲酯片",
+    "spec": "10mg",
+    "unit": "mg",
+    "category": "L4",
+    "high_dose": "40mg/d",
+    "exce_freq": "2次/d"
+  },
+  {
+    "drug_id": "111",
+    "drug_name": "盐酸西替利嗪片",
+    "spec": "10mg",
+    "unit": "mg",
+    "category": "L5",
+    "high_dose": "",
+    "exce_freq": "2次/d"
+  },
+  {
+    "drug_id": "112",
+    "drug_name": "盐酸苯海拉明片",
+    "spec": "25mg",
+    "unit": "mg",
+    "category": "L5",
+    "high_dose": "",
+    "exce_freq": "3次/d"
+  },
+  {
+    "drug_id": "113",
+    "drug_name": "盐酸异丙嗪片",
+    "spec": "25mg",
+    "unit": "mg",
+    "category": "L5",
+    "high_dose": "",
+    "exce_freq": "4次/d"
+  },
+  {
+    "drug_id": "114",
+    "drug_name": "盐酸羟嗪片",
+    "spec": "25mg",
+    "unit": "mg",
+    "category": "L5",
+    "high_dose": "",
+    "exce_freq": "3次/d"
+  },
+  {
+    "drug_id": "115",
+    "drug_name": "番泻叶",
+    "spec": "",
+    "unit": "g",
+    "category": "L1",
+    "high_dose": "",
+    "exce_freq": ""
+  },
+  {
+    "drug_id": "116",
+    "drug_name": "多库酯钠片",
+    "spec": "100mg",
+    "unit": "mg",
+    "category": "L1",
+    "high_dose": "",
+    "exce_freq": ""
+  },
+  {
+    "drug_id": "117",
+    "drug_name": "开塞露",
+    "spec": "",
+    "unit": "支",
+    "category": "L1",
+    "high_dose": "",
+    "exce_freq": ""
+  },
+  {
+    "drug_id": "118",
+    "drug_name": "酚酞片",
+    "spec": "100mg",
+    "unit": "mg",
+    "category": "L1",
+    "high_dose": "",
+    "exce_freq": ""
+  },
+  {
+    "drug_id": "119",
+    "drug_name": "复方角莱酸酯栓",
+    "spec": "",
+    "unit": "枚",
+    "category": "L5",
+    "high_dose": "",
+    "exce_freq": "2次/d"
+  },
+  {
+    "drug_id": "120",
+    "drug_name": "消旋山莨菪碱片",
+    "spec": "5mg",
+    "unit": "mg",
+    "category": "L9",
+    "high_dose": "",
+    "exce_freq": "3次/d"
+  },
+  {
+    "drug_id": "121",
+    "drug_name": "玉屏风颗粒",
+    "spec": "",
+    "unit": "袋",
+    "category": "L7",
+    "high_dose": "",
+    "exce_freq": "3次/d"
+  },
+  {
+    "drug_id": "122",
+    "drug_name": "呋塞米片",
+    "spec": "20mg",
+    "unit": "mg",
+    "category": "L8",
+    "high_dose": "600mg/d",
+    "exce_freq": "3次/d"
+  },
+  {
+    "drug_id": "123",
+    "drug_name": "氯雷他定片",
+    "spec": "10mg",
+    "unit": "mg",
+    "category": "L5",
+    "high_dose": "",
+    "exce_freq": "1次/d"
+  },
+  {
+    "drug_id": "124",
+    "drug_name": "枸橼酸莫沙必利片",
+    "spec": "5mg",
+    "unit": "mg",
+    "category": "L2",
+    "high_dose": "",
+    "exce_freq": "3次/d"
+  },
+  {
+    "drug_id": "125",
+    "drug_name": "阿司匹林肠溶片",
+    "spec": "100mg",
+    "unit": "mg",
+    "category": "A1/A5",
+    "high_dose": "",
+    "exce_freq": ""
+  },
+  {
+    "drug_id": "126",
+    "drug_name": "苯甲酸利扎曲普坦胶囊",
+    "spec": "5mg",
+    "unit": "mg",
+    "category": "",
+    "high_dose": "30mg/d",
+    "exce_freq": ""
+  },
+  {
+    "drug_id": "127",
+    "drug_name": "羟考酮缓释片",
+    "spec": "40mg",
+    "unit": "mg",
+    "category": "C/G1/L6",
+    "high_dose": "",
+    "exce_freq": ""
+  },
+  {
+    "drug_id": "128",
+    "drug_name": "硫酸吗啡缓释片",
+    "spec": "30mg",
+    "unit": "mg",
+    "category": "C/G1",
+    "high_dose": "",
+    "exce_freq": ""
+  },
+  {
+    "drug_id": "129",
+    "drug_name": "硫酸吗啡缓释片",
+    "spec": "60mg",
+    "unit": "mg",
+    "category": "C/G1",
+    "high_dose": "",
+    "exce_freq": ""
+  },
+  {
+    "drug_id": "130",
+    "drug_name": "硫酸吗啡片",
+    "spec": "20mg",
+    "unit": "mg",
+    "category": "E1/G1",
+    "high_dose": "",
+    "exce_freq": ""
+  },
+  {
+    "drug_id": "131",
+    "drug_name": "硫酸吗啡片",
+    "spec": "30mg",
+    "unit": "mg",
+    "category": "E1/G1",
+    "high_dose": "",
+    "exce_freq": ""
+  },
+  {
+    "drug_id": "132",
+    "drug_name": "对乙酰氨基酚口服混悬液",
+    "spec": "100ml:3.2g",
+    "unit": "ml",
+    "category": "A4",
+    "high_dose": "",
+    "exce_freq": "4次/d"
+  },
+  {
+    "drug_id": "133",
+    "drug_name": "美洛昔康注射液",
+    "spec": "1.5ml:15mg",
+    "unit": "mg",
+    "category": "A3/A5",
+    "high_dose": "15mg/d",
+    "exce_freq": ""
+  },
+  {
+    "drug_id": "134",
+    "drug_name": "吲哚美辛肠溶片",
+    "spec": "25mg",
+    "unit": "mg",
+    "category": "A1/A5",
+    "high_dose": "200mg/d",
+    "exce_freq": "3次/d"
+  },
+  {
+    "drug_id": "135",
+    "drug_name": "盐酸曲马多注射液",
+    "spec": "2ml:100mg",
+    "unit": "mg",
+    "category": "F2/I1",
+    "high_dose": "",
+    "exce_freq": ""
+  },
+  {
+    "drug_id": "136",
+    "drug_name": "氟比洛芬缓释片",
+    "spec": "100mg",
+    "unit": "mg",
+    "category": "A1/A5",
+    "high_dose": "",
+    "exce_freq": ""
+  },
+  {
+    "drug_id": "137",
+    "drug_name": "利伐沙班片",
+    "spec": "10mg",
+    "unit": "mg",
+    "category": "",
+    "high_dose": "",
+    "exce_freq": ""
+  },
+  {
+    "drug_id": "138",
+    "drug_name": "利伐沙班片",
+    "spec": "20mg",
+    "unit": "mg",
+    "category": "",
+    "high_dose": "",
+    "exce_freq": ""
+  },
+  {
+    "drug_id": "139",
+    "drug_name": "盐酸帕罗西汀肠溶缓释片",
+    "spec": "25mg",
+    "unit": "mg",
+    "category": "B3",
+    "high_dose": "62.5mg/d",
+    "exce_freq": ""
+  },
+  {
+    "drug_id": "140",
+    "drug_name": "奥氮平片",
+    "spec": "10mg",
+    "unit": "mg",
+    "category": "L2/L3",
+    "high_dose": "",
+    "exce_freq": "1次/d"
+  },
+  {
+    "drug_id": "141",
+    "drug_name": "盐酸安非他酮缓释片",
+    "spec": "150mg",
+    "unit": "mg",
+    "category": "",
+    "high_dose": "300mg/d",
+    "exce_freq": ""
+  },
+  {
+    "drug_id": "142",
+    "drug_name": "米氮平口腔崩解片",
+    "spec": "15mg",
+    "unit": "mg",
+    "category": "",
+    "high_dose": "",
+    "exce_freq": ""
+  },
+  {
+    "drug_id": "143",
+    "drug_name": "盐酸丙米嗪片",
+    "spec": "25mg",
+    "unit": "mg",
+    "category": "B2",
+    "high_dose": "200mg/d",
+    "exce_freq": "2次/d"
+  },
+  {
+    "drug_id": "144",
+    "drug_name": "比沙可啶肠溶片",
+    "spec": "5mg",
+    "unit": "mg",
+    "category": "L1",
+    "high_dose": "",
+    "exce_freq": ""
+  },
+  {
+    "drug_id": "145",
+    "drug_name": "盐酸格拉司琼胶囊",
+    "spec": "1mg",
+    "unit": "mg",
+    "category": "L2",
+    "high_dose": "",
+    "exce_freq": ""
+  },
+  {
+    "drug_id": "146",
+    "drug_name": "布洛芬混悬液",
+    "spec": "100ml:2g",
+    "unit": "ml",
+    "category": "A1/A5",
+    "high_dose": "",
+    "exce_freq": "4次/d"
+  },
+  {
+    "drug_id": "147",
+    "drug_name": "复方磷酸可待因口服溶液",
+    "spec": "120ml",
+    "unit": "ml",
+    "category": "F1/G1",
+    "high_dose": "",
+    "exce_freq": "3次/d"
+  }
+]
