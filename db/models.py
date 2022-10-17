@@ -2,7 +2,7 @@ import datetime
 
 from sqlalchemy import Column
 from sqlalchemy import DateTime, Integer, String, Float
-from sqlalchemy.orm import object_mapper
+from sqlalchemy.orm import object_mapper, relationship
 
 from db import DB_Obj
 
@@ -128,6 +128,8 @@ class Patient(DB.Model, ModelBase, TimestampMixin):
     allergy = DB.Column(DB.String, comment='过敏史')
     physical = DB.Column(DB.String, comment='身体状况')
 
+    diagnostics = relationship("Diagnostic", back_populates="patient_basic_info")
+
     def to_json(self):
         return {
             "id": self.id,
@@ -136,23 +138,27 @@ class Patient(DB.Model, ModelBase, TimestampMixin):
         }
 
 
-class Diagnostic(DB.Model):
+class Diagnostic(DB.Model, ModelBase, TimestampMixin):
     __tablename__ = 'diagnostics'
 
     id = DB.Column(DB.Integer, primary_key=True, autoincrement=True, comment='主键id')
-    patient_basic_info_id = DB.Column(DB.Integer, comment='关联用户基本信息表id')
+    uuid = DB.Column(DB.String(36), nullable=False, comment='uuid')
+    patient_basic_info_id = DB.Column(DB.Integer, DB.ForeignKey("patient_basic_infos.id"),
+                                      comment='关联用户基本信息表id')
     pain_assessment_info_id = DB.Column(DB.Integer, comment='关联疼痛评估表id')
     hist_info_id = DB.Column(DB.Integer, comment='关联既往用药信息id')
     decision_info_id = DB.Column(DB.Integer, comment='关联决策信息id')
     doctor_id = DB.Column(DB.Integer, comment='医师id')
     submit_time = DB.Column(DB.DateTime, default=datetime.datetime.now, comment='提交时间')
 
+    patient_basic_info = relationship("Patient", uselist=False, back_populates="diagnostics")
+
 
 class PainAssessmentInfo(DB.Model):
     __tablename__ = 'pain_assessment_infos'
 
     id = DB.Column(DB.Integer, primary_key=True, autoincrement=True, comment='主键id')
-    diagnostic_id = DB.Column(DB.Integer, comment='关联诊断表id')
+    diagnostic_uuid = DB.Column(DB.String(36), comment='关联诊断表uuid')
     causes = DB.Column(DB.String, comment='疼痛原因 0-肿瘤、1-肿瘤治疗、2-非肿瘤相关性')
     body_parts = DB.Column(DB.String, comment='疼痛部位 对应人体部位表 多选')
     character = DB.Column(DB.String, comment='疼痛性质 多选')
@@ -173,7 +179,7 @@ class PreviousMedicationInfo(DB.Model):
     __tablename__ = 'previous_medication_infos'
 
     id = DB.Column(DB.Integer, primary_key=True, autoincrement=True, comment='主键id')
-    diagnostic_id = DB.Column(DB.Integer, comment='关联诊断表id')
+    diagnostic_uuid = DB.Column(DB.String(36), comment='关联诊断表uuid')
     forget = DB.Column(DB.String, comment='是否忘记用药 0-是 ，1-否')
     carelessly = DB.Column(DB.String, comment='是否不注意用药 0-是 ，1-否')
     withdrawal = DB.Column(DB.String, comment='是否自行停药 0-是 ，1-否')
@@ -187,7 +193,7 @@ class DecisionInfo(DB.Model):
     __tablename__ = 'decision_infos'
 
     Id = DB.Column(DB.Integer, primary_key=True, autoincrement=True, comment='主键id')
-    diagnostic_id = DB.Column(DB.Integer, comment='关联诊断表id')
+    diagnostic_uuid = DB.Column(DB.String(36), comment='关联诊断表uuid')
     drug_table_id = DB.Column(DB.Integer, comment='关联用药表id')
     previous_medication_causes = DB.Column(DB.String, comment='既往用药存在问题及原因')
     recmd = DB.Column(DB.String, comment='系统用药决策方案推荐')

@@ -13,7 +13,7 @@ def add_patient(values):
     return user
 
 
-def get_all_patients(values):
+def get_all_patients(values=None):
     query = DB.session.query(models.Patient)
     if values is not None and values.user_name:
         query = query.filter(models.Patient.user_name == values.user_name)
@@ -48,6 +48,7 @@ def update_patient_by_id(uid, values):
 
     return user
 
+
 def add_drug(values):
     drug = models.Drug()
     drug.update(values)
@@ -55,3 +56,8 @@ def add_drug(values):
     DB.session.commit()
 
     return drug
+
+
+def rebuild_drug_table():
+    models.Drug.__table__.drop(DB.engine)
+    models.Drug.__table__.create(DB.engine)

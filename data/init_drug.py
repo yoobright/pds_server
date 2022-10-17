@@ -17,7 +17,9 @@ DB_Obj.set_app(app)
 if __name__ == '__main__':
     with app.app_context():
         DB_Obj.db.create_all()
-        # add durg data from json
+        # rebuild drug table
+        db_api.rebuild_drug_table()
+        # add drug data from json
         with open('data/drug_data.json', 'r', encoding='utf-8') as f:
             drug_data = json.load(f)
             for drug in drug_data:
