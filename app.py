@@ -5,6 +5,7 @@ from flask.json import JSONEncoder
 from db import DB_Obj
 from flask_restful import Resource, Api
 from flask_restful import reqparse
+from flasgger import Swagger
 
 from db import api as db_api
 from db.books import Book
@@ -22,6 +23,7 @@ with app.app_context():
     DB_Obj.db.create_all()
 
 app_api = Api(app)
+swagger = Swagger(app)
 
 
 def get_datetime_from_str(s):
@@ -49,10 +51,10 @@ def hello_world():
     return 'Hello World!!!'
 
 
-class UserListResource(Resource):
+class PatientListResource(Resource):
 
     def __init__(self):
-        super(UserListResource, self).__init__()
+        super(PatientListResource, self).__init__()
         self.user_get_parser = reqparse.RequestParser()
         self.user_get_parser.add_argument('user_name', type=str)
 
@@ -78,6 +80,58 @@ class UserListResource(Resource):
         self.user_add_parser.add_argument('physical', type=str)
 
     def get(self):
+        """
+        get all patient list
+        ---
+        responses:
+          200:
+            description: patient list
+            schema:
+              type: array
+              items:
+                type: object
+                properties:
+                  user_name:
+                    type: string
+                  uid:
+                    type: string
+                  gender:
+                    type: string
+                  age:
+                    type: integer
+                  height:
+                    type: number
+                    format: float
+                  weight:
+                    type: number
+                    format: float
+                  job:
+                    type: string
+                  edu:
+                    type: string
+                  special:
+                    type: string
+                  tel:
+                    type: string
+                  tumor:
+                    type: string
+                  tumor_metastasis:
+                    type: string
+                  tumor_treatment:
+                    type: string
+                  illness:
+                    type: string
+                  liver_function:
+                    type: string
+                  kidney_function:
+                    type: string
+                  cardiac_function:
+                    type: string
+                  allergy:
+                    type: string
+                  physical:
+                    type: string
+        """
         args = self.user_get_parser.parse_args()
 
         users = db_api.get_all_patients(args)
@@ -86,6 +140,96 @@ class UserListResource(Resource):
         return jsonify(res)
 
     def post(self):
+        """
+        add a patient
+        ---
+        consumes:
+          - application/json
+        parameters:
+          - in: body
+            required: true
+            name: user_name
+            schema:   
+              type: string
+          - in: body
+            required: true
+            name: gender
+            schema:
+              type: string
+          - in: body
+            required: true
+            name: age
+            schema:
+              type: integer
+          - in: body
+            name: height
+            schema:
+              type: number
+              format: float
+          - in: body
+            name: weight
+            schema:
+              type: number
+              format: float
+          - in: body
+            name: job
+            schema:
+              type: string
+          - in: body
+            name: edu
+            schema:
+              type: string
+          - in: body
+            special:
+              type: string
+          - in: body
+            name: tel
+            schema:
+              type: string
+          - in: body
+            name: tumor
+            schema:
+              type: string
+          - in: body
+            name: tumor_metastasis
+            schema:
+              type: string
+          - in: body
+            name: tumor_treatment
+            schema:
+              type: string
+          - in: body
+            name: illness
+            schema:
+              type: string
+          - in: body
+            name: liver_function
+            schema:
+              type: string
+          - in: body
+            kidney_function:
+              type: string
+          - in: body
+            name: cardiac_function
+            schema:
+              type: string
+          - in: body
+            name: allergy
+            schema:
+              type: string
+          - in: body
+            name: physical
+            schema:
+              type: string
+        responses:
+          200:
+            description: patient primary key
+            schema:
+              type: object
+              properties:
+                id:
+                  type: integer
+        """
         args = self.user_add_parser.parse_args()
         print(args)
         user = db_api.add_patient(args)
@@ -93,9 +237,9 @@ class UserListResource(Resource):
         return make_response(jsonify({"id": user.id}), 201)
 
 
-class UserByIdResource(Resource):
+class PatientByIdResource(Resource):
     def __init__(self):
-        super(UserByIdResource, self).__init__()
+        super(PatientByIdResource, self).__init__()
         self.user_put_parser = reqparse.RequestParser()
         self.user_put_parser.add_argument('user_name', type=str)
 
@@ -146,8 +290,8 @@ class BookResource(Resource):
         return jsonify({"id": book.id})
 
 
-app_api.add_resource(UserListResource, '/patients')
-app_api.add_resource(UserByIdResource, '/patients/<int:uid>')
+app_api.add_resource(PatientListResource, '/patients')
+app_api.add_resource(PatientByIdResource, '/patients/<int:uid>')
 app_api.add_resource(BookResource, '/books')
 
 if __name__ == '__main__':
