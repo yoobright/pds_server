@@ -130,12 +130,12 @@ class Patient(DB.Model, ModelBase, TimestampMixin):
 
     diagnostics = relationship("Diagnostic", back_populates="patient_basic_info")
 
-    def to_json(self):
-        return {
-            "id": self.id,
-            "username": self.username,
-            "email": self.email
-        }
+    # def to_json(self):
+    #     return {
+    #         "id": self.id,
+    #         "username": self.username,
+    #         "email": self.email
+    #     }
 
 
 class Diagnostic(DB.Model, ModelBase, TimestampMixin):

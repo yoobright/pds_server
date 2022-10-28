@@ -5,10 +5,11 @@ from flask.json import JSONEncoder
 from db import DB_Obj
 from flask_restful import Resource, Api
 from flask_restful import reqparse
-from flasgger import Swagger
+from flasgger import Swagger, swag_from
 
 from db import api as db_api
 from db.books import Book
+from defs import swagger_api
 
 
 app = Flask(__name__)
@@ -17,12 +18,18 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['JSON_SORT_KEYS'] = False
 
 
+
 DB_Obj.set_app(app)
 
 with app.app_context():
     DB_Obj.db.create_all()
 
 app_api = Api(app)
+app.config['SWAGGER'] = {
+    'title': 'OA3 API',
+    'openapi': '3.0.2',
+    # 'uiversion': 3,
+}
 swagger = Swagger(app)
 
 
@@ -79,58 +86,10 @@ class PatientListResource(Resource):
         self.user_add_parser.add_argument('allergy', type=str)
         self.user_add_parser.add_argument('physical', type=str)
 
+    @swag_from(swagger_api.patient_get_dict)
     def get(self):
         """
         get all patient list
-        ---
-        responses:
-          200:
-            description: patient list
-            schema:
-              type: array
-              items:
-                type: object
-                properties:
-                  user_name:
-                    type: string
-                  uid:
-                    type: string
-                  gender:
-                    type: string
-                  age:
-                    type: integer
-                  height:
-                    type: number
-                    format: float
-                  weight:
-                    type: number
-                    format: float
-                  job:
-                    type: string
-                  edu:
-                    type: string
-                  special:
-                    type: string
-                  tel:
-                    type: string
-                  tumor:
-                    type: string
-                  tumor_metastasis:
-                    type: string
-                  tumor_treatment:
-                    type: string
-                  illness:
-                    type: string
-                  liver_function:
-                    type: string
-                  kidney_function:
-                    type: string
-                  cardiac_function:
-                    type: string
-                  allergy:
-                    type: string
-                  physical:
-                    type: string
         """
         args = self.user_get_parser.parse_args()
 
@@ -139,96 +98,10 @@ class PatientListResource(Resource):
         res = [dict(u.items()) for u in users]
         return jsonify(res)
 
+    @swag_from(swagger_api.patient_post_dict)
     def post(self):
         """
-        add a patient
-        ---
-        consumes:
-          - application/json
-        parameters:
-          - in: body
-            required: true
-            name: user_name
-            schema:   
-              type: string
-          - in: body
-            required: true
-            name: gender
-            schema:
-              type: string
-          - in: body
-            required: true
-            name: age
-            schema:
-              type: integer
-          - in: body
-            name: height
-            schema:
-              type: number
-              format: float
-          - in: body
-            name: weight
-            schema:
-              type: number
-              format: float
-          - in: body
-            name: job
-            schema:
-              type: string
-          - in: body
-            name: edu
-            schema:
-              type: string
-          - in: body
-            special:
-              type: string
-          - in: body
-            name: tel
-            schema:
-              type: string
-          - in: body
-            name: tumor
-            schema:
-              type: string
-          - in: body
-            name: tumor_metastasis
-            schema:
-              type: string
-          - in: body
-            name: tumor_treatment
-            schema:
-              type: string
-          - in: body
-            name: illness
-            schema:
-              type: string
-          - in: body
-            name: liver_function
-            schema:
-              type: string
-          - in: body
-            kidney_function:
-              type: string
-          - in: body
-            name: cardiac_function
-            schema:
-              type: string
-          - in: body
-            name: allergy
-            schema:
-              type: string
-          - in: body
-            name: physical
-            schema:
-              type: string
-        responses:
-          200:
-            description: patient primary key
-            schema:
-              type: object
-              properties:
-                id:
-                  type: integer
+        add a new patient
         """
         args = self.user_add_parser.parse_args()
         print(args)
@@ -243,21 +116,23 @@ class PatientByIdResource(Resource):
         self.user_put_parser = reqparse.RequestParser()
         self.user_put_parser.add_argument('user_name', type=str)
 
-    def get(self, uid: int):
-        user = db_api.get_patient_by_id(uid)
+    @swag_from(swagger_api.patient_get_by_id_dict)
+    def get(self, pid: int):
+        user = db_api.get_patient_by_id(pid)
 
         if user is not None:
-            return jsonify(user.as_dict())
+            return jsonify(dict(user.items()))
         return jsonify(None)
 
-    def delete(self, uid: int):
-        res = db_api.delete_patient_by_id(uid)
+    @swag_from(swagger_api.patient_delete_by_id_dict)
+    def delete(self, pid: int):
+        res = db_api.delete_patient_by_id(pid)
 
         return make_response(jsonify(res), 204)
 
-    def put(self, uid: int):
+    def put(self, pid: int):
         args = self.user_put_parser.parse_args()
-        user = db_api.update_patient_by_id(uid, args)
+        user = db_api.update_patient_by_id(pid, args)
 
         if user is not None:
             return user.id
@@ -291,7 +166,7 @@ class BookResource(Resource):
 
 
 app_api.add_resource(PatientListResource, '/patients')
-app_api.add_resource(PatientByIdResource, '/patients/<int:uid>')
+app_api.add_resource(PatientByIdResource, '/patients/<int:pid>')
 app_api.add_resource(BookResource, '/books')
 
 if __name__ == '__main__':
