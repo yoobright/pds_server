@@ -58,6 +58,13 @@ def add_drug(values):
     return drug
 
 
+def get_all_drugs(values=None):
+    query = DB.session.query(models.Drug)
+    drugs = query.all()
+
+    return drugs
+
+
 def rebuild_drug_table():
     models.Drug.__table__.drop(DB.engine)
     models.Drug.__table__.create(DB.engine)

@@ -18,7 +18,6 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['JSON_SORT_KEYS'] = False
 
 
-
 DB_Obj.set_app(app)
 
 with app.app_context():
@@ -165,9 +164,25 @@ class BookResource(Resource):
         return jsonify({"id": book.id})
 
 
+class DrugListResource(Resource):
+    def __init__(self):
+        super(DrugListResource, self).__init__()
+        self.drug_get_parser = reqparse.RequestParser()
+
+    @swag_from(swagger_api.drug_get_dict)
+    def get(self):
+        args = self.drug_get_parser.parse_args()
+
+        drugs = db_api.get_all_drugs(args)
+
+        res = [dict(d.items()) for d in drugs]
+        return jsonify(res)
+
+
 app_api.add_resource(PatientListResource, '/patients')
 app_api.add_resource(PatientByIdResource, '/patients/<int:pid>')
 app_api.add_resource(BookResource, '/books')
+app_api.add_resource(DrugListResource, '/drugs')
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port='8089')

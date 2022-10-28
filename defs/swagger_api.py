@@ -270,3 +270,53 @@ patient_get_by_id_dict = {
         }
     }
 }
+
+
+drug_schema = {
+    "type": "object",
+    "properties": {
+        "id": {
+            "type": "integer"
+        },
+        "drug_id": {
+            "type": "string"
+        },
+        "drug_name": {
+            "type": "string"
+        },
+        "spc": {
+            "type": "string"
+        },
+        "unit": {
+            "type": "string"
+        },
+        "category": {
+            "type": "string"
+        },
+        "high_dose": {
+            "type": "string"
+        },
+        "exce_freq": {
+            "type": "string"
+        }
+    }
+}
+
+
+drug_get_dict = {
+    "responses": {
+        "200": {
+            "description": "drug list",
+            "content": {
+                "application/json": {
+                    "schema": {
+                        "type": "array",
+                        "items": {
+                            **drug_schema
+                        }
+                    }
+                }
+            }
+        },
+    }
+}
