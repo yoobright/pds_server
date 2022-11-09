@@ -109,7 +109,26 @@ def add_pain_assessment(values=None):
     DB.session.add(pain_assessment)
     DB.session.commit()
 
+    diagnostic.pain_assessment_info_id = pain_assessment.id
+    DB.session.commit()
+
     return pain_assessment
+
+def add_decision(values):
+    diagnostic = DB.session.query(models.Diagnostic)\
+        .filter(models.Diagnostic.uuid == values.diagnostic_uuid).one_or_none()
+    if diagnostic is None:
+        return None
+
+    decision = models.DecisionInfo()
+    decision.update(values)
+    DB.session.add(decision)
+    DB.session.commit()
+
+    diagnostic.decision_info_id = decision.id
+    DB.session.commit()
+
+    return decision
 
 
 def rebuild_drug_table():

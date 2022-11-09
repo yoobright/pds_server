@@ -164,7 +164,7 @@ class Diagnostic(DB.Model, ModelBase, TimestampMixin):
                                       nullable=False,
                                       comment='关联用户基本信息表id')
     pain_assessment_info_id = DB.Column(DB.Integer, comment='关联疼痛评估表id')
-    hist_info_id = DB.Column(DB.Integer, comment='关联既往用药信息id')
+    prev_medication_info_id = DB.Column(DB.Integer, comment='关联既往用药信息id')
     decision_info_id = DB.Column(DB.Integer, comment='关联决策信息id')
     doctor_id = DB.Column(DB.Integer, nullable=False,
                           default=0, comment='医师id')
@@ -216,17 +216,17 @@ class PreviousMedicationInfo(DB.Model):
     drug_table_id = DB.Column(DB.Integer, comment='用药表id')
 
 
-class DecisionInfo(DB.Model):
+class DecisionInfo(DB.Model, ModelBase):
     __tablename__ = 'decision_infos'
 
-    Id = DB.Column(DB.Integer, primary_key=True,
+    id = DB.Column(DB.Integer, primary_key=True,
                    autoincrement=True, comment='主键id')
     diagnostic_uuid = DB.Column(DB.String(36), comment='关联诊断表uuid')
     drug_table_id = DB.Column(DB.Integer, comment='关联用药表id')
     previous_medication_issue = DB.Column(DB.String, comment='既往用药存在问题及原因')
     recmd = DB.Column(DB.String, comment='系统用药决策方案推荐')
-    recmd_constraint = DB.Column(DB.String, comment='是否取消推荐药品的约束')
-    pcne_constraint = DB.Column(DB.String, comment='是否取消PCNE检查约束')
+    recmd_constraint = DB.Column(DB.Boolean, comment='是否取消推荐药品的约束')
+    pcne_constraint = DB.Column(DB.Boolean, comment='是否取消PCNE检查约束')
 
 
 class PrescriptionBase(object):
@@ -238,7 +238,7 @@ class PrescriptionBase(object):
     freq = Column(String, comment='频次')
     freq_unit = Column(
         String, comment='频次单位 0-一天几次，1-每个几个小时/次，2-多少天/贴3-必要时，4-每晚')
-    durtion = Column(String, comment='用药起止时长 0>7天，1<=7天')
+    duration = Column(String, comment='用药起止时长 0>7天，1<=7天')
 
 
 class PreviousPrescription(DB.Model, PrescriptionBase):

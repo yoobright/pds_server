@@ -106,3 +106,16 @@ Content-Type: application/json
   "breakout_type": "1",
   "breakout_freq": "0"
 }
+
+
+###
+# @name=addDecision
+POST http://{{host}}:8089/decisions
+Content-Type: application/json
+
+{
+  "diagnostic_uuid": "test_uuid",
+  "drug_table_id": 0,
+  "previous_medication_issue": "p1",
+  "recmd": "r1"
+}
