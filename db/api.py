@@ -99,6 +99,38 @@ def get_all_diagnostics(values=None):
     return diagnostics
 
 
+def get_diagnostic_by_uuid(uuid):
+    diagnostic = DB.session.query(models.Diagnostic)\
+        .filter(models.Diagnostic.uuid == uuid).one_or_none()
+    if diagnostic is not None:
+        print(diagnostic.patient_basic_info)
+        if diagnostic.pain_assessment_info_id is not None:
+            pain_assessment = DB.session.query(models.PainAssessmentInfo) \
+                .filter(models.PainAssessmentInfo.diagnostic_uuid == uuid)\
+                .order_by(models.PainAssessmentInfo.id.desc())\
+                .first()
+            diagnostic['pain_assessment_info'] = dict(pain_assessment.items())
+
+        if diagnostic.decision_info_id is not None:
+            decision = DB.session.query(models.DecisionInfo) \
+                .filter(models.DecisionInfo.diagnostic_uuid == uuid)\
+                .order_by(models.DecisionInfo.id.desc())\
+                .first()
+            diagnostic['decision_info'] = dict(decision.items())
+
+    return diagnostic
+
+
+def update_diagnostic_by_uuid(uuid, args):
+    diagnostic = DB.session.query(models.Diagnostic)\
+        .filter(models.Diagnostic.uuid == uuid).one_or_none()
+    if diagnostic is not None:
+        diagnostic.update(args)
+        DB.session.commit()
+
+    return diagnostic
+
+
 def add_pain_assessment(values=None):
     diagnostic = DB.session.query(models.Diagnostic)\
         .filter(models.Diagnostic.uuid == values.diagnostic_uuid).one_or_none()
@@ -113,6 +145,7 @@ def add_pain_assessment(values=None):
     DB.session.commit()
 
     return pain_assessment
+
 
 def add_decision(values):
     diagnostic = DB.session.query(models.Diagnostic)\

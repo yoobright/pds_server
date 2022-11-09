@@ -119,3 +119,20 @@ Content-Type: application/json
   "previous_medication_issue": "p1",
   "recmd": "r1"
 }
+
+###
+# @name=getDiagnosticByUUID
+GET http://{{host}}:8089/diagnostics/uuid/test_uuid
+Accept: application/json
+
+###
+# @name=updateDiagnosticByUUID
+PUT http://{{host}}:8089/diagnostics/uuid/test_uuid
+Content-Type: application/json
+
+{
+  "previous_medication_issue": "p1",
+  "recmd": "r1"
+}
+
+

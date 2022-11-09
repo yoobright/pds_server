@@ -1,6 +1,6 @@
 import datetime
 
-from flask import Flask, jsonify, make_response
+from flask import Flask, jsonify, make_response, abort
 from flask.json import JSONEncoder
 from db import DB_Obj
 from flask_restful import Resource, Api
@@ -198,7 +198,8 @@ class DiagnosticListResource(Resource):
             'doctor_id', type=int)
         self.diagnostic_post_parser.add_argument(
             'previous_medication_issue', type=str)
-        self.diagnostic_post_parser.add_argument('recmd', type=str)
+        self.diagnostic_post_parser.add_argument(
+            'recmd', type=str)
 
     @staticmethod
     def to_dict(diagnostics):
@@ -215,7 +216,6 @@ class DiagnosticListResource(Resource):
         diagnostics = db_api.get_all_diagnostics()
         res = self.to_dict(diagnostics)
         return jsonify(res)
-        pass
 
     def post(self):
         args = self.diagnostic_post_parser.parse_args()
@@ -223,12 +223,55 @@ class DiagnosticListResource(Resource):
         diagnostic = db_api.add_diagnostic(args)
 
         if diagnostic is None:
-            return jsonify({"id": -1}, 422)
+            return make_response(
+                jsonify({"id": -1}),
+                422
+            )
 
         return make_response(jsonify({
             "id": diagnostic.id,
             "uuid": diagnostic.uuid
         }), 201)
+
+
+class DiagnosticResourceByUUID(Resource):
+
+    def __init__(self):
+        super(DiagnosticResourceByUUID, self).__init__()
+        self.diagnostic_put_parser = reqparse.RequestParser()
+        self.diagnostic_put_parser.add_argument(
+            'previous_medication_issue',
+            type=str, required=True)
+        self.diagnostic_put_parser.add_argument(
+            'recmd',
+            type=str, required=True)
+
+    @staticmethod
+    def to_dict(diagnostic):
+        data = dict(diagnostic.items())
+        data["patient_basic_info"] = dict(
+            diagnostic.patient_basic_info.items())
+        return data
+
+    def get(self, uuid: str):
+        diagnostic = db_api.get_diagnostic_by_uuid(uuid)
+        # print(diagnostic)
+        if diagnostic is not None:
+            return jsonify(self.to_dict(diagnostic))
+        return jsonify(None)
+
+    def put(self, uuid: str):
+        args = self. diagnostic_put_parser.parse_args()
+        diagnostic = db_api.update_diagnostic_by_uuid(uuid, args)
+
+        if diagnostic is not None:
+            return make_response(
+                jsonify({"uuid": diagnostic.uuid}), 200
+            )
+
+        return make_response(
+            jsonify({"message": "resource not found"}), 400
+        )
 
 
 class PainAssessmentListResource(Resource):
@@ -259,12 +302,14 @@ class PainAssessmentListResource(Resource):
         print(args)
         pain_assessment = db_api.add_pain_assessment(args)
         if pain_assessment is None:
-            return jsonify({"id": -1}, 422)
+            return make_response(
+                jsonify({"id": -1}),
+                422
+            )
 
         return make_response(jsonify({
             "id": pain_assessment.id
         }), 201)
-
 
 
 class DecisionListResource(Resource):
@@ -276,9 +321,9 @@ class DecisionListResource(Resource):
         self.decision_post_parser.add_argument(
             'drug_table_id', type=int, required=True)
         self.decision_post_parser.add_argument(
-            'previous_medication_issue', type=str)
+            'previous_medication_issue', type=str, required=True)
         self.decision_post_parser.add_argument(
-            'recmd', type=str)
+            'recmd', type=str, required=True)
         self.decision_post_parser.add_argument(
             'recmd_constraint', type=bool, default=False)
         self.decision_post_parser.add_argument(
@@ -289,7 +334,10 @@ class DecisionListResource(Resource):
         print(args)
         decision = db_api.add_decision(args)
         if decision is None:
-            return jsonify({"id": -1}, 422)
+            return make_response(
+                jsonify({"id": -1}),
+                422
+            )
 
         return make_response(jsonify({
             "id": decision.id
@@ -301,6 +349,8 @@ app_api.add_resource(PatientByIdResource, '/patients/<int:pid>')
 app_api.add_resource(BookResource, '/books')
 app_api.add_resource(DrugListResource, '/drugs')
 app_api.add_resource(DiagnosticListResource, '/diagnostics')
+app_api.add_resource(DiagnosticResourceByUUID,
+                     '/diagnostics/uuid/<string:uuid>')
 app_api.add_resource(PainAssessmentListResource, '/pain_assessments')
 app_api.add_resource(DecisionListResource, '/decisions')
 
