@@ -1,16 +1,21 @@
+import uuid
+
+from sqlalchemy import desc
+
 from db import DB_Obj
 from db import models
+
 
 DB = DB_Obj.db
 
 
 def add_patient(values):
-    user = models.Patient()
-    user.update(values)
-    DB.session.add(user)
+    patient = models.Patient()
+    patient.update(values)
+    DB.session.add(patient)
     DB.session.commit()
 
-    return user
+    return patient
 
 
 def get_all_patients(values=None):
@@ -18,35 +23,35 @@ def get_all_patients(values=None):
     if values is not None and values.user_name:
         query = query.filter(models.Patient.user_name == values.user_name)
 
-    users = query.all()
+    patients = query.all()
 
-    return users
-
-
-def get_patient_by_id(uid):
-    user = DB.session.query(models.Patient).\
-        filter(models.Patient.id == uid).one_or_none()
-
-    return user
+    return patients
 
 
-def delete_patient_by_id(uid):
+def get_patient_by_id(pid):
+    patient = DB.session.query(models.Patient).\
+        filter(models.Patient.id == pid).one_or_none()
+
+    return patient
+
+
+def delete_patient_by_id(pid):
     res = DB.session.query(models.Patient).\
-        filter(models.Patient.id == uid).delete()
+        filter(models.Patient.id == pid).delete()
     DB.session.commit()
 
     return res
 
 
-def update_patient_by_id(uid, values):
-    user = DB.session.query(models.Patient).\
-        filter(models.Patient.id == uid).one_or_none()
+def update_patient_by_id(pid, values):
+    patient = DB.session.query(models.Patient).\
+        filter(models.Patient.id == pid).one_or_none()
 
-    if user is not None:
-        user.update(values)
+    if patient is not None:
+        patient.update(values)
         DB.session.commit()
 
-    return user
+    return patient
 
 
 def add_drug(values):
@@ -64,6 +69,32 @@ def get_all_drugs(values=None):
 
     return drugs
 
+
+def add_diagnostic(values):
+    patient_basic_info_id = values.get('patient_basic_info_id', None)
+    if patient_basic_info_id is None:
+        return None
+    patient = get_patient_by_id(patient_basic_info_id)
+    if patient is None:
+        return None
+    
+    diagnostic = models.Diagnostic()
+    diagnostic.uuid = str(uuid.uuid4())
+    diagnostic.patient_basic_info = patient
+    diagnostic.update(values)
+    DB.session.add(diagnostic)
+
+    DB.session.commit()
+
+    return diagnostic
+
+
+def get_all_diagnostics(values=None):
+    query = DB.session.query(models.Diagnostic)\
+        .order_by(desc(models.Diagnostic.created_at))
+    diagnostics = query.all()
+
+    return diagnostics
 
 def rebuild_drug_table():
     models.Drug.__table__.drop(DB.engine)

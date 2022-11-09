@@ -1,3 +1,133 @@
+GET http://localhost:8089/diagnostics
+Accept: application/json
+
+<> 2022-11-09T112546.200.json
+
+###
+
+POST http://localhost:8089/diagnostics
+Content-Type: application/json
+
+{
+  "patient_basic_info_id": 1
+}
+
+<> 2022-11-09T112542.201.json
+
+###
+
+GET http://localhost:8089/diagnostics
+Accept: application/json
+
+<> 2022-11-09T112438.200.json
+
+###
+
+GET http://localhost:8089/diagnostics
+Accept: application/json
+
+<> 2022-11-09T111802.200.json
+
+###
+
+GET http://localhost:8089/diagnostics
+Accept: application/json
+
+<> 2022-11-09T110135.200.json
+
+###
+
+GET http://localhost:8089/diagnostics
+Accept: application/json
+
+<> 2022-11-09T110111.200.json
+
+###
+
+GET http://localhost:8089/diagnostics
+Accept: application/json
+
+<> 2022-11-09T105519.200.json
+
+###
+
+POST http://localhost:8089/diagnostics
+Content-Type: application/json
+
+{
+  "patient_basic_info_id": 1
+}
+
+<> 2022-11-09T105515.201.json
+
+###
+
+GET http://localhost:8089/diagnostics
+Accept: application/json
+
+<> 2022-11-09T105418.200.json
+
+###
+
+POST http://localhost:8089/diagnostics
+Content-Type: application/json
+
+{
+  "patient_basic_info_id": 9
+}
+
+<> 2022-11-09T104407.200.json
+
+###
+
+POST http://localhost:8089/diagnostics
+Content-Type: application/json
+
+{
+  "patient_basic_info_id": 1
+}
+
+<> 2022-11-09T104324.201.json
+
+###
+
+POST http://localhost:8089/patients
+Content-Type: application/json
+
+{
+  "user_name": "test639",
+  "gender": 1,
+  "age": 22
+}
+
+<> 2022-11-09T104046.201.json
+
+###
+
+POST http://localhost:8089/patients
+Content-Type: application/json
+
+{
+  "user_name": "test29",
+  "gender": 1,
+  "age": 22
+}
+
+<> 2022-11-09T104042.201.json
+
+###
+
+POST http://localhost:8089/patients
+Content-Type: application/json
+
+{
+  "user_name": "test666",
+  "gender": 1,
+  "age": 22
+}
+
+###
+
 GET http://localhost:8089/patients
 Accept: application/json
 Content-Type: application/json
@@ -401,165 +531,6 @@ Content-Type: application/json
 }
 
 <> 2022-10-16T124420.201.json
-
-###
-
-POST http://localhost:8089/users
-Content-Type: application/json
-
-{
-  "user_name": "test564",
-  "gender": 1,
-  "age": 22
-}
-
-<> 2022-10-16T124418.201.json
-
-###
-
-POST http://localhost:8089/users
-Content-Type: application/json
-
-{
-  "user_name": "test539",
-  "gender": 1,
-  "age": 22
-}
-
-<> 2022-10-16T124417.201.json
-
-###
-
-POST http://localhost:8089/users
-Content-Type: application/json
-
-{
-  "user_name": "test931",
-  "gender": 1,
-  "age": 22
-}
-
-<> 2022-10-16T124415.201.json
-
-###
-
-GET http://localhost:8089/users
-Accept: application/json
-
-<> 2022-10-16T124334.200.json
-
-###
-
-POST http://localhost:8089/users
-Content-Type: application/json
-
-{
-  "user_name": "test134",
-  "gender": 1,
-  "age": 22
-}
-
-<> 2022-10-16T124322.201.json
-
-###
-
-POST http://localhost:8089/users
-Content-Type: application/json
-
-{
-  "user_name": "test375",
-  "gender": 1,
-  "age": 22
-}
-
-<> 2022-10-16T124320.201.json
-
-###
-
-POST http://localhost:8089/users
-Content-Type: application/json
-
-{
-  "user_name": "test624",
-  "gender": 1,
-  "age": 22
-}
-
-<> 2022-10-16T124318.201.json
-
-###
-
-GET http://localhost:8089/users
-Accept: application/json
-Content-Type: application/json
-
-{
-  "user_name": "demo"
-}
-
-<> 2022-10-16T115956.200.json
-
-###
-
-GET http://localhost:8089/users
-Accept: application/json
-
-<> 2022-10-16T115742.200.json
-
-###
-
-POST http://localhost:8089/users
-Content-Type: application/json
-
-{
-  "user_name": "test319",
-  "gender": 1,
-  "age": 22,
-  "submit_time": "1665891433"
-}
-
-<> 2022-10-16T113716.201.json
-
-###
-
-GET http://localhost:8089/users
-Accept: application/json
-
-<> 2022-10-16T113654.200.json
-
-###
-
-GET http://localhost:8089/users
-Accept: application/json
-Content-Type: application/json
-
-{
-  "user_name": "demo"
-}
-
-<> 2022-10-16T113643.200.json
-
-###
-
-PUT http://localhost:8089/users/8
-Content-Type: application/json
-
-{
-  "user_name": "demo"
-}
-
-<> 2022-10-16T113637.200.json
-
-###
-
-PUT http://localhost:8089/users/88
-Content-Type: application/json
-
-{
-  "user_name": "demo"
-}
-
-<> 2022-10-16T113622.200.json
 
 ###
 

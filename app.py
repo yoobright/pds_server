@@ -179,10 +179,58 @@ class DrugListResource(Resource):
         return jsonify(res)
 
 
+
+class DiagnosticListResource(Resource):
+
+    def __init__(self):
+        super(DiagnosticListResource, self).__init__()
+        self.diagnostic_post_parser = reqparse.RequestParser()
+        self.diagnostic_post_parser.add_argument(
+            'patient_basic_info_id', type=int, required=True)
+        self.diagnostic_post_parser.add_argument(
+            'pain_assessment_info_id', type=int)
+        self.diagnostic_post_parser.add_argument('decision_info_id', type=int)
+        self.diagnostic_post_parser.add_argument('doctor_id', type=int)
+        self.diagnostic_post_parser.add_argument(
+            'previous_medication_issue', type=str)
+        self.diagnostic_post_parser.add_argument('recmd', type=str)
+
+    @staticmethod
+    def to_dict(diagnostics):
+        res = []
+        for d in diagnostics:
+            data = dict(d.items())
+            data["patient_basic_info"] = d.patient_basic_info.to_brief_info()
+            res.append(data)
+
+        return res
+
+    # @swag_from(swagger_api.diagnostic_get_dict)
+    def get(self):
+        diagnostics = db_api.get_all_diagnostics()
+        res = self.to_dict(diagnostics)
+        return jsonify(res)
+        pass
+
+    def post(self):
+        args = self.diagnostic_post_parser.parse_args()
+        print(args)
+        diagnostic = db_api.add_diagnostic(args)
+
+        if diagnostic is None:
+            return jsonify({"id": -1}, 422)
+        
+        return make_response(jsonify({
+            "id": diagnostic.id,
+            "uuid": diagnostic.uuid
+            }), 201)
+
+
 app_api.add_resource(PatientListResource, '/patients')
 app_api.add_resource(PatientByIdResource, '/patients/<int:pid>')
 app_api.add_resource(BookResource, '/books')
 app_api.add_resource(DrugListResource, '/drugs')
+app_api.add_resource(DiagnosticListResource, '/diagnostics')
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port='8089')

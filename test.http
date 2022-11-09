@@ -64,4 +64,17 @@ GET http://{{host}}:8089/patients?user_name=demo
 Accept: application/json
 
 ###
+# @name=addDiagnostic
+POST http://{{host}}:8089/diagnostics
+Content-Type: application/json
 
+{
+  "patient_basic_info_id": 1
+}
+
+###
+# @name=showDiagnostics
+GET http://{{host}}:8089/diagnostics
+Accept: application/json
+
+###

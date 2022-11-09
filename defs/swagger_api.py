@@ -70,8 +70,23 @@ patient_schema = {
         "allergy": {
             "type": "string"
         },
-        "physical": {
-            "type": "string"
+        "physical_q1": {
+            "type": "string",
+        },
+        "physical_q2": {
+            "type": "string",
+        },
+        "physical_q3": {
+            "type": "string",
+        },
+        "physical_q4": {
+            "type": "string",
+        },
+        "physical_q5": {
+            "type": "string",
+        },
+        "physical_score": {
+            "type": "float",
         }
     }
 }
@@ -156,10 +171,30 @@ input_patient_schema = {
             "type": "string",
             "description": "过敏史"
         },
-        "physical": {
+        "physical_q1": {
             "type": "string",
-            "description": "身体状况"
-        }
+            "description": "身体状况Q1"
+        },
+        "physical_q2": {
+            "type": "string",
+            "description": "身体状况Q2"
+        },
+        "physical_q3": {
+            "type": "string",
+            "description": "身体状况Q3"
+        },
+        "physical_q4": {
+            "type": "string",
+            "description": "身体状况Q4"
+        },
+        "physical_q5": {
+            "type": "string",
+            "description": "身体状况Q5"
+        },
+        "physical_score": {
+            "type": "float",
+            "description": "身体状况分数"
+        }        
     }
 }
 

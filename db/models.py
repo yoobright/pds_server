@@ -107,7 +107,8 @@ class TimestampMixin(object):
 class Patient(DB.Model, ModelBase, TimestampMixin):
     __tablename__ = 'patient_basic_infos'
 
-    id = DB.Column(DB.Integer, primary_key=True, autoincrement=True, comment='主键id')
+    id = DB.Column(DB.Integer, primary_key=True,
+                   autoincrement=True, comment='主键id')
     user_name = DB.Column(DB.String, nullable=False, comment='用户名')
     uid = DB.Column(DB.String, comment='用户id')
     gender = DB.Column(DB.String, nullable=False, comment='性别')
@@ -121,14 +122,29 @@ class Patient(DB.Model, ModelBase, TimestampMixin):
     tumor = DB.Column(DB.String, nullable=False, default="无", comment='肿瘤')
     tumor_metastasis = DB.Column(DB.String, comment='肿瘤转移')
     tumor_treatment = DB.Column(DB.String, comment='肿瘤治疗')
-    illness = DB.Column(DB.String, comment='疾病')
+    illness = DB.Column(DB.String, comment='基础疾病')
     liver_function = DB.Column(DB.String, comment='肝功能')
     kidney_function = DB.Column(DB.String, comment='肾功能')
     cardiac_function = DB.Column(DB.String, comment='心功能')
     allergy = DB.Column(DB.String, comment='过敏史')
-    physical = DB.Column(DB.String, comment='身体状况')
+    physical_q1 = DB.Column(DB.String, comment='身体状况Q1')
+    physical_q2 = DB.Column(DB.String, comment='身体状况Q2')
+    physical_q3 = DB.Column(DB.String, comment='身体状况Q3')
+    physical_q4 = DB.Column(DB.String, comment='身体状况Q4')
+    physical_q5 = DB.Column(DB.String, comment='身体状况Q5')
+    physical_score = DB.Column(DB.String, comment='身体状况得分')
 
-    diagnostics = relationship("Diagnostic", back_populates="patient_basic_info")
+    diagnostics = relationship(
+        "Diagnostic", back_populates="patient_basic_info")
+
+    def to_brief_info(self):
+        return {
+            "user_name": self.user_name,
+            "uid": self.uid,
+            "gender": self.gender,
+            "age": self.age,
+            "physical_score": self.physical_score
+        }
 
     # def to_json(self):
     #     return {
@@ -141,23 +157,34 @@ class Patient(DB.Model, ModelBase, TimestampMixin):
 class Diagnostic(DB.Model, ModelBase, TimestampMixin):
     __tablename__ = 'diagnostics'
 
-    id = DB.Column(DB.Integer, primary_key=True, autoincrement=True, comment='主键id')
+    id = DB.Column(DB.Integer, primary_key=True,
+                   autoincrement=True, comment='主键id')
     uuid = DB.Column(DB.String(36), nullable=False, comment='uuid')
     patient_basic_info_id = DB.Column(DB.Integer, DB.ForeignKey("patient_basic_infos.id"),
+                                      nullable=False,
                                       comment='关联用户基本信息表id')
     pain_assessment_info_id = DB.Column(DB.Integer, comment='关联疼痛评估表id')
     hist_info_id = DB.Column(DB.Integer, comment='关联既往用药信息id')
     decision_info_id = DB.Column(DB.Integer, comment='关联决策信息id')
-    doctor_id = DB.Column(DB.Integer, comment='医师id')
-    submit_time = DB.Column(DB.DateTime, default=datetime.datetime.now, comment='提交时间')
+    doctor_id = DB.Column(DB.Integer, nullable=False,
+                          default=0, comment='医师id')
+    # submit_time = DB.Column(DB.DateTime, default=datetime.datetime.now, comment='提交时间')
+    previous_medication_issue = DB.Column(
+        DB.String, nullable=False, default="", comment='既往用药存在问题及原因')
+    recmd = DB.Column(DB.String, nullable=False,
+                      default="", comment='系统用药决策方案推荐')
 
-    patient_basic_info = relationship("Patient", uselist=False, back_populates="diagnostics")
+    patient_basic_info = relationship(
+        "Patient", uselist=False, back_populates="diagnostics")
+
+
 
 
 class PainAssessmentInfo(DB.Model):
     __tablename__ = 'pain_assessment_infos'
 
-    id = DB.Column(DB.Integer, primary_key=True, autoincrement=True, comment='主键id')
+    id = DB.Column(DB.Integer, primary_key=True,
+                   autoincrement=True, comment='主键id')
     diagnostic_uuid = DB.Column(DB.String(36), comment='关联诊断表uuid')
     causes = DB.Column(DB.String, comment='疼痛原因 0-肿瘤、1-肿瘤治疗、2-非肿瘤相关性')
     body_parts = DB.Column(DB.String, comment='疼痛部位 对应人体部位表 多选')
@@ -178,13 +205,15 @@ class PainAssessmentInfo(DB.Model):
 class PreviousMedicationInfo(DB.Model):
     __tablename__ = 'previous_medication_infos'
 
-    id = DB.Column(DB.Integer, primary_key=True, autoincrement=True, comment='主键id')
+    id = DB.Column(DB.Integer, primary_key=True,
+                   autoincrement=True, comment='主键id')
     diagnostic_uuid = DB.Column(DB.String(36), comment='关联诊断表uuid')
     forget = DB.Column(DB.String, comment='是否忘记用药 0-是 ，1-否')
     carelessly = DB.Column(DB.String, comment='是否不注意用药 0-是 ，1-否')
     withdrawal = DB.Column(DB.String, comment='是否自行停药 0-是 ，1-否')
     bad_withdrawal = DB.Column(DB.String, comment='症状更糟时是否曾停止服药 0-是 ，1-否')
-    adverse_reaction = DB.Column(DB.String, comment='不良反应 1 无 2便秘 3恶心呕吐4 谵妄 5过度镇静6 皮肤瘙痒7 呼吸抑制 8其他')
+    adverse_reaction = DB.Column(
+        DB.String, comment='不良反应 1 无 2便秘 3恶心呕吐4 谵妄 5过度镇静6 皮肤瘙痒7 呼吸抑制 8其他')
     adverse_reaction_drugs = DB.Column(DB.String, comment='不良反应用药')
     drug_table_id = DB.Column(DB.Integer, comment='用药表id')
 
@@ -192,13 +221,14 @@ class PreviousMedicationInfo(DB.Model):
 class DecisionInfo(DB.Model):
     __tablename__ = 'decision_infos'
 
-    Id = DB.Column(DB.Integer, primary_key=True, autoincrement=True, comment='主键id')
+    Id = DB.Column(DB.Integer, primary_key=True,
+                   autoincrement=True, comment='主键id')
     diagnostic_uuid = DB.Column(DB.String(36), comment='关联诊断表uuid')
     drug_table_id = DB.Column(DB.Integer, comment='关联用药表id')
-    previous_medication_causes = DB.Column(DB.String, comment='既往用药存在问题及原因')
+    previous_medication_issue = DB.Column(DB.String, comment='既往用药存在问题及原因')
     recmd = DB.Column(DB.String, comment='系统用药决策方案推荐')
     recmd_constraint = DB.Column(DB.String, comment='是否取消推荐药品的约束')
-    pcen_constraint = DB.Column(DB.String, comment='是否取消PCEN约束')
+    pcne_constraint = DB.Column(DB.String, comment='是否取消PCNE检查约束')
 
 
 class PrescriptionBase(object):
@@ -208,7 +238,8 @@ class PrescriptionBase(object):
     dose = Column(Float, comment='单次用药剂量')
     dose_unit = Column(String, comment='用药剂量单位')
     freq = Column(String, comment='频次')
-    freq_unit = Column(String, comment='频次单位 0-一天几次，1-每个几个小时/次，2-多少天/贴3-必要时，4-每晚')
+    freq_unit = Column(
+        String, comment='频次单位 0-一天几次，1-每个几个小时/次，2-多少天/贴3-必要时，4-每晚')
     durtion = Column(String, comment='用药起止时长 0>7天，1<=7天')
 
 
@@ -223,7 +254,8 @@ class Prescription(DB.Model, PrescriptionBase):
 class Drug(DB.Model, ModelBase):
     __tablename__ = 'drugs'
 
-    id = DB.Column(DB.Integer, primary_key=True, autoincrement=True, comment='主键id')
+    id = DB.Column(DB.Integer, primary_key=True,
+                   autoincrement=True, comment='主键id')
     drug_id = DB.Column(DB.String, comment='药品编号')
     drug_name = DB.Column(DB.String, comment='药品名称')
     spec = DB.Column(DB.String, comment='药品含量')
@@ -236,16 +268,19 @@ class Drug(DB.Model, ModelBase):
 class DrugKind(DB.Model):
     __tablename__ = 'drug_kinds'
 
-    id = DB.Column(DB.Integer, primary_key=True, autoincrement=True, comment='主键id')
+    id = DB.Column(DB.Integer, primary_key=True,
+                   autoincrement=True, comment='主键id')
     drug_category = DB.Column(DB.String, comment='种类')
     drug_desc = DB.Column(DB.String, comment='描述')
-    drug_prop = DB.Column(DB.String, comment='代号药品属性  1非甾体类，2抗惊厥/抗抑郁药（口服类），3阿片类药物 ，4苯二氮卓类（口服类），5不良反应用药')
+    drug_prop = DB.Column(
+        DB.String, comment='代号药品属性  1非甾体类，2抗惊厥/抗抑郁药（口服类），3阿片类药物 ，4苯二氮卓类（口服类），5不良反应用药')
 
 
 class Doctor(DB.Model):
     __tablename__ = 'doctors'
 
-    id = DB.Column(DB.Integer, primary_key=True, autoincrement=True, comment='主键id')
+    id = DB.Column(DB.Integer, primary_key=True,
+                   autoincrement=True, comment='主键id')
     doctor_name = DB.Column(DB.String, comment='医师名称')
     doctor_job = DB.Column(DB.String, comment='医师职位')
     doctor_dept = DB.Column(DB.String, comment='医师部门')
