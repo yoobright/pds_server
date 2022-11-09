@@ -1,3 +1,348 @@
+POST http://localhost:8089/pain_assessments
+Content-Type: application/json
+
+{
+  "diagnostic_uuid": "test_uuid",
+  "causes": "1",
+  "body_parts": "0",
+  "character": "1",
+  "level": "0",
+  "aggravating_factors": "1",
+  "relief_factors": "0",
+  "breakout_type": "1",
+  "breakout_freq": "0"
+}
+
+<> 2022-11-09T015454.201.json
+
+###
+
+POST http://localhost:8089/pain_assessments
+Content-Type: application/json
+
+{
+  "diagnostic_uuid": "test_uuid",
+  "causes": "1",
+  "body_parts": "0",
+  "character": "1",
+  "level": "0",
+  "aggravating_factors": "1",
+  "relief_factors": "0",
+  "breakout_type": "1",
+  "breakout_freq": "0"
+}
+
+<> 2022-11-09T015435.200.json
+
+###
+
+POST http://localhost:8089/pain_assessments
+Content-Type: application/json
+
+{
+  "diagnostic_uuid": "test_uuid",
+  "causes": "1",
+  "body_parts": "0",
+  "character": "1",
+  "level": "0",
+  "aggravating_factors": "1",
+  "relief_factors": "0",
+  "breakout_type": "1",
+  "breakout_freq": "0"
+}
+
+<> 2022-11-09T015223.200.json
+
+###
+
+POST http://localhost:8089/pain_assessments
+Content-Type: application/json
+
+{
+  "diagnostic_uuid": "test_uuid",
+  "causes": "1",
+  "body_parts": "0",
+  "character": "1",
+  "level": "0",
+  "aggravating_factors": "1",
+  "relief_factors": "0",
+  "breakout_type": "1",
+  "breakout_freq": "0"
+}
+
+<> 2022-11-09T015208.200.json
+
+###
+
+POST http://localhost:8089/pain_assessments
+Content-Type: application/json
+
+{
+  "diagnostic_uuid": "test_uuid",
+  "causes": "1",
+  "body_parts": "0",
+  "character": "1",
+  "level": "0",
+  "aggravating_factors": "1",
+  "relief_factors": "0",
+  "breakout_type": "1",
+  "breakout_freq": "0"
+}
+
+<> 2022-11-09T015048.500.json
+
+###
+
+POST http://localhost:8089/diagnostics
+Content-Type: application/json
+
+{
+  "uuid": "test_uuid",
+  "patient_basic_info_id": 3
+
+}
+
+<> 2022-11-09T015039.201.json
+
+###
+
+POST http://localhost:8089/pain_assessments
+Content-Type: application/json
+
+{
+  "diagnostic_uuid": "test_uuid",
+  "causes": "1",
+  "body_parts": "0",
+  "character": "1",
+  "level": "0",
+  "aggravating_factors": "1",
+  "relief_factors": "0",
+  "breakout_type": "1",
+  "breakout_freq": "0"
+}
+
+<> 2022-11-09T015016.200.json
+
+###
+
+POST http://localhost:8089/pain_assessments
+Content-Type: application/json
+
+{
+  "diagnostic_uuid": "test_uuid",
+  "causes": "1",
+  "body_parts": "0",
+  "character": "1",
+  "level": "0",
+  "aggravating_factors": "1",
+  "relief_factors": "0",
+  "breakout_type": "1",
+  "breakout_freq": "0"
+}
+
+<> 2022-11-09T014929.500.json
+
+###
+
+POST http://localhost:8089/pain_assessments
+Content-Type: application/json
+
+{
+  "diagnostic_uuid": "test_uuid",
+  "causes": "1",
+  "body_parts": "0",
+  "character": "1",
+  "level": "0",
+  "aggravating_factors": "1",
+  "relief_factors": "0",
+  "breakout_type": "1",
+  "breakout_freq": "0"
+}
+
+<> 2022-11-09T014907.500.json
+
+###
+
+POST http://localhost:8089/pain_assessments
+Content-Type: application/json
+
+{
+  "diagnostic_uuid": "test_uuid",
+  "causes": "1",
+  "body_parts": "0",
+  "character": "1",
+  "level": "0",
+  "aggravating_factors": "1",
+  "relief_factors": "0",
+  "breakout_type": "1",
+  "breakout_freq": "0"
+}
+
+<> 2022-11-09T014838.500.json
+
+###
+
+POST http://localhost:8089/diagnostics
+Content-Type: application/json
+
+{
+  "patient_basic_info_id": 3
+
+}
+
+<> 2022-11-09T120143.201.json
+
+###
+
+POST http://localhost:8089/diagnostics
+Content-Type: application/json
+
+{
+  "patient_basic_info_id": 3
+
+}
+
+<> 2022-11-09T120056.500.json
+
+###
+
+POST http://localhost:8089/diagnostics
+Content-Type: application/json
+
+{
+  "patient_basic_info_id": 3
+
+}
+
+<> 2022-11-09T120033.500.json
+
+###
+
+POST http://localhost:8089/diagnostics
+Content-Type: application/json
+
+{
+  "patient_basic_info_id": 3
+
+}
+
+<> 2022-11-09T115852.500.json
+
+###
+
+POST http://localhost:8089/diagnostics
+Content-Type: application/json
+
+{
+  "patient_basic_info_id": 3
+//  "uuid": "test_243"
+}
+
+<> 2022-11-09T115836.400.json
+
+###
+
+POST http://localhost:8089/diagnostics
+Content-Type: application/json
+
+{
+  "patient_basic_info_id": 3,
+  "uuid": "test_197"
+}
+
+<> 2022-11-09T115750.201.json
+
+###
+
+POST http://localhost:8089/diagnostics
+Content-Type: application/json
+
+{
+  "patient_basic_info_id": 3,
+  "uuid": "test_335"
+}
+
+<> 2022-11-09T115618.500.json
+
+###
+
+POST http://localhost:8089/diagnostics
+Content-Type: application/json
+
+{
+  "patient_basic_info_id": 3,
+  "uuid": "test_301"
+}
+
+<> 2022-11-09T115556.500.json
+
+###
+
+GET http://localhost:8089/diagnostics
+Accept: application/json
+
+<> 2022-11-09T115520.200.json
+
+###
+
+POST http://localhost:8089/diagnostics
+Content-Type: application/json
+
+{
+  "patient_basic_info_id": 3,
+  "uuid": "test_81"
+}
+
+<> 2022-11-09T115514.201.json
+
+###
+
+GET http://localhost:8089/diagnostics
+Accept: application/json
+
+<> 2022-11-09T113021.200.json
+
+###
+
+POST http://localhost:8089/diagnostics
+Content-Type: application/json
+
+{
+  "patient_basic_info_id": 3
+}
+
+<> 2022-11-09T113017.201.json
+
+###
+
+POST http://localhost:8089/patients
+Content-Type: application/json
+
+{
+  "user_name": "test350",
+  "uid": "123123",
+  "gender": 1,
+  "age": 22
+}
+
+<> 2022-11-09T113002.201.json
+
+###
+
+POST http://localhost:8089/patients
+Content-Type: application/json
+
+{
+  "user_name": "test260",
+  "uid": "123123",
+  "gender": 1,
+  "age": 22
+}
+
+<> 2022-11-09T112956.201.json
+
+###
+
 GET http://localhost:8089/diagnostics
 Accept: application/json
 
@@ -254,283 +599,6 @@ Content-Type: application/json
 }
 
 <> 2022-10-16T021614.201.json
-
-###
-
-POST http://localhost:8089/patients
-Content-Type: application/json
-
-{
-  "user_name": "test961",
-  "gender": 1,
-  "age": 22
-}
-
-<> 2022-10-16T021612.201.json
-
-###
-
-POST http://localhost:8089/patients
-Content-Type: application/json
-
-{
-  "user_name": "test824",
-  "gender": 1,
-  "age": 22
-}
-
-<> 2022-10-16T021611.201.json
-
-###
-
-POST http://localhost:8089/patients
-Content-Type: application/json
-
-{
-  "user_name": "test87",
-  "gender": 1,
-  "age": 22
-}
-
-<> 2022-10-16T021609.201.json
-
-###
-
-POST http://localhost:8089/patients
-Content-Type: application/json
-
-{
-  "user_name": "test413",
-  "gender": 1,
-  "age": 22
-}
-
-<> 2022-10-16T021608.201.json
-
-###
-
-POST http://localhost:8089/patients
-Content-Type: application/json
-
-{
-  "user_name": "test458",
-  "gender": 1,
-  "age": 22
-}
-
-<> 2022-10-16T021607.201.json
-
-###
-
-POST http://localhost:8089/patients
-Content-Type: application/json
-
-{
-  "user_name": "test264",
-  "gender": 1,
-  "age": 22
-}
-
-<> 2022-10-16T021605.201.json
-
-###
-
-GET http://localhost:8089/patients
-Accept: application/json
-
-<> 2022-10-16T015820.200.json
-
-###
-
-GET http://localhost:8089/patients?user_name=demo
-Accept: application/json
-
-<> 2022-10-16T011244.200.json
-
-###
-
-GET http://localhost:8089/patients
-Accept: application/json
-Content-Type: application/json
-
-{
-  "user_name": "demo"
-}
-
-<> 2022-10-16T011236.200.json
-
-###
-
-GET http://localhost:8089/patients
-Accept: application/json
-
-<> 2022-10-16T011225.200.json
-
-###
-
-PUT http://localhost:8089/patients/8
-Content-Type: application/json
-
-{
-  "user_name": "demo"
-}
-
-<> 2022-10-16T011215.200.json
-
-###
-
-GET http://localhost:8089/patients
-Accept: application/json
-
-<> 2022-10-16T011204.200.json
-
-###
-
-POST http://localhost:8089/patients
-Content-Type: application/json
-
-{
-  "user_name": "test535",
-  "gender": 1,
-  "age": 22
-}
-
-<> 2022-10-16T011158.201.json
-
-###
-
-POST http://localhost:8089/patients
-Content-Type: application/json
-
-{
-  "user_name": "test485",
-  "gender": 1,
-  "age": 22
-}
-
-<> 2022-10-16T011156.201.json
-
-###
-
-POST http://localhost:8089/patients
-Content-Type: application/json
-
-{
-  "user_name": "test365",
-  "gender": 1,
-  "age": 22
-}
-
-<> 2022-10-16T011154.201.json
-
-###
-
-POST http://localhost:8089/patients
-Content-Type: application/json
-
-{
-  "user_name": "test674",
-  "gender": 1,
-  "age": 22
-}
-
-<> 2022-10-16T011153.201.json
-
-###
-
-POST http://localhost:8089/patients
-Content-Type: application/json
-
-{
-  "user_name": "test612",
-  "gender": 1,
-  "age": 22
-}
-
-<> 2022-10-16T011152.201.json
-
-###
-
-POST http://localhost:8089/patients
-Content-Type: application/json
-
-{
-  "user_name": "test82",
-  "gender": 1,
-  "age": 22
-}
-
-<> 2022-10-16T011151.201.json
-
-###
-
-POST http://localhost:8089/patients
-Content-Type: application/json
-
-{
-  "user_name": "test282",
-  "gender": 1,
-  "age": 22
-}
-
-<> 2022-10-16T011149.201.json
-
-###
-
-POST http://localhost:8089/patients
-Content-Type: application/json
-
-{
-  "user_name": "test417",
-  "gender": 1,
-  "age": 22
-}
-
-<> 2022-10-16T011147.201.json
-
-###
-
-GET http://localhost:8089/users
-Accept: application/json
-
-<> 2022-10-16T124434.200.json
-
-###
-
-PUT http://localhost:8089/users/8
-Content-Type: application/json
-
-{
-  "user_name": "demo"
-}
-
-<> 2022-10-16T124428.200.json
-
-###
-
-POST http://localhost:8089/users
-Content-Type: application/json
-
-{
-  "user_name": "test786",
-  "gender": 1,
-  "age": 22
-}
-
-<> 2022-10-16T124422.201.json
-
-###
-
-POST http://localhost:8089/users
-Content-Type: application/json
-
-{
-  "user_name": "test768",
-  "gender": 1,
-  "age": 22
-}
-
-<> 2022-10-16T124420.201.json
 
 ###
 

@@ -79,9 +79,11 @@ def add_diagnostic(values):
         return None
     
     diagnostic = models.Diagnostic()
-    diagnostic.uuid = str(uuid.uuid4())
-    diagnostic.patient_basic_info = patient
     diagnostic.update(values)
+    if diagnostic.uuid is None:
+        diagnostic.uuid = str(uuid.uuid4())
+    diagnostic.patient_basic_info = patient
+
     DB.session.add(diagnostic)
 
     DB.session.commit()
@@ -95,6 +97,20 @@ def get_all_diagnostics(values=None):
     diagnostics = query.all()
 
     return diagnostics
+
+
+def add_pain_assessment(values=None):
+    diagnostic = DB.session.query(models.Diagnostic)\
+        .filter(models.Diagnostic.uuid == values.diagnostic_uuid).one_or_none()
+    if diagnostic is None:
+        return None
+    pain_assessment = models.PainAssessmentInfo()
+    pain_assessment.update(values)
+    DB.session.add(pain_assessment)
+    DB.session.commit()
+
+    return pain_assessment
+
 
 def rebuild_drug_table():
     models.Drug.__table__.drop(DB.engine)

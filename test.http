@@ -5,6 +5,7 @@ Content-Type: application/json
 
 {
   "user_name": "test{{$randomInt}}",
+  "uid": "123123",
   "gender": 1,
   "age": 22
 }
@@ -69,7 +70,19 @@ POST http://{{host}}:8089/diagnostics
 Content-Type: application/json
 
 {
-  "patient_basic_info_id": 1
+  "patient_basic_info_id": 3
+
+}
+
+###
+# @name=addDiagnostic_UUID
+POST http://{{host}}:8089/diagnostics
+Content-Type: application/json
+
+{
+  "uuid": "test_uuid",
+  "patient_basic_info_id": 3
+
 }
 
 ###
@@ -78,3 +91,18 @@ GET http://{{host}}:8089/diagnostics
 Accept: application/json
 
 ###
+# @name=addPainAssessment
+POST http://{{host}}:8089/pain_assessments
+Content-Type: application/json
+
+{
+  "diagnostic_uuid": "test_uuid",
+  "causes": "1",
+  "body_parts": "0",
+  "character": "1",
+  "level": "0",
+  "aggravating_factors": "1",
+  "relief_factors": "0",
+  "breakout_type": "1",
+  "breakout_freq": "0"
+}

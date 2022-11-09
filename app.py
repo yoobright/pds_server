@@ -66,7 +66,7 @@ class PatientListResource(Resource):
 
         self.user_add_parser = reqparse.RequestParser()
         self.user_add_parser.add_argument('user_name', type=str, required=True)
-        self.user_add_parser.add_argument('uid', type=str)
+        self.user_add_parser.add_argument('uid', type=str, required=True)
         self.user_add_parser.add_argument('gender', type=str, required=True)
         self.user_add_parser.add_argument('age', type=int, required=True)
         self.user_add_parser.add_argument('height', type=float)
@@ -179,18 +179,21 @@ class DrugListResource(Resource):
         return jsonify(res)
 
 
-
 class DiagnosticListResource(Resource):
 
     def __init__(self):
         super(DiagnosticListResource, self).__init__()
         self.diagnostic_post_parser = reqparse.RequestParser()
         self.diagnostic_post_parser.add_argument(
+            'uuid', type=str)
+        self.diagnostic_post_parser.add_argument(
             'patient_basic_info_id', type=int, required=True)
         self.diagnostic_post_parser.add_argument(
             'pain_assessment_info_id', type=int)
-        self.diagnostic_post_parser.add_argument('decision_info_id', type=int)
-        self.diagnostic_post_parser.add_argument('doctor_id', type=int)
+        self.diagnostic_post_parser.add_argument(
+            'decision_info_id', type=int)
+        self.diagnostic_post_parser.add_argument(
+            'doctor_id', type=int)
         self.diagnostic_post_parser.add_argument(
             'previous_medication_issue', type=str)
         self.diagnostic_post_parser.add_argument('recmd', type=str)
@@ -219,11 +222,66 @@ class DiagnosticListResource(Resource):
 
         if diagnostic is None:
             return jsonify({"id": -1}, 422)
-        
+
         return make_response(jsonify({
             "id": diagnostic.id,
             "uuid": diagnostic.uuid
-            }), 201)
+        }), 201)
+
+
+"""
+PainAssessment
+    diagnostic_uuid = DB.Column(DB.String(36), comment='关联诊断表uuid')
+    causes = DB.Column(DB.String, comment='疼痛原因 0-肿瘤、1-肿瘤治疗、2-非肿瘤相关性')
+    body_parts = DB.Column(DB.String, comment='疼痛部位 对应人体部位表 多选')
+    character = DB.Column(DB.String, comment='疼痛性质 多选')
+    level = DB.Column(DB.Integer, comment='疼痛强度 单选')
+    aggravating_factors = DB.Column(
+        DB.String,
+        comment='疼痛加重因素 多选 0-行走、1-活动、2-体位变化、3-排便、4-咳嗽、5-进食、6-天气、7-乏力、8-精神因素')
+    relief_factors = DB.Column(
+        DB.String,
+        comment='疼痛缓解因素 多选 0-服用镇痛药、1-环境安静、2-光线柔和、3-温度适宜、4-心理积极、5-家人陪伴')
+    breakout_type = DB.Column(
+        DB.String,
+        comment='爆发痛类型 0-与特定活动或事件相关联、1-发生在按时给予镇痛药物的剂量间隔结束时、2-控制不佳的持续性疼痛 3-无')
+    breakout_freq = DB.Column(DB.String, comment='爆发痛发作频率 0-<3、1-≥3')
+"""
+
+
+class PainAssessmentListResource(Resource):
+    def __init__(self):
+        super(PainAssessmentListResource, self).__init__()
+        self.pain_assessment_post_parser = reqparse.RequestParser()
+        self.pain_assessment_post_parser.add_argument(
+            'diagnostic_uuid', type=str, required=True)
+        self.pain_assessment_post_parser.add_argument(
+            'causes', type=str, required=True)
+        self.pain_assessment_post_parser.add_argument(
+            'body_parts', type=str, required=True)
+        self.pain_assessment_post_parser.add_argument(
+            'character', type=str, required=True)
+        self.pain_assessment_post_parser.add_argument(
+            'level', type=int, required=True)
+        self.pain_assessment_post_parser.add_argument(
+            'aggravating_factors', type=str, required=True)
+        self.pain_assessment_post_parser.add_argument(
+            'relief_factors', type=str, required=True)
+        self.pain_assessment_post_parser.add_argument(
+            'breakout_type', type=str, required=True)
+        self.pain_assessment_post_parser.add_argument(
+            'breakout_freq', type=str, required=True)
+
+    def post(self):
+        args = self.pain_assessment_post_parser.parse_args()
+        print(args)
+        pain_assessment = db_api.add_pain_assessment(args)
+        if pain_assessment is None:
+            return jsonify({"id": -1}, 422)
+
+        return make_response(jsonify({
+            "id": pain_assessment.id
+        }), 201)
 
 
 app_api.add_resource(PatientListResource, '/patients')
@@ -231,6 +289,8 @@ app_api.add_resource(PatientByIdResource, '/patients/<int:pid>')
 app_api.add_resource(BookResource, '/books')
 app_api.add_resource(DrugListResource, '/drugs')
 app_api.add_resource(DiagnosticListResource, '/diagnostics')
+app_api.add_resource(PainAssessmentListResource, '/pain_assessments')
+
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port='8089')
