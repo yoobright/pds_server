@@ -6,6 +6,7 @@ from db import DB_Obj
 from flask_restful import Resource, Api
 from flask_restful import reqparse
 from flasgger import Swagger, swag_from
+from flask_cors import CORS
 
 from db import api as db_api
 from db.books import Book
@@ -13,6 +14,7 @@ from defs import swagger_api
 
 
 app = Flask(__name__)
+CORS(app)
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///data/project.db"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['JSON_SORT_KEYS'] = False
@@ -201,6 +203,12 @@ class DiagnosticListResource(Resource):
         self.diagnostic_post_parser.add_argument(
             'recmd', type=str)
 
+        self.diagnostic_get_parser = reqparse.RequestParser()
+        self.diagnostic_get_parser.add_argument(
+            'page', type=int)
+        self.diagnostic_get_parser.add_argument(
+            'limit', type=int)
+
     @staticmethod
     def to_dict(diagnostics):
         res = []
@@ -213,9 +221,14 @@ class DiagnosticListResource(Resource):
 
     # @swag_from(swagger_api.diagnostic_get_dict)
     def get(self):
-        diagnostics = db_api.get_all_diagnostics()
+        args = self.diagnostic_get_parser.parse_args()
+        print(args)
+        diagnostics, total = db_api.get_all_diagnostics(args)
         res = self.to_dict(diagnostics)
-        return jsonify(res)
+        return jsonify({
+            "total": total,
+            "data": res
+        })
 
     def post(self):
         args = self.diagnostic_post_parser.parse_args()

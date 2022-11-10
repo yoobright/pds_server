@@ -91,12 +91,18 @@ def add_diagnostic(values):
     return diagnostic
 
 
-def get_all_diagnostics(values=None):
+def get_all_diagnostics(args):
     query = DB.session.query(models.Diagnostic)\
         .order_by(desc(models.Diagnostic.created_at))
+
+    total = query.count()
+
+    if args.page is not None and args.limit is not None:
+        query = query.limit(args.limit).offset((args.page - 1) * args.limit)
+
     diagnostics = query.all()
 
-    return diagnostics
+    return diagnostics, total
 
 
 def get_diagnostic_by_uuid(uuid):
