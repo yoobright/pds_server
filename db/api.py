@@ -93,7 +93,12 @@ def add_diagnostic(values):
 
 def get_all_diagnostics(args):
     query = DB.session.query(models.Diagnostic)\
-        .order_by(desc(models.Diagnostic.created_at))
+
+    if args.user_name is not None:
+        search_name = "{}%".format(args.user_name)
+        query = query.join(models.Patient, models.Patient.id == models.Diagnostic.patient_basic_info_id)\
+            .filter(models.Patient.user_name.like(search_name))
+    query = query.order_by(desc(models.Diagnostic.created_at))
 
     total = query.count()
 

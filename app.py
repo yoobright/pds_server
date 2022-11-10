@@ -208,6 +208,8 @@ class DiagnosticListResource(Resource):
             'page', type=int)
         self.diagnostic_get_parser.add_argument(
             'limit', type=int)
+        self.diagnostic_get_parser.add_argument(
+            'user_name', type=str)
 
     @staticmethod
     def to_dict(diagnostics):

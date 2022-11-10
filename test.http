@@ -81,7 +81,7 @@ Content-Type: application/json
 
 {
   "uuid": "test_uuid",
-  "patient_basic_info_id": 3
+  "patient_basic_info_id": 1
 
 }
 
