@@ -1,5 +1,6 @@
 import datetime
 
+from jsonschema import validate
 from flask import Flask, jsonify, make_response, abort
 from flask.json import JSONEncoder
 from db import DB_Obj
@@ -327,6 +328,25 @@ class PainAssessmentListResource(Resource):
         }), 201)
 
 
+drug_table_schema = {
+    "type": "array",
+    "items": {
+        "type": "object",
+        "properties": {
+            "drug_name": {"type": "string"},
+            "spec": {"type": "string"},
+            "dose": {"type": "number"},
+            "dose_unit": {"type": "string"},
+            "freq": {"type": "string"},
+            "freq_unit": {"type": "string"},
+            "duration": {"type": "string"}
+        },
+        "required": ["drug_name", "spec", "dose", "dose_unit",
+                     "freq", "freq_unit", "duration"]
+    }
+}
+
+
 class DecisionListResource(Resource):
     def __init__(self):
         super(DecisionListResource, self).__init__()
@@ -334,7 +354,7 @@ class DecisionListResource(Resource):
         self.decision_post_parser.add_argument(
             'diagnostic_uuid', type=str, required=True)
         self.decision_post_parser.add_argument(
-            'drug_table_id', type=int, required=True)
+            'drug_table', type=dict, action='append')
         self.decision_post_parser.add_argument(
             'previous_medication_issue', type=str, required=True)
         self.decision_post_parser.add_argument(
@@ -347,6 +367,18 @@ class DecisionListResource(Resource):
     def post(self):
         args = self.decision_post_parser.parse_args()
         print(args)
+        if args.drug_table is not None:
+            try:
+                validate(args.drug_table, drug_table_schema)
+            except Exception:
+                return make_response(
+                    jsonify({"message": "drug_table格式错误"}),
+                    400
+                )
+            for d in args.drug_table:
+                print(type(d))
+            print(args.drug_table)
+            return None
         decision = db_api.add_decision(args)
         if decision is None:
             return make_response(

@@ -134,7 +134,9 @@ def get_diagnostic_by_uuid(uuid):
 
 def update_diagnostic_by_uuid(uuid, args):
     diagnostic = DB.session.query(models.Diagnostic)\
-        .filter(models.Diagnostic.uuid == uuid).one_or_none()
+        .filter(models.Diagnostic.uuid == uuid)\
+        .order_by(models.Diagnostic.id.desc())\
+        .first()
     if diagnostic is not None:
         diagnostic.update(args)
         DB.session.commit()

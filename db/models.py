@@ -243,10 +243,12 @@ class PrescriptionBase(object):
 
 class PreviousPrescription(DB.Model, PrescriptionBase):
     __tablename__ = 'previous_prescriptions'
+    prev_medication_id = Column(Integer, comment='关联既往用药表id')
 
 
 class Prescription(DB.Model, PrescriptionBase):
     __tablename__ = 'prescriptions'
+    decision_id = Column(Integer, comment='关联决策表id')
 
 
 class Drug(DB.Model, ModelBase):

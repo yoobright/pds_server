@@ -117,7 +117,26 @@ Content-Type: application/json
   "diagnostic_uuid": "test_uuid",
   "drug_table_id": 0,
   "previous_medication_issue": "p1",
-  "recmd": "r1"
+  "recmd": "r1",
+  "drug_table": [{
+   "drug_name": "盐酸阿米替林片25mg",
+    "spec": "25mg",
+    "dose": 10.00,
+    "dose_unit": "mg",
+    "freq": "1",
+    "freq_unit": "2",
+    "duration": "2"
+  },
+    {
+   "drug_name": "盐酸曲马多缓释片100mg",
+    "spec": "100mg",
+    "dose": 10.00,
+    "dose_unit": "mg",
+    "freq": "1",
+    "freq_unit": "2",
+    "duration": "1"
+  }
+  ]
 }
 
 ###
@@ -132,7 +151,7 @@ Content-Type: application/json
 
 {
   "previous_medication_issue": "p1",
-  "recmd": "r1"
+  "recmd": "s1#6"
 }
 
 

@@ -1,3 +1,398 @@
+POST http://localhost:8089/decisions
+Content-Type: application/json
+
+{
+  "diagnostic_uuid": "test_uuid",
+  "drug_table_id": 0,
+  "previous_medication_issue": "p1",
+  "recmd": "r1",
+  "drug_table": [{
+   "drug_name": "盐酸阿米替林片25mg",
+    "spec": "25mg",
+    "dose": 10.00,
+    "dose_unit": "mg",
+    "freq": "1",
+    "freq_unit": "2",
+    "duration": "2"
+  },
+    {
+   "drug_name": "盐酸曲马多缓释片100mg",
+    "spec": "100mg",
+    "dose": 10.00,
+    "dose_unit": "mg",
+    "freq": "1",
+    "freq_unit": "2"
+  }
+  ]
+}
+
+<> 2022-11-10T063343.400.json
+
+###
+
+POST http://localhost:8089/decisions
+Content-Type: application/json
+
+{
+  "diagnostic_uuid": "test_uuid",
+  "drug_table_id": 0,
+  "previous_medication_issue": "p1",
+  "recmd": "r1",
+  "drug_table": [{
+   "drug_name": "盐酸阿米替林片25mg",
+    "spec": "25mg",
+    "dose": 10.00,
+    "dose_unit": "mg",
+    "freq": "1",
+    "freq_unit": "2",
+    "duration": "2"
+  },
+    {
+   "drug_name": "盐酸曲马多缓释片100mg",
+    "spec": "100mg",
+    "dose": 10.00,
+    "dose_unit": "mg",
+    "freq": "1",
+    "freq_unit": "2"
+  }
+  ]
+}
+
+<> 2022-11-10T062816.500.json
+
+###
+
+POST http://localhost:8089/decisions
+Content-Type: application/json
+
+{
+  "diagnostic_uuid": "test_uuid",
+  "drug_table_id": 0,
+  "previous_medication_issue": "p1",
+  "recmd": "r1",
+  "drug_table": [{
+   "drug_name": "盐酸阿米替林片25mg",
+    "spec": "25mg",
+    "dose": 10.00,
+    "dose_unit": "mg",
+    "freq": "1",
+    "freq_unit": "2",
+    "duration": "2"
+  },
+    {
+   "drug_name": "盐酸曲马多缓释片100mg",
+    "spec": "100mg",
+    "dose": 10.00,
+    "dose_unit": "mg",
+    "freq": "1",
+    "freq_unit": "2",
+    "duration": "1"
+  }
+  ]
+}
+
+<> 2022-11-10T062757.200.json
+
+###
+
+POST http://localhost:8089/decisions
+Content-Type: application/json
+
+{
+  "diagnostic_uuid": "test_uuid",
+  "drug_table_id": 0,
+  "previous_medication_issue": "p1",
+  "recmd": "r1",
+  "drug_table": [{
+   "drug_name": "盐酸阿米替林片25mg",
+    "spec": "25mg",
+    "dose": 10.00,
+    "dose_unit": "mg",
+    "freq": "1",
+    "freq_unit": "2",
+    "duration": "2"
+  },
+    {
+   "drug_name": "盐酸曲马多缓释片100mg",
+    "spec": "100mg",
+    "dose": 10.00,
+    "dose_unit": "mg",
+    "freq": "1",
+    "freq_unit": "2",
+    "duration": "1"
+  }
+  ]
+}
+
+<> 2022-11-10T061148.200.json
+
+###
+
+POST http://localhost:8089/decisions
+Content-Type: application/json
+
+{
+  "diagnostic_uuid": "test_uuid",
+  "drug_table_id": 0,
+  "previous_medication_issue": "p1",
+  "recmd": "r1",
+  "drug_table": [{
+   "drug_name": "盐酸阿米替林片25mg",
+    "spec": "25mg",
+    "dose": "10.00",
+    "dose_unit": "mg",
+    "freq": "1",
+    "freq_unit": "2",
+    "duration": "2"
+  },
+    {
+   "drug_name": "盐酸曲马多缓释片100mg",
+    "spec": "100mg",
+    "dose": "10.00",
+    "dose_unit": "mg",
+    "freq": "1",
+    "freq_unit": "2",
+    "duration": "1"
+  }
+  ]
+}
+
+<> 2022-11-10T060836.200.json
+
+###
+
+POST http://localhost:8089/decisions
+Content-Type: application/json
+
+{
+  "diagnostic_uuid": "test_uuid",
+  "drug_table_id": 0,
+  "previous_medication_issue": "p1",
+  "recmd": "r1",
+  "drug_table": [{
+   "drug_name": "盐酸阿米替林片25mg",
+    "spec": "25mg",
+    "dose": "10.00",
+    "dose_unit": "mg",
+    "freq": "1",
+    "freq_unit": "2",
+    "duration": "2"
+  },
+    {
+   "drug_name": "盐酸曲马多缓释片100mg",
+    "spec": "100mg",
+    "dose": "10.00",
+    "dose_unit": "mg",
+    "freq": "1",
+    "freq_unit": "2",
+    "duration": "2"
+  }
+  ]
+}
+
+<> 2022-11-10T060824.200.json
+
+###
+
+POST http://localhost:8089/decisions
+Content-Type: application/json
+
+{
+  "diagnostic_uuid": "test_uuid",
+  "drug_table_id": 0,
+  "previous_medication_issue": "p1",
+  "recmd": "r1",
+  "drug_table": [{
+   "drug_name": "盐酸阿米替林片25mg",
+    "spec": "25mg",
+    "dose": "10.00",
+    "dose_unit": "mg",
+    "freq": "1",
+    "freq_unit": "2",
+    "duration": "2"
+  }]
+}
+
+<> 2022-11-10T060709.200.json
+
+###
+
+POST http://localhost:8089/decisions
+Content-Type: application/json
+
+{
+  "diagnostic_uuid": "test_uuid",
+  "drug_table_id": 0,
+  "previous_medication_issue": "p1",
+  "recmd": "r1",
+  "drug_table": [1, 2]
+}
+
+<> 2022-11-10T055508.400.json
+
+###
+
+POST http://localhost:8089/decisions
+Content-Type: application/json
+
+{
+  "diagnostic_uuid": "test_uuid",
+  "drug_table_id": 0,
+  "previous_medication_issue": "p1",
+  "recmd": "r1",
+  "drug_table": [{
+
+  }]
+}
+
+<> 2022-11-10T055443.200.json
+
+###
+
+POST http://localhost:8089/decisions
+Content-Type: application/json
+
+{
+  "diagnostic_uuid": "test_uuid",
+  "drug_table_id": 0,
+  "previous_medication_issue": "p1",
+  "recmd": "r1",
+  "drug_table": ["11", "11"]
+}
+
+<> 2022-11-10T055102.200.json
+
+###
+
+POST http://localhost:8089/decisions
+Content-Type: application/json
+
+{
+  "diagnostic_uuid": "test_uuid",
+  "drug_table_id": 0,
+  "previous_medication_issue": "p1",
+  "recmd": "r1",
+  "drug_table": [11, "11"]
+}
+
+<> 2022-11-10T055055.400.json
+
+###
+
+POST http://localhost:8089/decisions
+Content-Type: application/json
+
+{
+  "diagnostic_uuid": "test_uuid",
+  "drug_table_id": 0,
+  "previous_medication_issue": "p1",
+  "recmd": "r1",
+  "drug_table": ["11", "11"]
+}
+
+<> 2022-11-10T055035.200.json
+
+###
+
+POST http://localhost:8089/decisions
+Content-Type: application/json
+
+{
+  "diagnostic_uuid": "test_uuid",
+  "drug_table_id": 0,
+  "previous_medication_issue": "p1",
+  "recmd": "r1",
+  "drug_table": [11, 11]
+}
+
+<> 2022-11-10T055013.400.json
+
+###
+
+POST http://localhost:8089/decisions
+Content-Type: application/json
+
+{
+  "diagnostic_uuid": "test_uuid",
+  "drug_table_id": 0,
+  "previous_medication_issue": "p1",
+  "recmd": "r1",
+  "drug_table": [11, 11]
+}
+
+<> 2022-11-10T054836.400.json
+
+###
+
+POST http://localhost:8089/decisions
+Content-Type: application/json
+
+{
+  "diagnostic_uuid": "test_uuid",
+  "drug_table_id": 0,
+  "previous_medication_issue": "p1",
+  "recmd": "r1",
+  "drug_table": [11, 11]
+}
+
+<> 2022-11-10T054140.400.json
+
+###
+
+POST http://localhost:8089/decisions
+Content-Type: application/json
+
+{
+  "diagnostic_uuid": "test_uuid",
+  "drug_table_id": 0,
+  "previous_medication_issue": "p1",
+  "recmd": "r1",
+  "drug_table": [11]
+}
+
+<> 2022-11-10T054114.400.json
+
+###
+
+POST http://localhost:8089/decisions
+Content-Type: application/json
+
+{
+  "diagnostic_uuid": "test_uuid",
+  "drug_table_id": 0,
+  "previous_medication_issue": "p1",
+  "recmd": "r1",
+  "drug_table": []
+}
+
+<> 2022-11-10T054053.400.json
+
+###
+
+PUT http://localhost:8089/diagnostics/uuid/test_uuid
+Content-Type: application/json
+
+{
+  "previous_medication_issue": "p1",
+  "recmd": "s1#6"
+}
+
+<> 2022-11-10T034623.200.json
+
+###
+
+PUT http://localhost:8089/diagnostics/uuid/test_uuid
+Content-Type: application/json
+
+{
+  "previous_medication_issue": "p1",
+  "recmd": "s1#6"
+}
+
+<> 2022-11-10T034454.500.json
+
+###
+
 POST http://localhost:8089/diagnostics
 Content-Type: application/json
 
@@ -258,207 +653,6 @@ Content-Type: application/json
 }
 
 <> 2022-11-09T033018.201.json
-
-###
-
-GET http://localhost:8089/diagnostics/uuid/test_uuid
-Accept: application/json
-
-<> 2022-11-09T033005.200.json
-
-###
-
-POST http://localhost:8089/diagnostics
-Content-Type: application/json
-
-{
-  "patient_basic_info_id": 3
-
-}
-
-<> 2022-11-09T032953.201.json
-
-###
-
-POST http://localhost:8089/diagnostics
-Content-Type: application/json
-
-{
-  "patient_basic_info_id": 3
-
-}
-
-<> 2022-11-09T032950.201.json
-
-###
-
-POST http://localhost:8089/diagnostics
-Content-Type: application/json
-
-{
-  "uuid": "test_uuid",
-  "patient_basic_info_id": 3
-
-}
-
-<> 2022-11-09T032939.201.json
-
-###
-
-GET http://localhost:8089/diagnostics/uuid/test_uuid
-Accept: application/json
-
-<> 2022-11-09T032819.500.json
-
-###
-
-GET http://localhost:8089/diagnostics/uuid/test_uuid
-Accept: application/json
-
-###
-
-GET http://localhost:8089/diagnostics/uuid/test_uuid
-Accept: application/json
-
-<> 2022-11-09T032609.500.json
-
-###
-
-GET http://localhost:8089/diagnostics/uuid/test_uuid
-Accept: application/json
-
-<> 2022-11-09T032546.500.json
-
-###
-
-GET http://localhost:8089/diagnostics/uuid/test_uuid
-Accept: application/json
-
-<> 2022-11-09T032442.500.json
-
-###
-
-GET http://localhost:8089/diagnostics/uuid/test_uuid
-Accept: application/json
-
-<> 2022-11-09T032156.500.json
-
-###
-
-GET http://localhost:8089/diagnostics/uuid/test_uuid
-Accept: application/json
-
-<> 2022-11-09T032143.500.json
-
-###
-
-POST http://localhost:8089/decisions
-Content-Type: application/json
-
-{
-  "diagnostic_uuid": "test_uuid",
-  "drug_table_id": 0,
-  "previous_medication_issue": "p1",
-  "recmd": "r1"
-}
-
-<> 2022-11-09T032059.500.json
-
-###
-
-POST http://localhost:8089/decisions
-Content-Type: application/json
-
-{
-  "diagnostic_uuid": "test_uuid",
-  "drug_table_id": 0,
-  "previous_medication_issue": "p1",
-  "recmd": "r1"
-}
-
-<> 2022-11-09T031849.500.json
-
-###
-
-POST http://localhost:8089/decisions
-Content-Type: application/json
-
-{
-  "diagnostic_uuid": "test_uuid",
-  "drug_table_id": 0,
-  "previous_medication_issue": "p1",
-  "recmd": "r1"
-}
-
-<> 2022-11-09T025004.201.json
-
-###
-
-POST http://localhost:8089/decisions
-Content-Type: application/json
-
-{
-  "diagnostic_uuid": "test_uuid",
-  "drug_table_id": 0,
-  "previous_medication_issue": "p1",
-  "recmd": "r1"
-}
-
-<> 2022-11-09T024907.500.json
-
-###
-
-POST http://localhost:8089/decisions
-Content-Type: application/json
-
-{
-  "diagnostic_uuid": "test_uuid",
-  "drug_table_id": 0,
-  "previous_medication_issue": "p1",
-  "recmd": "r1"
-}
-
-###
-
-POST http://localhost:8089/decisions
-Content-Type: application/json
-
-{
-  "diagnostic_uuid": "test_uuid",
-  "drug_table_id": 0,
-  "previous_medication_issue": "p1",
-  "recmd": "r1"
-}
-
-<> 2022-11-09T024819.500.json
-
-###
-
-POST http://localhost:8089/decisions
-Content-Type: application/json
-
-{
-  "diagnostic_uuid": "test_uuid",
-  "drug_table_id": 0,
-  "previous_medication_issue": "p1",
-  "recmd": "r1"
-}
-
-<> 2022-11-09T024733.500.json
-
-###
-
-POST http://localhost:8089/decision
-Content-Type: application/json
-
-{
-  "diagnostic_uuid": "test_uuid",
-  "drug_table_id": 0,
-  "previous_medication_issue": "p1",
-  "recmd": "r1"
-}
-
-<> 2022-11-09T024708.404.html
 
 ###
 
