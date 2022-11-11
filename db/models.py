@@ -2,6 +2,7 @@ import datetime
 
 from sqlalchemy import Column
 from sqlalchemy import DateTime, Integer, String, Float
+from sqlalchemy.orm import deferred
 from sqlalchemy.orm import object_mapper, relationship
 
 from db import DB_Obj
@@ -205,6 +206,7 @@ class PreviousMedicationInfo(DB.Model):
 
     id = DB.Column(DB.Integer, primary_key=True,
                    autoincrement=True, comment='主键id')
+    uuid = DB.Column(DB.String(36), nullable=False, comment='uuid')
     diagnostic_uuid = DB.Column(DB.String(36), comment='关联诊断表uuid')
     forget = DB.Column(DB.String, comment='是否忘记用药 0-是 ，1-否')
     carelessly = DB.Column(DB.String, comment='是否不注意用药 0-是 ，1-否')
@@ -221,6 +223,7 @@ class DecisionInfo(DB.Model, ModelBase):
 
     id = DB.Column(DB.Integer, primary_key=True,
                    autoincrement=True, comment='主键id')
+    uuid = DB.Column(DB.String(36), nullable=False, comment='uuid')
     diagnostic_uuid = DB.Column(DB.String(36), comment='关联诊断表uuid')
     drug_table_id = DB.Column(DB.Integer, comment='关联用药表id')
     previous_medication_issue = DB.Column(DB.String, comment='既往用药存在问题及原因')
@@ -241,14 +244,14 @@ class PrescriptionBase(object):
     duration = Column(String, comment='用药起止时长 0>7天，1<=7天')
 
 
-class PreviousPrescription(DB.Model, PrescriptionBase):
+class PreviousPrescription(DB.Model, ModelBase, PrescriptionBase):
     __tablename__ = 'previous_prescriptions'
-    prev_medication_id = Column(Integer, comment='关联既往用药表id')
+    prev_medication_uuid = Column(Integer, comment='关联既往用药表id')
 
 
-class Prescription(DB.Model, PrescriptionBase):
+class Prescription(DB.Model, ModelBase, PrescriptionBase):
     __tablename__ = 'prescriptions'
-    decision_id = Column(Integer, comment='关联决策表id')
+    decision_uuid = Column(Integer, comment='关联决策表id')
 
 
 class Drug(DB.Model, ModelBase):

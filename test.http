@@ -119,7 +119,7 @@ Content-Type: application/json
   "previous_medication_issue": "p1",
   "recmd": "r1",
   "drug_table": [{
-   "drug_name": "盐酸阿米替林片25mg",
+   "drug_name": "盐酸阿米替林片",
     "spec": "25mg",
     "dose": 10.00,
     "dose_unit": "mg",
@@ -128,7 +128,7 @@ Content-Type: application/json
     "duration": "2"
   },
     {
-   "drug_name": "盐酸曲马多缓释片100mg",
+   "drug_name": "盐酸曲马多缓释片",
     "spec": "100mg",
     "dose": 10.00,
     "dose_unit": "mg",

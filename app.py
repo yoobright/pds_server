@@ -18,6 +18,7 @@ app = Flask(__name__)
 CORS(app)
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///data/project.db"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['SQLALCHEMY_ECHO'] = True
 app.config['JSON_SORT_KEYS'] = False
 
 
@@ -375,10 +376,7 @@ class DecisionListResource(Resource):
                     jsonify({"message": "drug_table格式错误"}),
                     400
                 )
-            for d in args.drug_table:
-                print(type(d))
-            print(args.drug_table)
-            return None
+
         decision = db_api.add_decision(args)
         if decision is None:
             return make_response(

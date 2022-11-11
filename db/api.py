@@ -1,6 +1,8 @@
 import uuid
 
 from sqlalchemy import desc
+from sqlalchemy import select
+from sqlalchemy.orm import defer, load_only
 
 from db import DB_Obj
 from db import models
@@ -116,18 +118,36 @@ def get_diagnostic_by_uuid(uuid):
     if diagnostic is not None:
         print(diagnostic.patient_basic_info)
         if diagnostic.pain_assessment_info_id is not None:
-            pain_assessment = DB.session.query(models.PainAssessmentInfo) \
+            pain_assessment = DB.session.query(models.PainAssessmentInfo)\
                 .filter(models.PainAssessmentInfo.diagnostic_uuid == uuid)\
                 .order_by(models.PainAssessmentInfo.id.desc())\
                 .first()
             diagnostic['pain_assessment_info'] = dict(pain_assessment.items())
 
         if diagnostic.decision_info_id is not None:
-            decision = DB.session.query(models.DecisionInfo) \
+            decision = DB.session.query(models.DecisionInfo)\
                 .filter(models.DecisionInfo.diagnostic_uuid == uuid)\
                 .order_by(models.DecisionInfo.id.desc())\
                 .first()
-            diagnostic['decision_info'] = dict(decision.items())
+            if decision is not None:
+                drugs = DB.session.query(models.Prescription)\
+                    .options(defer(models.Prescription.decision_uuid))\
+                    .filter(models.Prescription.decision_uuid == decision.uuid).all()
+                drug_table = []
+                for d in drugs:
+                    drug_table.append(
+                        {
+                            "drug_name": d.drug_name,
+                            "spec": d.spec,
+                            "dose": d.dose,
+                            "dose_unit": d.dose_unit,
+                            "freq": d.freq,
+                            "freq_unit": d.freq_unit,
+                            "duration": d.duration
+                        }
+                    )
+                decision['drug_table'] = drug_table
+                diagnostic['decision_info'] = dict(decision.items())
 
     return diagnostic
 
@@ -166,9 +186,17 @@ def add_decision(values):
     if diagnostic is None:
         return None
 
+    decision_uuid = uuid.uuid4()
     decision = models.DecisionInfo()
     decision.update(values)
+    decision.uuid = str(decision_uuid)
     DB.session.add(decision)
+    if values.drug_table is not None:
+        for d in values.drug_table:
+            prescription = models.Prescription()
+            prescription.update(d)
+            prescription.decision_uuid = str(decision_uuid)
+            DB.session.add(prescription)
     DB.session.commit()
 
     diagnostic.decision_info_id = decision.id
