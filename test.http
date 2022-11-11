@@ -140,6 +140,22 @@ Content-Type: application/json
 }
 
 ###
+# @name=addDecision
+POST http://{{host}}:8089/previous_medications
+Content-Type: application/json
+
+{
+  "diagnostic_uuid": "test_uuid",
+  "forget": "1",
+  "carelessly": "2", 
+  "withdrawal": "1", 
+  "bad_withdrawal": "2", 
+  "adverse_reaction": "1,2", 
+  "adverse_reaction_drugs": "通便灵胶囊" 
+}
+
+
+###
 # @name=getDiagnosticByUUID
 GET http://{{host}}:8089/diagnostics/uuid/test_uuid
 Accept: application/json

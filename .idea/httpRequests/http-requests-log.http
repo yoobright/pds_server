@@ -1,3 +1,105 @@
+POST http://localhost:8089/previous_medications
+Content-Type: application/json
+
+{
+  "diagnostic_uuid": "test_uuid",
+  "forget": "1",
+  "carelessly": "2",
+  "withdrawal": "1",
+  "bad_withdrawal": "2",
+  "adverse_reaction": "1,2",
+  "adverse_reaction_drugs": "通便灵胶囊"
+}
+
+<> 2022-11-11T101202.201.json
+
+###
+
+POST http://localhost:8089/previous_medications
+Content-Type: application/json
+
+{
+  "diagnostic_uuid": "test_uuid",
+  "forget": "1",
+  "carelessly": "2",
+  "withdrawal": "1",
+  "bad_withdrawal": "2",
+  "adverse_reaction": "1,2",
+  "adverse_reaction_drugs": "通便灵胶囊"
+}
+
+<> 2022-11-11T101132.500.json
+
+###
+
+POST http://localhost:8089/previous_medications
+Content-Type: application/json
+
+{
+  "diagnostic_uuid": "test_uuid",
+  "forget": "1",
+  "carelessly": "2",
+  "withdrawal": "1",
+  "bad_withdrawal": "2",
+  "adverse_reaction": "1,2",
+  "adverse_reaction_drugs": "通便灵胶囊"
+}
+
+<> 2022-11-11T101018.500.json
+
+###
+
+POST http://localhost:8089/previous_medications
+Content-Type: application/json
+
+{
+  "diagnostic_uuid": "test_uuid",
+  "forget": "1",
+  "carelessly": "2",
+  "withdrawal": "1",
+  "bad_withdrawal": "2",
+  "adverse_reaction": "1,2",
+  "adverse_reaction_drugs": "通便灵胶囊"
+}
+
+<> 2022-11-11T100744.500.json
+
+###
+
+POST http://localhost:8089/previous_medications
+Content-Type: application/json
+
+{
+  "diagnostic_uuid": "test_uuid",
+  "forget": "1",
+  "carelessly": "2",
+  "withdrawal": "1",
+  "bad_withdrawal": "2",
+  "adverse_reaction": "1,2",
+  "adverse_reaction_drugs": "通便灵胶囊"
+}
+
+<> 2022-11-11T100728.500.json
+
+###
+
+POST http://localhost:8089/previous_medications
+Content-Type: application/json
+
+{
+  "diagnostic_uuid": "test_uuid",
+  "forget": "1",
+  "carelessly": "2",
+  "withdrawal": "1",
+  "bad_withdrawal": "2",
+  "adverse_reaction": "1,2",
+  "adverse_reaction_drugs": "通便灵胶囊"
+}
+
+<> 2022-11-11T100650.500.json
+
+###
+
 GET http://localhost:8089/diagnostics/uuid/test_uuid
 Accept: application/json
 
@@ -699,74 +801,6 @@ Content-Type: application/json
 }
 
 <> 2022-11-10T034454.500.json
-
-###
-
-POST http://localhost:8089/diagnostics
-Content-Type: application/json
-
-{
-  "uuid": "test_uuid",
-  "patient_basic_info_id": 1
-
-}
-
-<> 2022-11-10T020915.201.json
-
-###
-
-GET http://localhost:8089/diagnostics
-Accept: application/json
-
-<> 2022-11-10T092331.200.json
-
-###
-
-PUT http://localhost:8089/diagnostics/uuid/test_uuid
-Content-Type: application/json
-
-{
-  "previous_medication_issue": "p1",
-  "recmd": "r1"
-}
-
-<> 2022-11-09T052752.200.json
-
-###
-
-PUT http://localhost:8089/diagnostics/uuid/test_uuid
-Content-Type: application/json
-
-{
-  "previous_medication_issue": "p1",
-  "recmd": "r1"
-}
-
-<> 2022-11-09T052735.200.json
-
-###
-
-PUT http://localhost:8089/diagnostics/uuid/test_uuidd
-Content-Type: application/json
-
-{
-  "previous_medication_issue": "p1",
-  "recmd": "r1"
-}
-
-<> 2022-11-09T052416.400.json
-
-###
-
-PUT http://localhost:8089/diagnostics/uuid/test_uuidd
-Content-Type: application/json
-
-{
-  "previous_medication_issue": "p1",
-  "recmd": "r1"
-}
-
-<> 2022-11-09T052116.400.html
 
 ###
 

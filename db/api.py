@@ -180,6 +180,25 @@ def add_pain_assessment(values=None):
     return pain_assessment
 
 
+def add_previous_medication(values):
+    diagnostic = DB.session.query(models.Diagnostic)\
+        .filter(models.Diagnostic.uuid == values.diagnostic_uuid).one_or_none()
+    if diagnostic is None:
+        return None
+    previous_medication = models.PreviousMedicationInfo()
+    previous_medication.update(values)
+    previous_medication_uuid = str(uuid.uuid4())
+    previous_medication.uuid = previous_medication_uuid
+
+    DB.session.add(previous_medication)
+    DB.session.commit()
+
+    diagnostic.prev_medication_info_id = previous_medication.id
+    DB.session.commit()
+
+    return previous_medication
+
+
 def add_decision(values):
     diagnostic = DB.session.query(models.Diagnostic)\
         .filter(models.Diagnostic.uuid == values.diagnostic_uuid).one_or_none()

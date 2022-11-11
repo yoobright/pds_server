@@ -388,6 +388,65 @@ class DecisionListResource(Resource):
             "id": decision.id
         }), 201)
 
+"""
+    diagnostic_uuid = DB.Column(DB.String(36), comment='关联诊断表uuid')
+    forget = DB.Column(DB.String, comment='是否忘记用药 0-是 ，1-否')
+    carelessly = DB.Column(DB.String, comment='是否不注意用药 0-是 ，1-否')
+    withdrawal = DB.Column(DB.String, comment='是否自行停药 0-是 ，1-否')
+    bad_withdrawal = DB.Column(DB.String, comment='症状更糟时是否曾停止服药 0-是 ，1-否')
+    adverse_reaction = DB.Column(
+        DB.String, comment='不良反应 1 无 2便秘 3恶心呕吐4 谵妄 5过度镇静6 皮肤瘙痒7 呼吸抑制 8其他')
+    adverse_reaction_drugs = DB.Column(DB.String, comment='不良反应用药')
+    drug_table_id = DB.Column(DB.Integer, comment='用药表id')
+"""
+class PreviousMedicationListResource(Resource):
+    def __init__(self):
+        super(PreviousMedicationListResource, self).__init__()
+        self.previous_medication_post_parser = reqparse.RequestParser()
+        self.previous_medication_post_parser.add_argument(
+            'diagnostic_uuid', type=str, required=True)
+        self.previous_medication_post_parser.add_argument(
+            'forget', type=str)
+        self.previous_medication_post_parser.add_argument(
+            'carelessly', type=str)
+        self.previous_medication_post_parser.add_argument(
+            'withdrawal', type=str)
+        self.previous_medication_post_parser.add_argument(
+            'bad_withdrawal', type=str)
+        self.previous_medication_post_parser.add_argument(
+            'adverse_reaction', type=str)
+        self.previous_medication_post_parser.add_argument(
+            'adverse_reaction_drugs', type=str)
+
+    def post(self):
+        args = self.previous_medication_post_parser.parse_args()
+        print(args)
+        previous_medication = db_api.add_previous_medication(args)
+        if previous_medication is None:
+            return make_response(
+                jsonify({"id": -1}),
+                422
+            )
+
+        return make_response(jsonify({
+            "id": previous_medication.id
+        }), 201)
+
+
+
+    def post(self):
+        args = self.previous_medication_post_parser.parse_args()
+        print(args)
+        previous_medication = db_api.add_previous_medication(args)
+        if previous_medication is None:
+            return make_response(
+                jsonify({"id": -1}),
+                422
+            )
+
+        return make_response(jsonify({
+            "id": previous_medication.id
+        }), 201)
 
 app_api.add_resource(PatientListResource, '/patients')
 app_api.add_resource(PatientByIdResource, '/patients/<int:pid>')
@@ -398,6 +457,7 @@ app_api.add_resource(DiagnosticResourceByUUID,
                      '/diagnostics/uuid/<string:uuid>')
 app_api.add_resource(PainAssessmentListResource, '/pain_assessments')
 app_api.add_resource(DecisionListResource, '/decisions')
+app_api.add_resource(PreviousMedicationListResource, '/previous_medications')
 
 
 if __name__ == '__main__':

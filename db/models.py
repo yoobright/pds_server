@@ -201,7 +201,7 @@ class PainAssessmentInfo(DB.Model, ModelBase):
     breakout_freq = DB.Column(DB.String, nullable=False, comment='爆发痛发作频率 0-<3、1-≥3')
 
 
-class PreviousMedicationInfo(DB.Model):
+class PreviousMedicationInfo(DB.Model, ModelBase):
     __tablename__ = 'previous_medication_infos'
 
     id = DB.Column(DB.Integer, primary_key=True,
