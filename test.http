@@ -117,7 +117,7 @@ Content-Type: application/json
   "diagnostic_uuid": "test_uuid",
   "drug_table_id": 0,
   "previous_medication_issue": "p1",
-  "recmd": "r1",
+  "recmd": "s1#6",
   "drug_table": [{
     "drug_name": "盐酸阿米替林片",
     "spec": "25mg",

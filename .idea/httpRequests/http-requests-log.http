@@ -1,3 +1,295 @@
+POST http://localhost:8089/decisions
+Content-Type: application/json
+
+{
+  "diagnostic_uuid": "test_uuid",
+  "drug_table_id": 0,
+  "previous_medication_issue": "p1",
+  "recmd": "s1#6",
+  "drug_table": [{
+    "drug_name": "盐酸阿米替林片",
+    "spec": "25mg",
+    "dose": 10.00,
+    "dose_unit": "mg",
+    "freq": "1",
+    "freq_unit": "2",
+    "duration": "2"
+  },
+    {
+      "drug_name": "盐酸曲马多缓释片",
+      "spec": "100mg",
+      "dose": 10.00,
+      "dose_unit": "mg",
+      "freq": "1",
+      "freq_unit": "2",
+      "duration": "1"
+  }
+  ]
+}
+
+<> 2022-11-11T110952.201.json
+
+###
+
+GET http://localhost:8089/diagnostics/uuid/test_uuid
+Accept: application/json
+
+<> 2022-11-11T110743.200.json
+
+###
+
+POST http://localhost:8089/previous_medications
+Content-Type: application/json
+
+{
+  "diagnostic_uuid": "test_uuid",
+  "forget": "1",
+  "carelessly": "2",
+  "withdrawal": "1",
+  "bad_withdrawal": "2",
+  "adverse_reaction": "1,2",
+  "adverse_reaction_drugs": "通便灵胶囊",
+  "drug_table": [{
+    "drug_name": "盐酸阿米替林片",
+    "spec": "25mg",
+    "dose": 10.00,
+    "dose_unit": "mg",
+    "freq": "1",
+    "freq_unit": "2",
+    "duration": "2"
+  },
+    {
+      "drug_name": "盐酸曲马多缓释片",
+      "spec": "100mg",
+      "dose": 10.00,
+      "dose_unit": "mg",
+      "freq": "1",
+      "freq_unit": "2",
+      "duration": "1"
+  }
+  ]
+}
+
+<> 2022-11-11T110735.201.json
+
+###
+
+GET http://localhost:8089/diagnostics/uuid/test_uuid
+Accept: application/json
+
+<> 2022-11-11T110730.200.json
+
+###
+
+POST http://localhost:8089/decisions
+Content-Type: application/json
+
+{
+  "diagnostic_uuid": "test_uuid",
+  "drug_table_id": 0,
+  "previous_medication_issue": "p1",
+  "recmd": "r1",
+  "drug_table": [{
+    "drug_name": "盐酸阿米替林片",
+    "spec": "25mg",
+    "dose": 10.00,
+    "dose_unit": "mg",
+    "freq": "1",
+    "freq_unit": "2",
+    "duration": "2"
+  },
+    {
+      "drug_name": "盐酸曲马多缓释片",
+      "spec": "100mg",
+      "dose": 10.00,
+      "dose_unit": "mg",
+      "freq": "1",
+      "freq_unit": "2",
+      "duration": "1"
+  }
+  ]
+}
+
+<> 2022-11-11T110725.201.json
+
+###
+
+GET http://localhost:8089/diagnostics/uuid/test_uuid
+Accept: application/json
+
+<> 2022-11-11T110714.200.json
+
+###
+
+POST http://localhost:8089/pain_assessments
+Content-Type: application/json
+
+{
+  "diagnostic_uuid": "test_uuid",
+  "causes": "1",
+  "body_parts": "0",
+  "character": "1",
+  "level": "0",
+  "aggravating_factors": "1",
+  "relief_factors": "0",
+  "breakout_type": "1",
+  "breakout_freq": "0"
+}
+
+<> 2022-11-11T110708.201.json
+
+###
+
+POST http://localhost:8089/diagnostics
+Content-Type: application/json
+
+{
+  "uuid": "test_uuid",
+  "patient_basic_info_id": 1
+
+}
+
+<> 2022-11-11T110658.201.json
+
+###
+
+POST http://localhost:8089/diagnostics
+Content-Type: application/json
+
+{
+  "patient_basic_info_id": 3
+
+}
+
+<> 2022-11-11T110655.201.json
+
+###
+
+POST http://localhost:8089/diagnostics
+Content-Type: application/json
+
+{
+  "patient_basic_info_id": 3
+
+}
+
+<> 2022-11-11T110653.201.json
+
+###
+
+POST http://localhost:8089/diagnostics
+Content-Type: application/json
+
+{
+  "patient_basic_info_id": 3
+
+}
+
+<> 2022-11-11T110652.201.json
+
+###
+
+POST http://localhost:8089/diagnostics
+Content-Type: application/json
+
+{
+  "patient_basic_info_id": 3
+
+}
+
+<> 2022-11-11T110650.201.json
+
+###
+
+POST http://localhost:8089/diagnostics
+Content-Type: application/json
+
+{
+  "patient_basic_info_id": 3
+
+}
+
+<> 2022-11-11T110649.201.json
+
+###
+
+POST http://localhost:8089/patients
+Content-Type: application/json
+
+{
+  "user_name": "test137",
+  "uid": "123123",
+  "gender": 1,
+  "age": 22
+}
+
+<> 2022-11-11T110640.201.json
+
+###
+
+POST http://localhost:8089/patients
+Content-Type: application/json
+
+{
+  "user_name": "test695",
+  "uid": "123123",
+  "gender": 1,
+  "age": 22
+}
+
+<> 2022-11-11T110638.201.json
+
+###
+
+POST http://localhost:8089/patients
+Content-Type: application/json
+
+{
+  "user_name": "test13",
+  "uid": "123123",
+  "gender": 1,
+  "age": 22
+}
+
+<> 2022-11-11T110637.201.json
+
+###
+
+POST http://localhost:8089/patients
+Content-Type: application/json
+
+{
+  "user_name": "test16",
+  "uid": "123123",
+  "gender": 1,
+  "age": 22
+}
+
+<> 2022-11-11T110636.201.json
+
+###
+
+POST http://localhost:8089/patients
+Content-Type: application/json
+
+{
+  "user_name": "test70",
+  "uid": "123123",
+  "gender": 1,
+  "age": 22
+}
+
+<> 2022-11-11T110635.201.json
+
+###
+
+GET http://localhost:8089/diagnostics/uuid/test_uuid
+Accept: application/json
+
+<> 2022-11-11T110511.200.json
+
+###
+
 GET http://localhost:8089/diagnostics/uuid/test_uuid
 Accept: application/json
 
@@ -423,391 +715,6 @@ Content-Type: application/json
 }
 
 <> 2022-11-11T085240.500.json
-
-###
-
-POST http://localhost:8089/diagnostics
-Content-Type: application/json
-
-{
-  "uuid": "test_uuid",
-  "patient_basic_info_id": 1
-
-}
-
-<> 2022-11-11T085230.201.json
-
-###
-
-POST http://localhost:8089/diagnostics
-Content-Type: application/json
-
-{
-  "patient_basic_info_id": 3
-
-}
-
-<> 2022-11-11T085228.201.json
-
-###
-
-POST http://localhost:8089/diagnostics
-Content-Type: application/json
-
-{
-  "patient_basic_info_id": 3
-
-}
-
-<> 2022-11-11T085225.201.json
-
-###
-
-POST http://localhost:8089/diagnostics
-Content-Type: application/json
-
-{
-  "patient_basic_info_id": 3
-
-}
-
-<> 2022-11-11T085223.201.json
-
-###
-
-POST http://localhost:8089/patients
-Content-Type: application/json
-
-{
-  "user_name": "test985",
-  "uid": "123123",
-  "gender": 1,
-  "age": 22
-}
-
-<> 2022-11-11T085212.201.json
-
-###
-
-POST http://localhost:8089/patients
-Content-Type: application/json
-
-{
-  "user_name": "test491",
-  "uid": "123123",
-  "gender": 1,
-  "age": 22
-}
-
-<> 2022-11-11T085211.201.json
-
-###
-
-POST http://localhost:8089/patients
-Content-Type: application/json
-
-{
-  "user_name": "test828",
-  "uid": "123123",
-  "gender": 1,
-  "age": 22
-}
-
-<> 2022-11-11T085210.201.json
-
-###
-
-POST http://localhost:8089/patients
-Content-Type: application/json
-
-{
-  "user_name": "test938",
-  "uid": "123123",
-  "gender": 1,
-  "age": 22
-}
-
-<> 2022-11-11T085208.201.json
-
-###
-
-POST http://localhost:8089/patients
-Content-Type: application/json
-
-{
-  "user_name": "test68",
-  "uid": "123123",
-  "gender": 1,
-  "age": 22
-}
-
-<> 2022-11-11T085206.201.json
-
-###
-
-POST http://localhost:8089/decisions
-Content-Type: application/json
-
-{
-  "diagnostic_uuid": "test_uuid",
-  "drug_table_id": 0,
-  "previous_medication_issue": "p1",
-  "recmd": "r1",
-  "drug_table": [{
-   "drug_name": "盐酸阿米替林片25mg",
-    "spec": "25mg",
-    "dose": 10.00,
-    "dose_unit": "mg",
-    "freq": "1",
-    "freq_unit": "2",
-    "duration": "2"
-  },
-    {
-   "drug_name": "盐酸曲马多缓释片100mg",
-    "spec": "100mg",
-    "dose": 10.00,
-    "dose_unit": "mg",
-    "freq": "1",
-    "freq_unit": "2"
-  }
-  ]
-}
-
-<> 2022-11-10T063343.400.json
-
-###
-
-POST http://localhost:8089/decisions
-Content-Type: application/json
-
-{
-  "diagnostic_uuid": "test_uuid",
-  "drug_table_id": 0,
-  "previous_medication_issue": "p1",
-  "recmd": "r1",
-  "drug_table": [{
-   "drug_name": "盐酸阿米替林片25mg",
-    "spec": "25mg",
-    "dose": 10.00,
-    "dose_unit": "mg",
-    "freq": "1",
-    "freq_unit": "2",
-    "duration": "2"
-  },
-    {
-   "drug_name": "盐酸曲马多缓释片100mg",
-    "spec": "100mg",
-    "dose": 10.00,
-    "dose_unit": "mg",
-    "freq": "1",
-    "freq_unit": "2"
-  }
-  ]
-}
-
-<> 2022-11-10T062816.500.json
-
-###
-
-POST http://localhost:8089/decisions
-Content-Type: application/json
-
-{
-  "diagnostic_uuid": "test_uuid",
-  "drug_table_id": 0,
-  "previous_medication_issue": "p1",
-  "recmd": "r1",
-  "drug_table": [{
-   "drug_name": "盐酸阿米替林片25mg",
-    "spec": "25mg",
-    "dose": 10.00,
-    "dose_unit": "mg",
-    "freq": "1",
-    "freq_unit": "2",
-    "duration": "2"
-  },
-    {
-   "drug_name": "盐酸曲马多缓释片100mg",
-    "spec": "100mg",
-    "dose": 10.00,
-    "dose_unit": "mg",
-    "freq": "1",
-    "freq_unit": "2",
-    "duration": "1"
-  }
-  ]
-}
-
-<> 2022-11-10T062757.200.json
-
-###
-
-POST http://localhost:8089/decisions
-Content-Type: application/json
-
-{
-  "diagnostic_uuid": "test_uuid",
-  "drug_table_id": 0,
-  "previous_medication_issue": "p1",
-  "recmd": "r1",
-  "drug_table": [{
-   "drug_name": "盐酸阿米替林片25mg",
-    "spec": "25mg",
-    "dose": 10.00,
-    "dose_unit": "mg",
-    "freq": "1",
-    "freq_unit": "2",
-    "duration": "2"
-  },
-    {
-   "drug_name": "盐酸曲马多缓释片100mg",
-    "spec": "100mg",
-    "dose": 10.00,
-    "dose_unit": "mg",
-    "freq": "1",
-    "freq_unit": "2",
-    "duration": "1"
-  }
-  ]
-}
-
-<> 2022-11-10T061148.200.json
-
-###
-
-POST http://localhost:8089/decisions
-Content-Type: application/json
-
-{
-  "diagnostic_uuid": "test_uuid",
-  "drug_table_id": 0,
-  "previous_medication_issue": "p1",
-  "recmd": "r1",
-  "drug_table": [{
-   "drug_name": "盐酸阿米替林片25mg",
-    "spec": "25mg",
-    "dose": "10.00",
-    "dose_unit": "mg",
-    "freq": "1",
-    "freq_unit": "2",
-    "duration": "2"
-  },
-    {
-   "drug_name": "盐酸曲马多缓释片100mg",
-    "spec": "100mg",
-    "dose": "10.00",
-    "dose_unit": "mg",
-    "freq": "1",
-    "freq_unit": "2",
-    "duration": "1"
-  }
-  ]
-}
-
-<> 2022-11-10T060836.200.json
-
-###
-
-POST http://localhost:8089/decisions
-Content-Type: application/json
-
-{
-  "diagnostic_uuid": "test_uuid",
-  "drug_table_id": 0,
-  "previous_medication_issue": "p1",
-  "recmd": "r1",
-  "drug_table": [{
-   "drug_name": "盐酸阿米替林片25mg",
-    "spec": "25mg",
-    "dose": "10.00",
-    "dose_unit": "mg",
-    "freq": "1",
-    "freq_unit": "2",
-    "duration": "2"
-  },
-    {
-   "drug_name": "盐酸曲马多缓释片100mg",
-    "spec": "100mg",
-    "dose": "10.00",
-    "dose_unit": "mg",
-    "freq": "1",
-    "freq_unit": "2",
-    "duration": "2"
-  }
-  ]
-}
-
-<> 2022-11-10T060824.200.json
-
-###
-
-POST http://localhost:8089/decisions
-Content-Type: application/json
-
-{
-  "diagnostic_uuid": "test_uuid",
-  "drug_table_id": 0,
-  "previous_medication_issue": "p1",
-  "recmd": "r1",
-  "drug_table": [{
-   "drug_name": "盐酸阿米替林片25mg",
-    "spec": "25mg",
-    "dose": "10.00",
-    "dose_unit": "mg",
-    "freq": "1",
-    "freq_unit": "2",
-    "duration": "2"
-  }]
-}
-
-<> 2022-11-10T060709.200.json
-
-###
-
-POST http://localhost:8089/decisions
-Content-Type: application/json
-
-{
-  "diagnostic_uuid": "test_uuid",
-  "drug_table_id": 0,
-  "previous_medication_issue": "p1",
-  "recmd": "r1",
-  "drug_table": [1, 2]
-}
-
-<> 2022-11-10T055508.400.json
-
-###
-
-POST http://localhost:8089/decisions
-Content-Type: application/json
-
-{
-  "diagnostic_uuid": "test_uuid",
-  "drug_table_id": 0,
-  "previous_medication_issue": "p1",
-  "recmd": "r1",
-  "drug_table": [{
-
-  }]
-}
-
-<> 2022-11-10T055443.200.json
-
-###
-
-POST http://localhost:8089/decisions
-Content-Type: application/json
-
-{
-  "diagnostic_uuid": "test_uuid",
-  "drug_table_id": 0,
-  "previous_medication_issue": "p1",
-  "recmd": "r1",
-  "drug_table": ["11", "11"]
-}
-
-<> 2022-11-10T055102.200.json
 
 ###
 

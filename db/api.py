@@ -1,8 +1,7 @@
 import uuid
 
 from sqlalchemy import desc
-from sqlalchemy import select
-from sqlalchemy.orm import defer, load_only
+from sqlalchemy.orm import defer
 
 from db import DB_Obj
 from db import models
@@ -140,7 +139,8 @@ def get_diagnostic_by_uuid(uuid):
                 .filter(models.PainAssessmentInfo.diagnostic_uuid == uuid)\
                 .order_by(models.PainAssessmentInfo.id.desc())\
                 .first()
-            diagnostic['pain_assessment_info'] = dict(pain_assessment.items())
+            if pain_assessment is not None:
+                diagnostic['pain_assessment_info'] = dict(pain_assessment.items())
 
         if diagnostic.prev_medication_info_id is not None:
             prev_medication = DB.session.query(models.PreviousMedicationInfo)\
@@ -249,6 +249,9 @@ def add_decision(values):
     DB.session.commit()
 
     diagnostic.decision_info_id = decision.id
+    diagnostic.previous_medication_issue = decision.previous_medication_issue
+    diagnostic.recmd = decision.recmd
+
     DB.session.commit()
 
     return decision
