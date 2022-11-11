@@ -98,7 +98,8 @@ def get_all_diagnostics(args):
 
     if args.user_name is not None:
         search_name = "{}%".format(args.user_name)
-        query = query.join(models.Patient, models.Patient.id == models.Diagnostic.patient_basic_info_id)\
+        query = query.join(models.Patient, models.Patient.id ==
+                           models.Diagnostic.patient_basic_info_id)\
             .filter(models.Patient.user_name.like(search_name))
     query = query.order_by(desc(models.Diagnostic.created_at))
 
@@ -110,6 +111,23 @@ def get_all_diagnostics(args):
     diagnostics = query.all()
 
     return diagnostics, total
+
+
+def gen_drug_table(drugs):
+    drug_table = []
+    for d in drugs:
+        drug_table.append(
+            {
+                "drug_name": d.drug_name,
+                "spec": d.spec,
+                "dose": d.dose,
+                "dose_unit": d.dose_unit,
+                "freq": d.freq,
+                "freq_unit": d.freq_unit,
+                "duration": d.duration
+            }
+        )
+    return drug_table
 
 
 def get_diagnostic_by_uuid(uuid):
@@ -124,6 +142,22 @@ def get_diagnostic_by_uuid(uuid):
                 .first()
             diagnostic['pain_assessment_info'] = dict(pain_assessment.items())
 
+        if diagnostic.prev_medication_info_id is not None:
+            prev_medication = DB.session.query(models.PreviousMedicationInfo)\
+                .filter(models.PreviousMedicationInfo.diagnostic_uuid == uuid)\
+                .order_by(models.PreviousMedicationInfo.id.desc())\
+                .first()
+            if prev_medication is not None:
+                drugs = DB.session.query(models.PreviousPrescription)\
+                    .options(defer(models.PreviousPrescription.prev_medication_uuid))\
+                    .filter(models.PreviousPrescription.prev_medication_uuid ==
+                            prev_medication.uuid)\
+                    .all()
+                drug_table = gen_drug_table(drugs)
+                prev_medication['drug_table'] = drug_table
+
+                diagnostic['prev_medication_info'] = dict(prev_medication.items())
+            
         if diagnostic.decision_info_id is not None:
             decision = DB.session.query(models.DecisionInfo)\
                 .filter(models.DecisionInfo.diagnostic_uuid == uuid)\
@@ -132,20 +166,10 @@ def get_diagnostic_by_uuid(uuid):
             if decision is not None:
                 drugs = DB.session.query(models.Prescription)\
                     .options(defer(models.Prescription.decision_uuid))\
-                    .filter(models.Prescription.decision_uuid == decision.uuid).all()
-                drug_table = []
-                for d in drugs:
-                    drug_table.append(
-                        {
-                            "drug_name": d.drug_name,
-                            "spec": d.spec,
-                            "dose": d.dose,
-                            "dose_unit": d.dose_unit,
-                            "freq": d.freq,
-                            "freq_unit": d.freq_unit,
-                            "duration": d.duration
-                        }
-                    )
+                    .filter(models.Prescription.decision_uuid ==
+                            decision.uuid)\
+                    .all()
+                drug_table = gen_drug_table(drugs)
                 decision['drug_table'] = drug_table
                 diagnostic['decision_info'] = dict(decision.items())
 
@@ -187,10 +211,16 @@ def add_previous_medication(values):
         return None
     previous_medication = models.PreviousMedicationInfo()
     previous_medication.update(values)
-    previous_medication_uuid = str(uuid.uuid4())
-    previous_medication.uuid = previous_medication_uuid
+    previous_medication_uuid = uuid.uuid4()
+    previous_medication.uuid = str(previous_medication_uuid)
 
     DB.session.add(previous_medication)
+    if values.drug_table is not None:
+        for d in values.drug_table:
+            prescription = models.PreviousPrescription()
+            prescription.update(d)
+            prescription.prev_medication_uuid = str(previous_medication_uuid)
+            DB.session.add(prescription)
     DB.session.commit()
 
     diagnostic.prev_medication_info_id = previous_medication.id

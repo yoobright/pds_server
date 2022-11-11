@@ -1,3 +1,139 @@
+GET http://localhost:8089/diagnostics/uuid/test_uuid
+Accept: application/json
+
+<> 2022-11-11T105641.200.json
+
+###
+
+GET http://localhost:8089/diagnostics/uuid/test_uuid
+Accept: application/json
+
+<> 2022-11-11T105616.500.json
+
+###
+
+GET http://localhost:8089/diagnostics/uuid/test_uuid
+Accept: application/json
+
+<> 2022-11-11T105539.500.json
+
+###
+
+POST http://localhost:8089/previous_medications
+Content-Type: application/json
+
+{
+  "diagnostic_uuid": "test_uuid",
+  "forget": "1",
+  "carelessly": "2",
+  "withdrawal": "1",
+  "bad_withdrawal": "2",
+  "adverse_reaction": "1,2",
+  "adverse_reaction_drugs": "通便灵胶囊",
+  "drug_table": [{
+    "drug_name": "盐酸阿米替林片",
+    "spec": "25mg",
+    "dose": 10.00,
+    "dose_unit": "mg",
+    "freq": "1",
+    "freq_unit": "2",
+    "duration": "2"
+  },
+    {
+      "drug_name": "盐酸曲马多缓释片",
+      "spec": "100mg",
+      "dose": 10.00,
+      "dose_unit": "mg",
+      "freq": "1",
+      "freq_unit": "2",
+      "duration": "1"
+  }
+  ]
+}
+
+<> 2022-11-11T104848.201.json
+
+###
+
+POST http://localhost:8089/previous_medications
+Content-Type: application/json
+
+{
+  "diagnostic_uuid": "test_uuid",
+  "forget": "1",
+  "carelessly": "2",
+  "withdrawal": "1",
+  "bad_withdrawal": "2",
+  "adverse_reaction": "1,2",
+  "adverse_reaction_drugs": "通便灵胶囊",
+  "drug_table": [{
+    "drug_name": "盐酸阿米替林片",
+    "spec": "25mg",
+    "dose": 10.00,
+    "dose_unit": "mg",
+    "freq": "1",
+    "freq_unit": "2",
+    "duration": "2"
+  },
+    {
+      "drug_name": "盐酸曲马多缓释片",
+      "spec": "100mg",
+      "dose": 10.00,
+      "dose_unit": "mg",
+      "freq": "1",
+      "freq_unit": "2",
+      "duration": "1"
+  }
+  ]
+}
+
+<> 2022-11-11T104804.500.json
+
+###
+
+GET http://localhost:8089/diagnostics/uuid/test_uuid
+Accept: application/json
+
+<> 2022-11-11T103820.200.json
+
+###
+
+PUT http://localhost:8089/diagnostics/uuid/test_uuid
+Content-Type: application/json
+
+{
+  "previous_medication_issue": "p1",
+  "recmd": "s1#6"
+}
+
+<> 2022-11-11T103816.200.json
+
+###
+
+GET http://localhost:8089/diagnostics/uuid/test_uuid
+Accept: application/json
+
+<> 2022-11-11T103615.200.json
+
+###
+
+POST http://localhost:8089/previous_medications
+Content-Type: application/json
+
+{
+  "diagnostic_uuid": "test_uuid",
+  "forget": "1",
+  "carelessly": "2",
+  "withdrawal": "1",
+  "bad_withdrawal": "2",
+  "adverse_reaction": "1,2",
+  "adverse_reaction_drugs": "通便灵胶囊"
+}
+
+<> 2022-11-11T103344.201.json
+
+###
+
 POST http://localhost:8089/previous_medications
 Content-Type: application/json
 
@@ -672,135 +808,6 @@ Content-Type: application/json
 }
 
 <> 2022-11-10T055102.200.json
-
-###
-
-POST http://localhost:8089/decisions
-Content-Type: application/json
-
-{
-  "diagnostic_uuid": "test_uuid",
-  "drug_table_id": 0,
-  "previous_medication_issue": "p1",
-  "recmd": "r1",
-  "drug_table": [11, "11"]
-}
-
-<> 2022-11-10T055055.400.json
-
-###
-
-POST http://localhost:8089/decisions
-Content-Type: application/json
-
-{
-  "diagnostic_uuid": "test_uuid",
-  "drug_table_id": 0,
-  "previous_medication_issue": "p1",
-  "recmd": "r1",
-  "drug_table": ["11", "11"]
-}
-
-<> 2022-11-10T055035.200.json
-
-###
-
-POST http://localhost:8089/decisions
-Content-Type: application/json
-
-{
-  "diagnostic_uuid": "test_uuid",
-  "drug_table_id": 0,
-  "previous_medication_issue": "p1",
-  "recmd": "r1",
-  "drug_table": [11, 11]
-}
-
-<> 2022-11-10T055013.400.json
-
-###
-
-POST http://localhost:8089/decisions
-Content-Type: application/json
-
-{
-  "diagnostic_uuid": "test_uuid",
-  "drug_table_id": 0,
-  "previous_medication_issue": "p1",
-  "recmd": "r1",
-  "drug_table": [11, 11]
-}
-
-<> 2022-11-10T054836.400.json
-
-###
-
-POST http://localhost:8089/decisions
-Content-Type: application/json
-
-{
-  "diagnostic_uuid": "test_uuid",
-  "drug_table_id": 0,
-  "previous_medication_issue": "p1",
-  "recmd": "r1",
-  "drug_table": [11, 11]
-}
-
-<> 2022-11-10T054140.400.json
-
-###
-
-POST http://localhost:8089/decisions
-Content-Type: application/json
-
-{
-  "diagnostic_uuid": "test_uuid",
-  "drug_table_id": 0,
-  "previous_medication_issue": "p1",
-  "recmd": "r1",
-  "drug_table": [11]
-}
-
-<> 2022-11-10T054114.400.json
-
-###
-
-POST http://localhost:8089/decisions
-Content-Type: application/json
-
-{
-  "diagnostic_uuid": "test_uuid",
-  "drug_table_id": 0,
-  "previous_medication_issue": "p1",
-  "recmd": "r1",
-  "drug_table": []
-}
-
-<> 2022-11-10T054053.400.json
-
-###
-
-PUT http://localhost:8089/diagnostics/uuid/test_uuid
-Content-Type: application/json
-
-{
-  "previous_medication_issue": "p1",
-  "recmd": "s1#6"
-}
-
-<> 2022-11-10T034623.200.json
-
-###
-
-PUT http://localhost:8089/diagnostics/uuid/test_uuid
-Content-Type: application/json
-
-{
-  "previous_medication_issue": "p1",
-  "recmd": "s1#6"
-}
-
-<> 2022-11-10T034454.500.json
 
 ###
 
