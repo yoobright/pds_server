@@ -187,6 +187,7 @@ class PainAssessmentInfo(DB.Model, ModelBase):
     diagnostic_uuid = DB.Column(DB.String(36), nullable=False, comment='关联诊断表uuid')
     causes = DB.Column(DB.String, nullable=False, comment='疼痛原因 0-肿瘤、1-肿瘤治疗、2-非肿瘤相关性')
     body_parts = DB.Column(DB.String, comment='疼痛部位 对应人体部位表 多选')
+    pain_extra = DB.Column(DB.String, default='', comment='其他疼痛说明')
     character = DB.Column(DB.String, nullable=False, comment='疼痛性质 多选')
     level = DB.Column(DB.Integer, nullable=False, comment='疼痛强度 单选')
     aggravating_factors = DB.Column(
@@ -208,10 +209,10 @@ class PreviousMedicationInfo(DB.Model, ModelBase):
                    autoincrement=True, comment='主键id')
     uuid = DB.Column(DB.String(36), nullable=False, comment='uuid')
     diagnostic_uuid = DB.Column(DB.String(36), comment='关联诊断表uuid')
-    forget = DB.Column(DB.String, comment='是否忘记用药 0-是 ，1-否')
-    carelessly = DB.Column(DB.String, comment='是否不注意用药 0-是 ，1-否')
-    withdrawal = DB.Column(DB.String, comment='是否自行停药 0-是 ，1-否')
-    bad_withdrawal = DB.Column(DB.String, comment='症状更糟时是否曾停止服药 0-是 ，1-否')
+    compliance_q1 = DB.Column(DB.String, comment='是否忘记用药 1-是 ，0-否')
+    compliance_q2 = DB.Column(DB.String, comment='是否不注意用药 1-是 ，0-否')
+    compliance_q3 = DB.Column(DB.String, comment='是否自行停药 1-是 ，0-否')
+    compliance_q4 = DB.Column(DB.String, comment='症状更糟时是否曾停止服药 1-是 ，0-否')
     adverse_reaction = DB.Column(
         DB.String, comment='不良反应 1 无 2便秘 3恶心呕吐4 谵妄 5过度镇静6 皮肤瘙痒7 呼吸抑制 8其他')
     adverse_reaction_drugs = DB.Column(DB.String, comment='不良反应用药')

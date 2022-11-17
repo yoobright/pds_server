@@ -18,7 +18,8 @@ app = Flask(__name__)
 CORS(app)
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///data/project.db"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['SQLALCHEMY_ECHO'] = True
+if app.config['DEBUG']:
+    app.config['SQLALCHEMY_ECHO'] = True
 app.config['JSON_SORT_KEYS'] = False
 
 
@@ -87,7 +88,12 @@ class PatientListResource(Resource):
         self.user_add_parser.add_argument('kidney_function', type=str)
         self.user_add_parser.add_argument('cardiac_function', type=str)
         self.user_add_parser.add_argument('allergy', type=str)
-        self.user_add_parser.add_argument('physical', type=str)
+        self.user_add_parser.add_argument('physical_q1', type=str)
+        self.user_add_parser.add_argument('physical_q2', type=str)
+        self.user_add_parser.add_argument('physical_q3', type=str)
+        self.user_add_parser.add_argument('physical_q4', type=str)
+        self.user_add_parser.add_argument('physical_q5', type=str)
+        self.user_add_parser.add_argument('physical_score', type=str)
 
     @swag_from(swagger_api.patient_get_dict)
     def get(self):
@@ -302,6 +308,8 @@ class PainAssessmentListResource(Resource):
         self.pain_assessment_post_parser.add_argument(
             'body_parts', type=str, required=True)
         self.pain_assessment_post_parser.add_argument(
+            'pain_extra', type=str)
+        self.pain_assessment_post_parser.add_argument(
             'character', type=str, required=True)
         self.pain_assessment_post_parser.add_argument(
             'level', type=int, required=True)
@@ -398,13 +406,13 @@ class PreviousMedicationListResource(Resource):
         self.previous_medication_post_parser.add_argument(
             'drug_table', type=dict, action='append')
         self.previous_medication_post_parser.add_argument(
-            'forget', type=str)
+            'compliance_q1', type=str)
         self.previous_medication_post_parser.add_argument(
-            'carelessly', type=str)
+            'compliance_q2', type=str)
         self.previous_medication_post_parser.add_argument(
-            'withdrawal', type=str)
+            'compliance_q3', type=str)
         self.previous_medication_post_parser.add_argument(
-            'bad_withdrawal', type=str)
+            'compliance_q4', type=str)
         self.previous_medication_post_parser.add_argument(
             'adverse_reaction', type=str)
         self.previous_medication_post_parser.add_argument(

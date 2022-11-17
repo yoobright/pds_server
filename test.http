@@ -70,7 +70,7 @@ POST http://{{host}}:8089/diagnostics
 Content-Type: application/json
 
 {
-  "patient_basic_info_id": 3
+  "patient_basic_info_id": 8
 
 }
 

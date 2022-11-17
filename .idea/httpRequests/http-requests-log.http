@@ -1,3 +1,53 @@
+POST http://localhost:8089/diagnostics
+Content-Type: application/json
+
+{
+  "patient_basic_info_id": 8
+
+}
+
+<> 2022-11-16T032316.201.json
+
+###
+
+POST http://localhost:8089/diagnostics
+Content-Type: application/json
+
+{
+  "patient_basic_info_id": 8
+
+}
+
+<> 2022-11-16T032313.201.json
+
+###
+
+POST http://localhost:8089/diagnostics
+Content-Type: application/json
+
+{
+  "patient_basic_info_id": 8
+
+}
+
+<> 2022-11-16T032312.201.json
+
+###
+
+POST http://localhost:8089/patients
+Content-Type: application/json
+
+{
+  "user_name": "test697",
+  "uid": "123123",
+  "gender": 1,
+  "age": 22
+}
+
+<> 2022-11-16T025055.201.json
+
+###
+
 POST http://localhost:8089/decisions
 Content-Type: application/json
 
@@ -609,112 +659,6 @@ GET http://localhost:8089/diagnostics/uuid/test_uuid
 Accept: application/json
 
 <> 2022-11-11T091201.200.json
-
-###
-
-GET http://localhost:8089/diagnostics/uuid/test_uuid
-Accept: application/json
-
-<> 2022-11-11T090137.200.json
-
-###
-
-POST http://localhost:8089/decisions
-Content-Type: application/json
-
-{
-  "diagnostic_uuid": "test_uuid",
-  "drug_table_id": 0,
-  "previous_medication_issue": "p1",
-  "recmd": "r1",
-  "drug_table": [{
-   "drug_name": "盐酸阿米替林片",
-    "spec": "25mg",
-    "dose": 10.00,
-    "dose_unit": "mg",
-    "freq": "1",
-    "freq_unit": "2",
-    "duration": "2"
-  },
-    {
-   "drug_name": "盐酸曲马多缓释片",
-    "spec": "100mg",
-    "dose": 10.00,
-    "dose_unit": "mg",
-    "freq": "1",
-    "freq_unit": "2",
-    "duration": "1"
-  }
-  ]
-}
-
-<> 2022-11-11T085456.201.json
-
-###
-
-POST http://localhost:8089/decisions
-Content-Type: application/json
-
-{
-  "diagnostic_uuid": "test_uuid",
-  "drug_table_id": 0,
-  "previous_medication_issue": "p1",
-  "recmd": "r1",
-  "drug_table": [{
-   "drug_name": "盐酸阿米替林片25mg",
-    "spec": "25mg",
-    "dose": 10.00,
-    "dose_unit": "mg",
-    "freq": "1",
-    "freq_unit": "2",
-    "duration": "2"
-  },
-    {
-   "drug_name": "盐酸曲马多缓释片100mg",
-    "spec": "100mg",
-    "dose": 10.00,
-    "dose_unit": "mg",
-    "freq": "1",
-    "freq_unit": "2",
-    "duration": "1"
-  }
-  ]
-}
-
-<> 2022-11-11T085401.201.json
-
-###
-
-POST http://localhost:8089/decisions
-Content-Type: application/json
-
-{
-  "diagnostic_uuid": "test_uuid",
-  "drug_table_id": 0,
-  "previous_medication_issue": "p1",
-  "recmd": "r1",
-  "drug_table": [{
-   "drug_name": "盐酸阿米替林片25mg",
-    "spec": "25mg",
-    "dose": 10.00,
-    "dose_unit": "mg",
-    "freq": "1",
-    "freq_unit": "2",
-    "duration": "2"
-  },
-    {
-   "drug_name": "盐酸曲马多缓释片100mg",
-    "spec": "100mg",
-    "dose": 10.00,
-    "dose_unit": "mg",
-    "freq": "1",
-    "freq_unit": "2",
-    "duration": "1"
-  }
-  ]
-}
-
-<> 2022-11-11T085240.500.json
 
 ###
 
