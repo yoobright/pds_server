@@ -169,11 +169,11 @@ class Diagnostic(DB.Model, ModelBase, TimestampMixin):
     decision_info_id = DB.Column(DB.Integer, comment='关联决策信息id')
     doctor_id = DB.Column(DB.Integer, nullable=False,
                           default=0, comment='医师id')
-    # submit_time = DB.Column(DB.DateTime, default=datetime.datetime.now, comment='提交时间')
     previous_medication_issue = DB.Column(
         DB.String, nullable=False, default="", comment='既往用药存在问题及原因')
     recmd = DB.Column(DB.String, nullable=False,
                       default="", comment='系统用药决策方案推荐')
+    feedback_score = DB.Column(DB.Integer, comment='用户反馈评分')
 
     patient_basic_info = relationship(
         "Patient", uselist=False, back_populates="diagnostics")

@@ -1,3 +1,216 @@
+GET http://localhost:8089/diagnostics/patient
+Content-Type: application/json
+
+{
+  "user_name": "zz",
+  "uid": "11",
+  "latest": true
+}
+
+<> 2022-11-18T113247.200.json
+
+###
+
+GET http://localhost:8089/diagnostics/patient
+Content-Type: application/json
+
+{
+  "user_name": "zz",
+  "uid": "11"
+}
+
+<> 2022-11-18T113218.200.json
+
+###
+
+GET http://localhost:8089/diagnostics/patient
+Content-Type: application/json
+
+{
+  "user_name": "zz",
+  "uid": "11"
+}
+
+<> 2022-11-18T113209.200.json
+
+###
+
+GET http://localhost:8089/diagnostics/patient
+Content-Type: application/json
+
+{
+  "user_name": "zz",
+  "uid": "11"
+}
+
+<> 2022-11-18T112849.200.json
+
+###
+
+GET http://localhost:8089/diagnostics/patient
+Content-Type: application/json
+
+{
+  "user_name": "zz",
+  "uid": "11"
+}
+
+<> 2022-11-18T112557.500.json
+
+###
+
+GET http://localhost:8089/diagnostics/patient
+Content-Type: application/json
+
+{
+  "user_name": "zz",
+  "uid": "11"
+}
+
+<> 2022-11-18T112452.500.json
+
+###
+
+GET http://localhost:8089/diagnostics/patient
+Content-Type: application/json
+
+{
+  "user_name": "zz",
+  "uid": "11"
+}
+
+<> 2022-11-18T112358.500.json
+
+###
+
+GET http://localhost:8089/diagnostics/patient
+Content-Type: application/json
+
+{
+  "user_name": "zz",
+  "uid": "11"
+}
+
+<> 2022-11-18T112305.500.json
+
+###
+
+GET http://localhost:8089/diagnostics/patient
+Content-Type: application/json
+
+{
+  "user_name": "zz",
+  "uid": "11"
+}
+
+<> 2022-11-18T112223.500.json
+
+###
+
+GET http://localhost:8089/diagnostics/patient
+Content-Type: application/json
+
+{
+  "user_name": "zz",
+  "uid": "11"
+}
+
+<> 2022-11-18T111933.500.json
+
+###
+
+GET http://localhost:8089/diagnostics/patient
+Content-Type: application/json
+
+{
+  "user_name": "zz",
+  "uid": "11"
+}
+
+<> 2022-11-18T111727.500.json
+
+###
+
+GET http://localhost:8089/diagnostics/patient
+Content-Type: application/json
+
+{
+  "user_name": "ww",
+  "uid": "123"
+}
+
+<> 2022-11-18T111707.200.json
+
+###
+
+GET http://localhost:8089/diagnostics/patient
+Content-Type: application/json
+
+{
+  "user_name": "ww"
+}
+
+<> 2022-11-18T111649.400.json
+
+###
+
+GET http://localhost:8089/diagnostics/patient
+Content-Type: application/json
+{:
+  "user_name": "ww",
+}:
+
+<> 2022-11-18T111633.400.json
+
+###
+
+GET http://localhost:8089/diagnostics/patient
+Content-Type: application/json
+{:
+  "user_name": "ww",
+  "uid": "s1#6"
+}:
+
+<> 2022-11-18T111614.400.json
+
+###
+
+GET http://localhost:8089/diagnostics/patient
+Content-Type: application/json
+{:
+  "user_name": "p1",
+  "uid": "s1#6"
+}:
+
+<> 2022-11-18T111557.400.json
+
+###
+
+GET http://localhost:8089/diagnostics/patient
+Accept: application/json
+{:
+  "user_name": "p1",
+  "uid": "s1#6"
+}:
+
+<> 2022-11-18T111526.400.json
+
+###
+
+GET http://localhost:8089/diagnostics/patient
+Accept: application/json
+
+<> 2022-11-18T111455.400.json
+
+###
+
+GET http://localhost:8089/diagnostics/patient
+Accept: application/json
+
+<> 2022-11-18T111433.404.html
+
+###
+
 POST http://localhost:8089/diagnostics
 Content-Type: application/json
 
@@ -456,209 +669,6 @@ GET http://localhost:8089/diagnostics/uuid/test_uuid
 Accept: application/json
 
 <> 2022-11-11T103615.200.json
-
-###
-
-POST http://localhost:8089/previous_medications
-Content-Type: application/json
-
-{
-  "diagnostic_uuid": "test_uuid",
-  "forget": "1",
-  "carelessly": "2",
-  "withdrawal": "1",
-  "bad_withdrawal": "2",
-  "adverse_reaction": "1,2",
-  "adverse_reaction_drugs": "通便灵胶囊"
-}
-
-<> 2022-11-11T103344.201.json
-
-###
-
-POST http://localhost:8089/previous_medications
-Content-Type: application/json
-
-{
-  "diagnostic_uuid": "test_uuid",
-  "forget": "1",
-  "carelessly": "2",
-  "withdrawal": "1",
-  "bad_withdrawal": "2",
-  "adverse_reaction": "1,2",
-  "adverse_reaction_drugs": "通便灵胶囊"
-}
-
-<> 2022-11-11T101202.201.json
-
-###
-
-POST http://localhost:8089/previous_medications
-Content-Type: application/json
-
-{
-  "diagnostic_uuid": "test_uuid",
-  "forget": "1",
-  "carelessly": "2",
-  "withdrawal": "1",
-  "bad_withdrawal": "2",
-  "adverse_reaction": "1,2",
-  "adverse_reaction_drugs": "通便灵胶囊"
-}
-
-<> 2022-11-11T101132.500.json
-
-###
-
-POST http://localhost:8089/previous_medications
-Content-Type: application/json
-
-{
-  "diagnostic_uuid": "test_uuid",
-  "forget": "1",
-  "carelessly": "2",
-  "withdrawal": "1",
-  "bad_withdrawal": "2",
-  "adverse_reaction": "1,2",
-  "adverse_reaction_drugs": "通便灵胶囊"
-}
-
-<> 2022-11-11T101018.500.json
-
-###
-
-POST http://localhost:8089/previous_medications
-Content-Type: application/json
-
-{
-  "diagnostic_uuid": "test_uuid",
-  "forget": "1",
-  "carelessly": "2",
-  "withdrawal": "1",
-  "bad_withdrawal": "2",
-  "adverse_reaction": "1,2",
-  "adverse_reaction_drugs": "通便灵胶囊"
-}
-
-<> 2022-11-11T100744.500.json
-
-###
-
-POST http://localhost:8089/previous_medications
-Content-Type: application/json
-
-{
-  "diagnostic_uuid": "test_uuid",
-  "forget": "1",
-  "carelessly": "2",
-  "withdrawal": "1",
-  "bad_withdrawal": "2",
-  "adverse_reaction": "1,2",
-  "adverse_reaction_drugs": "通便灵胶囊"
-}
-
-<> 2022-11-11T100728.500.json
-
-###
-
-POST http://localhost:8089/previous_medications
-Content-Type: application/json
-
-{
-  "diagnostic_uuid": "test_uuid",
-  "forget": "1",
-  "carelessly": "2",
-  "withdrawal": "1",
-  "bad_withdrawal": "2",
-  "adverse_reaction": "1,2",
-  "adverse_reaction_drugs": "通便灵胶囊"
-}
-
-<> 2022-11-11T100650.500.json
-
-###
-
-GET http://localhost:8089/diagnostics/uuid/test_uuid
-Accept: application/json
-
-<> 2022-11-11T093612.200.json
-
-###
-
-GET http://localhost:8089/diagnostics/uuid/test_uuid
-Accept: application/json
-
-<> 2022-11-11T093152.200.json
-
-###
-
-GET http://localhost:8089/diagnostics/uuid/test_uuid
-Accept: application/json
-
-<> 2022-11-11T092958.200.json
-
-###
-
-GET http://localhost:8089/diagnostics/uuid/test_uuid
-Accept: application/json
-
-<> 2022-11-11T092951.200.json
-
-###
-
-GET http://localhost:8089/diagnostics/uuid/test_uuid
-Accept: application/json
-
-<> 2022-11-11T092716.200.json
-
-###
-
-GET http://localhost:8089/diagnostics/uuid/test_uuid
-Accept: application/json
-
-<> 2022-11-11T092703.500.json
-
-###
-
-GET http://localhost:8089/diagnostics/uuid/test_uuid
-Accept: application/json
-
-<> 2022-11-11T092627.500.json
-
-###
-
-GET http://localhost:8089/diagnostics/uuid/test_uuid
-Accept: application/json
-
-<> 2022-11-11T092540.500.json
-
-###
-
-GET http://localhost:8089/diagnostics/uuid/test_uuid
-Accept: application/json
-
-<> 2022-11-11T092352.500.json
-
-###
-
-GET http://localhost:8089/diagnostics/uuid/test_uuid
-Accept: application/json
-
-<> 2022-11-11T092132.200.json
-
-###
-
-GET http://localhost:8089/diagnostics/uuid/test_uuid
-Accept: application/json
-
-<> 2022-11-11T091812.200.json
-
-###
-
-GET http://localhost:8089/diagnostics/uuid/test_uuid
-Accept: application/json
-
-<> 2022-11-11T091201.200.json
 
 ###
 

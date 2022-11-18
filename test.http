@@ -189,4 +189,25 @@ Content-Type: application/json
   "recmd": "s1#6"
 }
 
+###
+# @name=getDiagnosticByPatient
+GET http://{{host}}:8089/diagnostics/patient
+Content-Type: application/json
+
+{
+  "user_name": "zz",
+  "uid": "11"
+}
+
+###
+# @name=getDiagnosticByPatient
+GET http://{{host}}:8089/diagnostics/patient
+Content-Type: application/json
+
+{
+  "user_name": "zz",
+  "uid": "11",
+  "latest": true
+}
+
 

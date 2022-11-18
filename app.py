@@ -264,10 +264,13 @@ class DiagnosticResourceByUUID(Resource):
         self.diagnostic_put_parser = reqparse.RequestParser()
         self.diagnostic_put_parser.add_argument(
             'previous_medication_issue',
-            type=str, required=True)
+            type=str)
         self.diagnostic_put_parser.add_argument(
             'recmd',
-            type=str, required=True)
+            type=str)
+        self.diagnostic_put_parser.add_argument(
+            'feedback_score',
+            type=int)
 
     @staticmethod
     def to_dict(diagnostic):
@@ -284,7 +287,7 @@ class DiagnosticResourceByUUID(Resource):
         return jsonify(None)
 
     def put(self, uuid: str):
-        args = self. diagnostic_put_parser.parse_args()
+        args = self.diagnostic_put_parser.parse_args()
         diagnostic = db_api.update_diagnostic_by_uuid(uuid, args)
 
         if diagnostic is not None:
@@ -354,6 +357,36 @@ drug_table_schema = {
                      "freq", "freq_unit", "duration"]
     }
 }
+
+class DiagnosticResourceByPatient(Resource):
+    
+    def __init__(self):
+        super(DiagnosticResourceByPatient, self).__init__()
+        self.diagnostic_get_parser = reqparse.RequestParser()
+        self.diagnostic_get_parser.add_argument(
+            'user_name', type=str, required=True)
+        self.diagnostic_get_parser.add_argument(
+            'uid', type=str, required=True)
+        self.diagnostic_get_parser.add_argument(
+            'latest', type=bool, default=False)
+    
+    @staticmethod
+    def to_dict(diagnostic):
+        data = dict(diagnostic.items())
+        data["patient_basic_info"] = dict(
+            diagnostic.patient_basic_info.items())
+        return data
+
+    def get(self):
+        args = self.diagnostic_get_parser.parse_args()
+        print(args)
+        res = db_api.get_diagnostic_by_patient(args)
+        if res is not None:
+            if args.get("latest", False):
+                return jsonify(self.to_dict(res))
+            else:
+                return jsonify([self.to_dict(d) for d in res])
+        return jsonify(None)
 
 
 class DecisionListResource(Resource):
@@ -448,6 +481,8 @@ app_api.add_resource(DrugListResource, '/drugs')
 app_api.add_resource(DiagnosticListResource, '/diagnostics')
 app_api.add_resource(DiagnosticResourceByUUID,
                      '/diagnostics/uuid/<string:uuid>')
+app_api.add_resource(DiagnosticResourceByPatient,
+                     '/diagnostics/patient')
 app_api.add_resource(PainAssessmentListResource, '/pain_assessments')
 app_api.add_resource(DecisionListResource, '/decisions')
 app_api.add_resource(PreviousMedicationListResource, '/previous_medications')
