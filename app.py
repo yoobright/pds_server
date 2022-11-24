@@ -178,15 +178,23 @@ class DrugListResource(Resource):
     def __init__(self):
         super(DrugListResource, self).__init__()
         self.drug_get_parser = reqparse.RequestParser()
+        self.drug_get_parser.add_argument(
+            'page', type=int)
+        self.drug_get_parser.add_argument(
+            'limit', type=int)
+        self.drug_get_parser.add_argument(
+            'drug_name', type=str)
 
     @swag_from(swagger_api.drug_get_dict)
     def get(self):
         args = self.drug_get_parser.parse_args()
-
-        drugs = db_api.get_all_drugs(args)
+        drugs, total = db_api.get_all_drugs(args)
 
         res = [dict(d.items()) for d in drugs]
-        return jsonify(res)
+        return jsonify({
+            "total": total,
+            "data": res
+        })
 
 
 class DiagnosticListResource(Resource):
@@ -357,6 +365,7 @@ drug_table_schema = {
                      "freq", "freq_unit", "duration"]
     }
 }
+
 
 class DiagnosticResourceByPatient(Resource):
     

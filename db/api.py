@@ -64,11 +64,21 @@ def add_drug(values):
     return drug
 
 
-def get_all_drugs(values=None):
+def get_all_drugs(args=None):
     query = DB.session.query(models.Drug)
+
+    if args.drug_name is not None:
+        search_name = "{}%".format(args.drug_name)
+        query = query.filter(models.Drug.drug_name.like(search_name))
+
+    total = query.count()
+
+    if args.page is not None and args.limit is not None:
+        query = query.limit(args.limit).offset((args.page - 1) * args.limit)
+
     drugs = query.all()
 
-    return drugs
+    return drugs, total
 
 
 def add_diagnostic(values):
