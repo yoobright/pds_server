@@ -188,6 +188,7 @@ class PainAssessmentInfo(DB.Model, ModelBase):
     causes = DB.Column(DB.String, nullable=False, comment='疼痛原因 0-肿瘤、1-肿瘤治疗、2-非肿瘤相关性')
     body_parts = DB.Column(DB.String, comment='疼痛部位 对应人体部位表 多选')
     pain_extra = DB.Column(DB.String, default='', comment='其他疼痛说明')
+    pain_score = DB.Column(DB.Integer, comment='疼痛ID评分')
     character = DB.Column(DB.String, nullable=False, comment='疼痛性质 多选')
     level = DB.Column(DB.Integer, nullable=False, comment='疼痛强度 单选')
     aggravating_factors = DB.Column(

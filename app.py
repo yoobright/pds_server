@@ -8,6 +8,7 @@ from flask_restful import Resource, Api
 from flask_restful import reqparse
 from flasgger import Swagger, swag_from
 from flask_cors import CORS
+from flask_migrate import Migrate
 
 from db import api as db_api
 from db.books import Book
@@ -35,6 +36,8 @@ app.config['SWAGGER'] = {
     # 'uiversion': 3,
 }
 swagger = Swagger(app)
+
+migrate = Migrate(app, DB_Obj.db)
 
 
 def get_datetime_from_str(s):
