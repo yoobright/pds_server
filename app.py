@@ -299,6 +299,7 @@ class DiagnosticResourceByUUID(Resource):
 
     def put(self, uuid: str):
         args = self.diagnostic_put_parser.parse_args()
+        args = {k: v for k, v in args.items() if v is not None}
         diagnostic = db_api.update_diagnostic_by_uuid(uuid, args)
 
         if diagnostic is not None:
