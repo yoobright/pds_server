@@ -182,11 +182,16 @@ class DrugListResource(Resource):
         super(DrugListResource, self).__init__()
         self.drug_get_parser = reqparse.RequestParser()
         self.drug_get_parser.add_argument(
-            'page', type=int)
+            'page', type=int,
+            location='args'
+        )
         self.drug_get_parser.add_argument(
-            'limit', type=int)
+            'limit', type=int,
+            location='args'
+        )
         self.drug_get_parser.add_argument(
-            'drug_name', type=str)
+            'drug_name', type=str,
+            location='args')
 
     @swag_from(swagger_api.drug_get_dict)
     def get(self):
@@ -224,11 +229,16 @@ class DiagnosticListResource(Resource):
 
         self.diagnostic_get_parser = reqparse.RequestParser()
         self.diagnostic_get_parser.add_argument(
-            'page', type=int)
+            'page', type=int,
+            location='args'
+        )
         self.diagnostic_get_parser.add_argument(
-            'limit', type=int)
+            'limit', type=int,
+            location='args'
+        )
         self.diagnostic_get_parser.add_argument(
-            'user_name', type=str)
+            'user_name', type=str,
+            location='args')
 
     @staticmethod
     def to_dict(diagnostics):
@@ -502,4 +512,4 @@ app_api.add_resource(PreviousMedicationListResource, '/previous_medications')
 
 
 if __name__ == '__main__':
-    app.run(host="0.0.0.0", port='8089')
+    app.run(host="0.0.0.0", port=8089)

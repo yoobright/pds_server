@@ -6,8 +6,15 @@ from sqlalchemy.orm import defer
 from db import DB_Obj
 from db import models
 
-
 DB = DB_Obj.db
+
+
+def add_page_query(args, query):
+    page = args.get("page", None)
+    limit = args.get("limit", None)
+    if page is not None and limit is not None:
+        query = query.limit(limit).offset((page - 1) * limit)
+    return query
 
 
 def add_patient(values):
@@ -30,14 +37,14 @@ def get_all_patients(values=None):
 
 
 def get_patient_by_id(pid):
-    patient = DB.session.query(models.Patient).\
+    patient = DB.session.query(models.Patient). \
         filter(models.Patient.id == pid).one_or_none()
 
     return patient
 
 
 def delete_patient_by_id(pid):
-    res = DB.session.query(models.Patient).\
+    res = DB.session.query(models.Patient). \
         filter(models.Patient.id == pid).delete()
     DB.session.commit()
 
@@ -45,7 +52,7 @@ def delete_patient_by_id(pid):
 
 
 def update_patient_by_id(pid, values):
-    patient = DB.session.query(models.Patient).\
+    patient = DB.session.query(models.Patient). \
         filter(models.Patient.id == pid).one_or_none()
 
     if patient is not None:
@@ -67,15 +74,14 @@ def add_drug(values):
 def get_all_drugs(args=None):
     query = DB.session.query(models.Drug)
 
-    if args.drug_name is not None:
-        search_name = "{}%".format(args.drug_name)
+    drug_name = args.get("drug_name", None)
+    if drug_name is not None:
+        search_name = "{}%".format(drug_name)
         query = query.filter(models.Drug.drug_name.like(search_name))
 
     total = query.count()
 
-    if args.page is not None and args.limit is not None:
-        query = query.limit(args.limit).offset((args.page - 1) * args.limit)
-
+    query = add_page_query(args, query)
     drugs = query.all()
 
     return drugs, total
@@ -103,10 +109,11 @@ def add_diagnostic(values):
 
 
 def get_all_diagnostics(args):
-    query = DB.session.query(models.Diagnostic)\
+    query = DB.session.query(models.Diagnostic)
 
-    if args.user_name is not None:
-        search_name = "{}%".format(args.user_name)
+    user_name = args.get("user_name", None)
+    if user_name is not None:
+        search_name = "{}%".format(user_name)
         query = query.join(models.Patient, models.Patient.id ==
                            models.Diagnostic.patient_basic_info_id)\
             .filter(models.Patient.user_name.like(search_name))
@@ -114,9 +121,7 @@ def get_all_diagnostics(args):
 
     total = query.count()
 
-    if args.page is not None and args.limit is not None:
-        query = query.limit(args.limit).offset((args.page - 1) * args.limit)
-
+    query = add_page_query(args, query)
     diagnostics = query.all()
 
     return diagnostics, total
@@ -143,24 +148,24 @@ def to_diagnostic_detail(diagnostic):
     if diagnostic is not None:
         print(diagnostic.patient_basic_info)
         if diagnostic.pain_assessment_info_id is not None:
-            pain_assessment = DB.session.query(models.PainAssessmentInfo)\
-                .filter(models.PainAssessmentInfo.diagnostic_uuid == diagnostic.uuid)\
-                .order_by(models.PainAssessmentInfo.id.desc())\
+            pain_assessment = DB.session.query(models.PainAssessmentInfo) \
+                .filter(models.PainAssessmentInfo.diagnostic_uuid == diagnostic.uuid) \
+                .order_by(models.PainAssessmentInfo.id.desc()) \
                 .first()
             if pain_assessment is not None:
                 diagnostic['pain_assessment_info'] = dict(
                     pain_assessment.items())
 
         if diagnostic.prev_medication_info_id is not None:
-            prev_medication = DB.session.query(models.PreviousMedicationInfo)\
-                .filter(models.PreviousMedicationInfo.diagnostic_uuid == diagnostic.uuid)\
-                .order_by(models.PreviousMedicationInfo.id.desc())\
+            prev_medication = DB.session.query(models.PreviousMedicationInfo) \
+                .filter(models.PreviousMedicationInfo.diagnostic_uuid == diagnostic.uuid) \
+                .order_by(models.PreviousMedicationInfo.id.desc()) \
                 .first()
             if prev_medication is not None:
-                drugs = DB.session.query(models.PreviousPrescription)\
-                    .options(defer(models.PreviousPrescription.prev_medication_uuid))\
+                drugs = DB.session.query(models.PreviousPrescription) \
+                    .options(defer(models.PreviousPrescription.prev_medication_uuid)) \
                     .filter(models.PreviousPrescription.prev_medication_uuid ==
-                            prev_medication.uuid)\
+                            prev_medication.uuid) \
                     .all()
                 drug_table = gen_drug_table(drugs)
                 prev_medication['drug_table'] = drug_table
@@ -169,15 +174,15 @@ def to_diagnostic_detail(diagnostic):
                     prev_medication.items())
 
         if diagnostic.decision_info_id is not None:
-            decision = DB.session.query(models.DecisionInfo)\
-                .filter(models.DecisionInfo.diagnostic_uuid == diagnostic.uuid)\
-                .order_by(models.DecisionInfo.id.desc())\
+            decision = DB.session.query(models.DecisionInfo) \
+                .filter(models.DecisionInfo.diagnostic_uuid == diagnostic.uuid) \
+                .order_by(models.DecisionInfo.id.desc()) \
                 .first()
             if decision is not None:
-                drugs = DB.session.query(models.Prescription)\
-                    .options(defer(models.Prescription.decision_uuid))\
+                drugs = DB.session.query(models.Prescription) \
+                    .options(defer(models.Prescription.decision_uuid)) \
                     .filter(models.Prescription.decision_uuid ==
-                            decision.uuid)\
+                            decision.uuid) \
                     .all()
                 drug_table = gen_drug_table(drugs)
                 decision['drug_table'] = drug_table
@@ -187,7 +192,7 @@ def to_diagnostic_detail(diagnostic):
 
 
 def get_diagnostic_by_uuid(uuid):
-    diagnostic = DB.session.query(models.Diagnostic)\
+    diagnostic = DB.session.query(models.Diagnostic) \
         .filter(models.Diagnostic.uuid == uuid).one_or_none()
 
     return to_diagnostic_detail(diagnostic)
@@ -199,25 +204,25 @@ def get_diagnostic_by_patient(args):
     if user_name is None or uid is None:
         return None
 
-    patient_id = DB.session.query(models.Patient.id)\
-        .filter(models.Patient.user_name == user_name)\
-        .filter(models.Patient.uid == uid)\
-        .order_by(models.Patient.id.desc())\
+    patient_id = DB.session.query(models.Patient.id) \
+        .filter(models.Patient.user_name == user_name) \
+        .filter(models.Patient.uid == uid) \
+        .order_by(models.Patient.id.desc()) \
         .first()
-    
+
     if patient_id is None:
         return None
     patient_id = patient_id[0]
     print(patient_id)
     if args.get("latest", False):
-        diagnostic = DB.session.query(models.Diagnostic)\
-            .filter(models.Diagnostic.patient_basic_info_id == patient_id)\
-            .order_by(models.Diagnostic.id.desc())\
+        diagnostic = DB.session.query(models.Diagnostic) \
+            .filter(models.Diagnostic.patient_basic_info_id == patient_id) \
+            .order_by(models.Diagnostic.id.desc()) \
             .first()
         return to_diagnostic_detail(diagnostic)
     else:
-        query = DB.session.query(models.Diagnostic)\
-            .filter(models.Diagnostic.patient_basic_info_id == patient_id)\
+        query = DB.session.query(models.Diagnostic) \
+            .filter(models.Diagnostic.patient_basic_info_id == patient_id) \
             .order_by(models.Diagnostic.id.desc())
 
         # if args.page is not None and args.limit is not None:
@@ -229,9 +234,9 @@ def get_diagnostic_by_patient(args):
 
 
 def update_diagnostic_by_uuid(uuid, args):
-    diagnostic = DB.session.query(models.Diagnostic)\
-        .filter(models.Diagnostic.uuid == uuid)\
-        .order_by(models.Diagnostic.id.desc())\
+    diagnostic = DB.session.query(models.Diagnostic) \
+        .filter(models.Diagnostic.uuid == uuid) \
+        .order_by(models.Diagnostic.id.desc()) \
         .first()
     if diagnostic is not None:
         diagnostic.update(args)
@@ -241,7 +246,7 @@ def update_diagnostic_by_uuid(uuid, args):
 
 
 def add_pain_assessment(values=None):
-    diagnostic = DB.session.query(models.Diagnostic)\
+    diagnostic = DB.session.query(models.Diagnostic) \
         .filter(models.Diagnostic.uuid == values.diagnostic_uuid).one_or_none()
     if diagnostic is None:
         return None
@@ -257,7 +262,7 @@ def add_pain_assessment(values=None):
 
 
 def add_previous_medication(values):
-    diagnostic = DB.session.query(models.Diagnostic)\
+    diagnostic = DB.session.query(models.Diagnostic) \
         .filter(models.Diagnostic.uuid == values.diagnostic_uuid).one_or_none()
     if diagnostic is None:
         return None
@@ -282,7 +287,7 @@ def add_previous_medication(values):
 
 
 def add_decision(values):
-    diagnostic = DB.session.query(models.Diagnostic)\
+    diagnostic = DB.session.query(models.Diagnostic) \
         .filter(models.Diagnostic.uuid == values.diagnostic_uuid).one_or_none()
     if diagnostic is None:
         return None
