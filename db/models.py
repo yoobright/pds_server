@@ -143,7 +143,7 @@ class Patient(DB.Model, ModelBase, TimestampMixin):
             "user_name": self.user_name,
             "uid": self.uid,
             "gender": self.gender,
-            "age": self.age,
+            "age": int(self.age),
             "physical_score": self.physical_score
         }
 

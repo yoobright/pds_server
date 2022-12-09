@@ -1,6 +1,6 @@
 import datetime
 
-from jsonschema import validate
+import jsonschema
 from flask import Flask, jsonify, make_response, abort
 from flask.json import JSONEncoder
 from db import DB_Obj
@@ -9,6 +9,9 @@ from flask_restful import reqparse
 from flasgger import Swagger, swag_from
 from flask_cors import CORS
 from flask_migrate import Migrate
+
+from webargs import fields
+from webargs.flaskparser import use_args
 
 from db import api as db_api
 from db.books import Book
@@ -178,24 +181,20 @@ class BookResource(Resource):
 
 
 class DrugListResource(Resource):
+
     def __init__(self):
         super(DrugListResource, self).__init__()
-        self.drug_get_parser = reqparse.RequestParser()
-        self.drug_get_parser.add_argument(
-            'page', type=int,
-            location='args'
-        )
-        self.drug_get_parser.add_argument(
-            'limit', type=int,
-            location='args'
-        )
-        self.drug_get_parser.add_argument(
-            'drug_name', type=str,
-            location='args')
 
     @swag_from(swagger_api.drug_get_dict)
-    def get(self):
-        args = self.drug_get_parser.parse_args()
+    @use_args(
+        {
+            "drug_name": fields.Str(),
+            "page": fields.Int(),
+            "limit": fields.Int(),
+        },
+        location="query"
+    )
+    def get(self, args):
         drugs, total = db_api.get_all_drugs(args)
 
         res = [dict(d.items()) for d in drugs]
@@ -227,19 +226,6 @@ class DiagnosticListResource(Resource):
         self.diagnostic_post_parser.add_argument(
             'recmd', type=str)
 
-        self.diagnostic_get_parser = reqparse.RequestParser()
-        self.diagnostic_get_parser.add_argument(
-            'page', type=int,
-            location='args'
-        )
-        self.diagnostic_get_parser.add_argument(
-            'limit', type=int,
-            location='args'
-        )
-        self.diagnostic_get_parser.add_argument(
-            'user_name', type=str,
-            location='args')
-
     @staticmethod
     def to_dict(diagnostics):
         res = []
@@ -251,9 +237,15 @@ class DiagnosticListResource(Resource):
         return res
 
     # @swag_from(swagger_api.diagnostic_get_dict)
-    def get(self):
-        args = self.diagnostic_get_parser.parse_args()
-        print(args)
+    @use_args(
+        {
+            "user_name": fields.Str(),
+            "page": fields.Int(),
+            "limit": fields.Int(),
+        },
+        location="query"
+    )
+    def get(self, args):
         diagnostics, total = db_api.get_all_diagnostics(args)
         res = self.to_dict(diagnostics)
         return jsonify({
@@ -434,7 +426,7 @@ class DecisionListResource(Resource):
         print(args)
         if args.drug_table is not None:
             try:
-                validate(args.drug_table, drug_table_schema)
+                jsonschema.validate(args.drug_table, drug_table_schema)
             except Exception:
                 return make_response(
                     jsonify({"message": "drug_table格式错误"}),
@@ -479,7 +471,7 @@ class PreviousMedicationListResource(Resource):
         print(args)
         if args.drug_table is not None:
             try:
-                validate(args.drug_table, drug_table_schema)
+                jsonschema.validate(args.drug_table, drug_table_schema)
             except Exception:
                 return make_response(
                     jsonify({"message": "drug_table格式错误"}),
