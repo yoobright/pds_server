@@ -5,7 +5,7 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - name: Hello 
-        run: echo 'Hello world!'
+        run: echo 'Hello world!!!'
       - name: Deploy to Server
         uses: easingthemes/ssh-deploy@main
         env:
