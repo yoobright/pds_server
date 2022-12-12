@@ -504,4 +504,5 @@ app_api.add_resource(PreviousMedicationListResource, '/previous_medications')
 
 
 if __name__ == '__main__':
-    app.run(host="0.0.0.0", port=8089)
+    ssl_context = ('/root/cert.cer', '/root/cert.key')
+    app.run(host="0.0.0.0", port=8089, ssl_context=ssl_context)
