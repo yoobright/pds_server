@@ -7,7 +7,7 @@ jobs:
       - name: Hello 
         run: echo 'Hello world!!!'
       - name: ls 
-        run: ls -hl
+        run: ls -hl ${{ GITHUB_WORKSPACE }}
       - name: Deploy to Server
         uses: easingthemes/ssh-deploy@main
         env:
