@@ -19,3 +19,12 @@ jobs:
           REMOTE_USER: ${{ secrets.REMOTE_USER }}
           TARGET: ${{ secrets.TARGET }}
           EXCLUDE: "/dist/, /node_modules/"
+      - name: Update Server
+        uses: fifsky/ssh-action@master
+        with:
+          command: |
+            kill -9 $(lsof -t -i:8089)
+          host: ${{ secrets.REMOTE_HOST }}
+          user: ${{ secrets.REMOTE_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY}}
+
