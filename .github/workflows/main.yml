@@ -6,6 +6,8 @@ jobs:
     steps:
       - name: Hello 
         run: echo 'Hello world!!!'
+      - name: ls 
+        run: ls -hl
       - name: Deploy to Server
         uses: easingthemes/ssh-deploy@main
         env:
