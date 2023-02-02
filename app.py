@@ -63,7 +63,7 @@ class CustomJSONEncoder(JSONEncoder):
 app.json_encoder = CustomJSONEncoder
 
 
-@app.route('/', methods=['POST', 'GET'])
+@app.route('/api', methods=['POST', 'GET'])
 def hello_world():
     return 'Hello World!!!'
 
@@ -208,23 +208,23 @@ class DiagnosticListResource(Resource):
 
     def __init__(self):
         super(DiagnosticListResource, self).__init__()
-        self.diagnostic_post_parser = reqparse.RequestParser()
-        self.diagnostic_post_parser.add_argument(
-            'uuid', type=str)
-        self.diagnostic_post_parser.add_argument(
-            'patient_basic_info_id', type=int, required=True)
-        self.diagnostic_post_parser.add_argument(
-            'pain_assessment_info_id', type=int)
-        self.diagnostic_post_parser.add_argument(
-            'prev_medication_info_id', type=int)
-        self.diagnostic_post_parser.add_argument(
-            'decision_info_id', type=int)
-        self.diagnostic_post_parser.add_argument(
-            'doctor_id', type=int)
-        self.diagnostic_post_parser.add_argument(
-            'previous_medication_issue', type=str)
-        self.diagnostic_post_parser.add_argument(
-            'recmd', type=str)
+        # self.diagnostic_post_parser = reqparse.RequestParser()
+        # self.diagnostic_post_parser.add_argument(
+        #     'uuid', type=str)
+        # self.diagnostic_post_parser.add_argument(
+        #     'patient_basic_info_id', type=int, required=True)
+        # self.diagnostic_post_parser.add_argument(
+        #     'pain_assessment_info_id', type=int)
+        # self.diagnostic_post_parser.add_argument(
+        #     'prev_medication_info_id', type=int)
+        # self.diagnostic_post_parser.add_argument(
+        #     'decision_info_id', type=int)
+        # self.diagnostic_post_parser.add_argument(
+        #     'doctor_id', type=int)
+        # self.diagnostic_post_parser.add_argument(
+        #     'previous_medication_issue', type=str)
+        # self.diagnostic_post_parser.add_argument(
+        #     'recmd', type=str)
 
     @staticmethod
     def to_dict(diagnostics):
@@ -253,8 +253,21 @@ class DiagnosticListResource(Resource):
             "data": res
         })
 
-    def post(self):
-        args = self.diagnostic_post_parser.parse_args()
+    @use_args(
+        {
+            "uuid": fields.Str(),
+            "patient_basic_info_id": fields.Int(),
+            "pain_assessment_info_id": fields.Int(),
+            "prev_medication_info_id": fields.Int(),
+            "decision_info_id": fields.Int(),
+            "doctor_id": fields.Int(),
+            "previous_medication_issue": fields.Str(),
+            "recmd": fields.Str(),
+        },
+        location="json"
+    )
+    def post(self, args):
+        # args = self.diagnostic_post_parser.parse_args()
         print(args)
         diagnostic = db_api.add_diagnostic(args)
 
@@ -274,16 +287,16 @@ class DiagnosticResourceByUUID(Resource):
 
     def __init__(self):
         super(DiagnosticResourceByUUID, self).__init__()
-        self.diagnostic_put_parser = reqparse.RequestParser()
-        self.diagnostic_put_parser.add_argument(
-            'previous_medication_issue',
-            type=str)
-        self.diagnostic_put_parser.add_argument(
-            'recmd',
-            type=str)
-        self.diagnostic_put_parser.add_argument(
-            'feedback_score',
-            type=int)
+        # self.diagnostic_put_parser = reqparse.RequestParser()
+        # self.diagnostic_put_parser.add_argument(
+        #     'previous_medication_issue',
+        #     type=str)
+        # self.diagnostic_put_parser.add_argument(
+        #     'recmd',
+        #     type=str)
+        # self.diagnostic_put_parser.add_argument(
+        #     'feedback_score',
+        #     type=int)
 
     @staticmethod
     def to_dict(diagnostic):
@@ -299,8 +312,16 @@ class DiagnosticResourceByUUID(Resource):
             return jsonify(self.to_dict(diagnostic))
         return jsonify(None)
 
-    def put(self, uuid: str):
-        args = self.diagnostic_put_parser.parse_args()
+    @use_args(
+        {
+            "previous_medication_issue": fields.Str(),
+            "recmd": fields.Str(),
+            "feedback_score": fields.Int(),
+        },
+        location="json"
+    )
+    def put(self, args, uuid: str):
+        # args = self.diagnostic_put_parser.parse_args()
         args = {k: v for k, v in args.items() if v is not None}
         diagnostic = db_api.update_diagnostic_by_uuid(uuid, args)
 
@@ -317,30 +338,45 @@ class DiagnosticResourceByUUID(Resource):
 class PainAssessmentListResource(Resource):
     def __init__(self):
         super(PainAssessmentListResource, self).__init__()
-        self.pain_assessment_post_parser = reqparse.RequestParser()
-        self.pain_assessment_post_parser.add_argument(
-            'diagnostic_uuid', type=str, required=True)
-        self.pain_assessment_post_parser.add_argument(
-            'causes', type=str, required=True)
-        self.pain_assessment_post_parser.add_argument(
-            'body_parts', type=str, required=True)
-        self.pain_assessment_post_parser.add_argument(
-            'pain_extra', type=str)
-        self.pain_assessment_post_parser.add_argument(
-            'character', type=str, required=True)
-        self.pain_assessment_post_parser.add_argument(
-            'level', type=int, required=True)
-        self.pain_assessment_post_parser.add_argument(
-            'aggravating_factors', type=str, required=True)
-        self.pain_assessment_post_parser.add_argument(
-            'relief_factors', type=str, required=True)
-        self.pain_assessment_post_parser.add_argument(
-            'breakout_type', type=str, required=True)
-        self.pain_assessment_post_parser.add_argument(
-            'breakout_freq', type=str, required=True)
+        # self.pain_assessment_post_parser = reqparse.RequestParser()
+        # self.pain_assessment_post_parser.add_argument(
+        #     'diagnostic_uuid', type=str, required=True)
+        # self.pain_assessment_post_parser.add_argument(
+        #     'causes', type=str, required=True)
+        # self.pain_assessment_post_parser.add_argument(
+        #     'body_parts', type=str, required=True)
+        # self.pain_assessment_post_parser.add_argument(
+        #     'pain_extra', type=str)
+        # self.pain_assessment_post_parser.add_argument(
+        #     'character', type=str, required=True)
+        # self.pain_assessment_post_parser.add_argument(
+        #     'level', type=int, required=True)
+        # self.pain_assessment_post_parser.add_argument(
+        #     'aggravating_factors', type=str, required=True)
+        # self.pain_assessment_post_parser.add_argument(
+        #     'relief_factors', type=str, required=True)
+        # self.pain_assessment_post_parser.add_argument(
+        #     'breakout_type', type=str, required=True)
+        # self.pain_assessment_post_parser.add_argument(
+        #     'breakout_freq', type=str, required=True)
 
-    def post(self):
-        args = self.pain_assessment_post_parser.parse_args()
+    @use_args(
+        {
+            "diagnostic_uuid": fields.Str(required=True),
+            "causes": fields.Str(required=True),
+            "body_parts": fields.Str(required=True),
+            "pain_extra": fields.Str(),
+            "character": fields.Str(required=True),
+            "level": fields.Int(required=True),
+            "aggravating_factors": fields.Str(required=True),
+            "relief_factors": fields.Str(required=True),
+            "breakout_type": fields.Str(required=True),
+            "breakout_freq": fields.Str(required=True),
+        },
+        location="json"
+    )
+    def post(self, args):
+        # args = self.pain_assessment_post_parser.parse_args()
         print(args)
         pain_assessment = db_api.add_pain_assessment(args)
         if pain_assessment is None:
@@ -377,13 +413,13 @@ class DiagnosticResourceByPatient(Resource):
     
     def __init__(self):
         super(DiagnosticResourceByPatient, self).__init__()
-        self.diagnostic_get_parser = reqparse.RequestParser()
-        self.diagnostic_get_parser.add_argument(
-            'user_name', type=str, required=True)
-        self.diagnostic_get_parser.add_argument(
-            'uid', type=str, required=True)
-        self.diagnostic_get_parser.add_argument(
-            'latest', type=bool, default=False)
+        # self.diagnostic_get_parser = reqparse.RequestParser()
+        # self.diagnostic_get_parser.add_argument(
+        #     'user_name', type=str, required=True)
+        # self.diagnostic_get_parser.add_argument(
+        #     'uid', type=str, required=True)
+        # self.diagnostic_get_parser.add_argument(
+        #     'latest', type=bool, default=False)
     
     @staticmethod
     def to_dict(diagnostic):
@@ -392,8 +428,16 @@ class DiagnosticResourceByPatient(Resource):
             diagnostic.patient_basic_info.items())
         return data
 
-    def get(self):
-        args = self.diagnostic_get_parser.parse_args()
+    @use_args(
+        {
+            "user_name": fields.Str(required=True),
+            "uid": fields.Str(required=True),
+            "latest": fields.Bool(default=False),
+        },
+        location="json"
+    )
+    def get(self, args):
+        # args = self.diagnostic_get_parser.parse_args()
         print(args)
         res = db_api.get_diagnostic_by_patient(args)
         if res is not None:
@@ -407,26 +451,38 @@ class DiagnosticResourceByPatient(Resource):
 class DecisionListResource(Resource):
     def __init__(self):
         super(DecisionListResource, self).__init__()
-        self.decision_post_parser = reqparse.RequestParser()
-        self.decision_post_parser.add_argument(
-            'diagnostic_uuid', type=str, required=True)
-        self.decision_post_parser.add_argument(
-            'drug_table', type=dict, action='append')
-        self.decision_post_parser.add_argument(
-            'previous_medication_issue', type=str, required=True)
-        self.decision_post_parser.add_argument(
-            'recmd', type=str, required=True)
-        self.decision_post_parser.add_argument(
-            'recmd_constraint', type=bool, default=False)
-        self.decision_post_parser.add_argument(
-            'pcne_constraint', type=bool, default=False)
-
-    def post(self):
-        args = self.decision_post_parser.parse_args()
+        # self.decision_post_parser = reqparse.RequestParser()
+        # self.decision_post_parser.add_argument(
+        #     'diagnostic_uuid', type=str, required=True)
+        # self.decision_post_parser.add_argument(
+        #     'drug_table', type=dict, action='append')
+        # self.decision_post_parser.add_argument(
+        #     'previous_medication_issue', type=str, required=True)
+        # self.decision_post_parser.add_argument(
+        #     'recmd', type=str, required=True)
+        # self.decision_post_parser.add_argument(
+        #     'recmd_constraint', type=bool, default=False)
+        # self.decision_post_parser.add_argument(
+        #     'pcne_constraint', type=bool, default=False)
+        
+    @use_args(
+        {
+            "diagnostic_uuid": fields.Str(required=True),
+            "drug_table": fields.List(fields.Dict()),
+            "previous_medication_issue": fields.Str(required=True),
+            "recmd": fields.Str(required=True),
+            "recmd_constraint": fields.Bool(default=False),
+            "pcne_constraint": fields.Bool(default=False),
+        },
+        location="json"
+    )
+    def post(self, args):
+        # args = self.decision_post_parser.parse_args()
         print(args)
-        if args.drug_table is not None:
+        drug_table = args.get("drug_table", None)
+        if drug_table is not None:
             try:
-                jsonschema.validate(args.drug_table, drug_table_schema)
+                jsonschema.validate(drug_table, drug_table_schema)
             except Exception:
                 return make_response(
                     jsonify({"message": "drug_table格式错误"}),
@@ -448,30 +504,44 @@ class DecisionListResource(Resource):
 class PreviousMedicationListResource(Resource):
     def __init__(self):
         super(PreviousMedicationListResource, self).__init__()
-        self.previous_medication_post_parser = reqparse.RequestParser()
-        self.previous_medication_post_parser.add_argument(
-            'diagnostic_uuid', type=str, required=True)
-        self.previous_medication_post_parser.add_argument(
-            'drug_table', type=dict, action='append')
-        self.previous_medication_post_parser.add_argument(
-            'compliance_q1', type=str)
-        self.previous_medication_post_parser.add_argument(
-            'compliance_q2', type=str)
-        self.previous_medication_post_parser.add_argument(
-            'compliance_q3', type=str)
-        self.previous_medication_post_parser.add_argument(
-            'compliance_q4', type=str)
-        self.previous_medication_post_parser.add_argument(
-            'adverse_reaction', type=str)
-        self.previous_medication_post_parser.add_argument(
-            'adverse_reaction_drugs', type=str)
+        # self.previous_medication_post_parser = reqparse.RequestParser()
+        # self.previous_medication_post_parser.add_argument(
+        #     'diagnostic_uuid', type=str, required=True)
+        # self.previous_medication_post_parser.add_argument(
+        #     'drug_table', type=dict, action='append')
+        # self.previous_medication_post_parser.add_argument(
+        #     'compliance_q1', type=str)
+        # self.previous_medication_post_parser.add_argument(
+        #     'compliance_q2', type=str)
+        # self.previous_medication_post_parser.add_argument(
+        #     'compliance_q3', type=str)
+        # self.previous_medication_post_parser.add_argument(
+        #     'compliance_q4', type=str)
+        # self.previous_medication_post_parser.add_argument(
+        #     'adverse_reaction', type=str)
+        # self.previous_medication_post_parser.add_argument(
+        #     'adverse_reaction_drugs', type=str)
 
-    def post(self):
-        args = self.previous_medication_post_parser.parse_args()
+    @use_args(
+        {
+            "diagnostic_uuid": fields.Str(required=True),
+            "drug_table": fields.List(fields.Dict()),
+            "compliance_q1": fields.Str(),
+            "compliance_q2": fields.Str(),
+            "compliance_q3": fields.Str(),
+            "compliance_q4": fields.Str(),
+            "adverse_reaction": fields.Str(),
+            "adverse_reaction_drugs": fields.Str(),
+        },
+        location="json"
+    )
+    def post(self, args):
+        # args = self.previous_medication_post_parser.parse_args()
         print(args)
-        if args.drug_table is not None:
+        drug_table = args.get("drug_table", None)
+        if drug_table is not None:
             try:
-                jsonschema.validate(args.drug_table, drug_table_schema)
+                jsonschema.validate(drug_table, drug_table_schema)
             except Exception:
                 return make_response(
                     jsonify({"message": "drug_table格式错误"}),

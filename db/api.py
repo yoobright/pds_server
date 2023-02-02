@@ -28,8 +28,9 @@ def add_patient(values):
 
 def get_all_patients(values=None):
     query = DB.session.query(models.Patient)
-    if values is not None and values.user_name:
-        query = query.filter(models.Patient.user_name == values.user_name)
+    user_name = values.get("user_name", None)
+    if values is not None and user_name:
+        query = query.filter(models.Patient.user_name == user_name)
 
     patients = query.all()
 
@@ -199,8 +200,8 @@ def get_diagnostic_by_uuid(uuid):
 
 
 def get_diagnostic_by_patient(args):
-    user_name = args.user_name
-    uid = args.uid
+    user_name = args.get("user_name", None)
+    uid = args.get("uid", None)
     if user_name is None or uid is None:
         return None
 
@@ -246,8 +247,9 @@ def update_diagnostic_by_uuid(uuid, args):
 
 
 def add_pain_assessment(values=None):
+    diagnostic_uuid = values.get('diagnostic_uuid', None)
     diagnostic = DB.session.query(models.Diagnostic) \
-        .filter(models.Diagnostic.uuid == values.diagnostic_uuid).one_or_none()
+        .filter(models.Diagnostic.uuid == diagnostic_uuid).one_or_none()
     if diagnostic is None:
         return None
     pain_assessment = models.PainAssessmentInfo()
@@ -262,8 +264,9 @@ def add_pain_assessment(values=None):
 
 
 def add_previous_medication(values):
+    diagnostic_uuid = values.get('diagnostic_uuid', None)
     diagnostic = DB.session.query(models.Diagnostic) \
-        .filter(models.Diagnostic.uuid == values.diagnostic_uuid).one_or_none()
+        .filter(models.Diagnostic.uuid == diagnostic_uuid).one_or_none()
     if diagnostic is None:
         return None
     previous_medication = models.PreviousMedicationInfo()
@@ -272,8 +275,10 @@ def add_previous_medication(values):
     previous_medication.uuid = str(previous_medication_uuid)
 
     DB.session.add(previous_medication)
-    if values.drug_table is not None:
-        for d in values.drug_table:
+
+    drug_table = values.get('drug_table', None)
+    if drug_table is not None:
+        for d in drug_table:
             prescription = models.PreviousPrescription()
             prescription.update(d)
             prescription.prev_medication_uuid = str(previous_medication_uuid)
@@ -287,8 +292,9 @@ def add_previous_medication(values):
 
 
 def add_decision(values):
+    diagnostic_uuid = values.get('diagnostic_uuid', None)
     diagnostic = DB.session.query(models.Diagnostic) \
-        .filter(models.Diagnostic.uuid == values.diagnostic_uuid).one_or_none()
+        .filter(models.Diagnostic.uuid == diagnostic_uuid).one_or_none()
     if diagnostic is None:
         return None
 
@@ -297,8 +303,10 @@ def add_decision(values):
     decision.update(values)
     decision.uuid = str(decision_uuid)
     DB.session.add(decision)
-    if values.drug_table is not None:
-        for d in values.drug_table:
+
+    drug_table = values.get('drug_table', None)
+    if drug_table is not None:
+        for d in drug_table:
             prescription = models.Prescription()
             prescription.update(d)
             prescription.decision_uuid = str(decision_uuid)
