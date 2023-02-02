@@ -1,7 +1,7 @@
 import datetime
 
 from sqlalchemy import Column
-from sqlalchemy import DateTime, Integer, String, Float
+from sqlalchemy import DateTime, Integer, String, Float, Boolean
 from sqlalchemy.orm import deferred
 from sqlalchemy.orm import object_mapper, relationship
 
@@ -105,7 +105,26 @@ class TimestampMixin(object):
     updated_at = Column(DateTime, onupdate=datetime.datetime.now)
 
 
-class Patient(DB.Model, ModelBase, TimestampMixin):
+class AppBase(ModelBase, TimestampMixin):
+    deleted_at = Column(DateTime)
+    deleted = Column(Boolean, default=False)
+    metadata = None
+
+    @staticmethod
+    def delete_values():
+        return {'deleted': True, 'deleted_at': datetime.datetime.now()}
+
+    def delete(self, session):
+        """Delete this object."""
+        updated_values = self.delete_values()
+        updated_values['updated_at'] = self.updated_at
+        self.update(updated_values)
+        self.save(session=session)
+        del updated_values['updated_at']
+        return updated_values
+
+
+class Patient(DB.Model, AppBase):
     __tablename__ = 'patient_basic_infos'
 
     id = DB.Column(DB.Integer, primary_key=True,
@@ -146,6 +165,7 @@ class Patient(DB.Model, ModelBase, TimestampMixin):
             "age": int(self.age),
             "physical_score": self.physical_score
         }
+
 
     # def to_json(self):
     #     return {
