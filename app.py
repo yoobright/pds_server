@@ -236,7 +236,7 @@ class DiagnosticListResource(Resource):
 
         return res
 
-    # @swag_from(swagger_api.diagnostic_get_dict)
+    @swag_from(swagger_api.diagnostic_get_dict)
     @use_args(
         {
             "user_name": fields.Str(),
@@ -253,6 +253,7 @@ class DiagnosticListResource(Resource):
             "data": res
         })
 
+    @swag_from(swagger_api.diagnostic_post_dict)
     @use_args(
         {
             "uuid": fields.Str(),

@@ -192,9 +192,9 @@ input_patient_schema = {
             "description": "身体状况Q5"
         },
         "physical_score": {
-            "type": "float",
+            "type": "string",
             "description": "身体状况分数"
-        }        
+        }
     }
 }
 
@@ -230,8 +230,8 @@ patient_post_dict = {
         }
     },
     "responses": {
-        "200": {
-            "description": "patient primary key",
+        "201": {
+            "description": " patient created and return primary key",
             "content": {
                 "application/json": {
                     "schema": {
@@ -262,8 +262,8 @@ patient_delete_by_id_dict = {
         }
     ],
     "responses": {
-        "200": {
-            "description": "patient primary key",
+        "204": {
+            "description": "patient deleted and return primary key",
             "content": {
                 "application/json": {
                     "schema": {
@@ -355,3 +355,201 @@ drug_get_dict = {
         },
     }
 }
+
+
+diagnostic_schema = {
+    "type": "object",
+    "properties": {
+        "created_at": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "updated_at": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "id": {
+            "type": "integer"
+        },
+        "uuid": {
+            "type": "string",
+            "format": "uuid"
+        },
+        "patient_basic_info_id": {
+            "type": "integer"
+        },
+        "pain_assessment_info_id": {
+            "type": "integer"
+        },
+        "prev_medication_info_id": {
+            "type": "integer"
+        },
+        "decision_info_id": {
+            "type": "integer"
+        },
+        "doctor_id": {
+            "type": "integer"
+        },
+        "previous_medication_issue": {
+            "type": "string"
+        },
+        "recmd": {
+            "type": "string"
+        },
+        "feedback_score": {
+            "type": "integer"
+        },
+        "patient_basic_info": {
+            "type": "object",
+            "properties": {
+                "user_name": {
+                    "type": "string"
+                },
+                "uid": {
+                    "type": "string"
+                },
+                "gender": {
+                    "type": "string"
+                },
+                "age": {
+                    "type": "integer"
+                },
+                "physical_score": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}
+
+diagnostic_get_dict = {
+    "parameters": [
+        {
+            "name": "user_name",
+            "in": "query",
+            "description": "user name",
+            "schema": {
+                "type": "string"
+                }
+        },
+        {
+            "name": "page",
+            "in": "query",
+            "description": "page",
+            "schema": {
+                "type": "integer"
+                }
+        },
+        {
+            "name": "limit",
+            "in": "query",
+            "description": "limit",
+            "schema": {
+                "type": "integer"
+                }
+        }
+    ],
+    "responses": {
+        "200": {
+            "description": "diagnostic list",
+            "content": {
+                "application/json": {
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                            "total": {
+                                "type": "integer"
+                            },
+                            "data": {
+                                "type": "array",
+                                "items": {
+                                    **diagnostic_schema
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+    }
+}
+
+
+diagnostic_post_dict = {
+    "requestBody": {
+        "content": {
+            "application/json": {
+                "schema": {
+                    "type": "object",
+                    "properties": {
+                        "uuid": {
+                            "type": "string",
+                            "format": "uuid"
+                        },
+                        "patient_basic_info_id": {
+                            "type": "integer"
+                        },
+                        "pain_assessment_info_id": {
+                            "type": "integer"
+                        },
+                        "prev_medication_info_id": {
+                            "type": "integer"
+                        },
+                        "decision_info_id": {
+                            "type": "integer"
+                        },
+                        "doctor_id": {
+                            "type": "integer"
+                        },
+                        "previous_medication_issue": {
+                            "type": "string"
+                        },
+                        "recmd": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        }
+    },
+
+    "responses": {
+        "201": {
+            "description": "diagnostic created",
+            "content": {
+                "application/json": {
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                            "id": {
+                                "type": "integer"
+                            },
+                            "uuid": {
+                                "type": "string",
+                                "format": "uuid"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "422": {
+            "description": "diagnostic not created",
+            "content": {
+                "application/json": {
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                            "id": {
+                                "type": "integer",
+                                "enum": [-1]
+                            }
+                        }
+                    }
+                }
+            }
+        },
+    }
+}
+                        
+
