@@ -357,7 +357,7 @@ drug_get_dict = {
 }
 
 
-diagnostic_schema = {
+diagnostic_brief_schema = {
     "type": "object",
     "properties": {
         "created_at": {
@@ -430,7 +430,7 @@ diagnostic_get_dict = {
             "description": "user name",
             "schema": {
                 "type": "string"
-                }
+            }
         },
         {
             "name": "page",
@@ -438,7 +438,7 @@ diagnostic_get_dict = {
             "description": "page",
             "schema": {
                 "type": "integer"
-                }
+            }
         },
         {
             "name": "limit",
@@ -446,7 +446,7 @@ diagnostic_get_dict = {
             "description": "limit",
             "schema": {
                 "type": "integer"
-                }
+            }
         }
     ],
     "responses": {
@@ -463,7 +463,7 @@ diagnostic_get_dict = {
                             "data": {
                                 "type": "array",
                                 "items": {
-                                    **diagnostic_schema
+                                    **diagnostic_brief_schema
                                 }
                             }
                         }
@@ -551,5 +551,299 @@ diagnostic_post_dict = {
         },
     }
 }
-                        
 
+
+pain_assessment_schema = {
+    "type": "object",
+    "properties": {
+        "id": {
+            "type": "integer",
+        },
+        "diagnostic_uuid": {
+            "type": "string",
+            "format": "uuid"
+        },
+        "causes": {
+            "type": "string",
+        },
+        "body_parts": {
+            "type": "string",
+        },
+        "pain_extra": {
+            "type": "string",
+        },
+        "pain_score": {
+            "type": "number",
+        },
+        "character": {
+            "type": "string",
+        },
+        "level": {
+            "type": "integer",
+        },
+        "aggravating_factors": {
+            "type": "string",
+        },
+        "relief_factors": {
+            "type": "string",
+        },
+        "breakout_type": {
+            "type": "string",
+        },
+        "breakout_freq": {
+            "type": "string",
+        },
+    }
+}
+
+prev_medication_schema = {
+    "type": "object",
+    "properties": {
+        "id": {
+            "type": "integer",
+        },
+        "uuid": {
+            "type": "string",
+            "format": "uuid"
+        },
+        "diagnostic_uuid": {
+            "type": "string",
+            "format": "uuid"
+        },
+        "compliance_q1": {
+            "type": "string",
+        },
+        "compliance_q2": {
+            "type": "string",
+        },
+        "compliance_q3": {
+            "type": "string",
+        },
+        "compliance_q4": {
+            "type": "string",
+        },
+        "adverse_reaction": {
+            "type": "string",
+        },
+        "adverse_reaction_drugs": {
+            "type": "string",
+        },
+        "drug_table_id": {
+            "type": "string",
+        },
+        "drug_table": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "drug_name": {
+                        "type": "string",
+                    },
+                    "spec": {
+                        "type": "string",
+                    },
+                    "dose": {
+                        "type": "number",
+                    },
+                    "dose_unit": {
+                        "type": "string",
+                    },
+                    "freq": {
+                        "type": "string",
+                    },
+                    "freq_unit": {
+                        "type": "string",
+                    },
+                    "duration": {
+                        "type": "string",
+                    },
+                }
+            }
+        }
+    }
+}
+
+decision_schema = {
+    "type": "object",
+    "properties": {
+        "id": {
+            "type": "integer",
+        },
+        "uuid": {
+            "type": "string",
+            "format": "uuid"
+        },
+        "diagnostic_uuid": {
+            "type": "string",
+            "format": "uuid"
+        },
+        "drug_table_id": {
+            "type": "string",
+        },
+        "previous_medication_issue": {
+            "type": "string",
+        },
+        "recmd": {
+            "type": "string",
+        },
+        "recmd_constraint": {
+            "type": "string",
+        },
+        "pcne_constraint": {
+            "type": "string",
+        },
+        "drug_table": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "drug_name": {
+                        "type": "string",
+                    },
+                    "spec": {
+                        "type": "string",
+                    },
+                    "dose": {
+                        "type": "number",
+                    },
+                    "dose_unit": {
+                        "type": "string",
+                    },
+                    "freq": {
+                        "type": "string",
+                    },
+                    "freq_unit": {
+                        "type": "string",
+                    },
+                    "duration": {
+                        "type": "string",
+                    }
+                }
+            }
+        }
+    }
+}
+
+diagnostic_uuid_get_dict = {
+
+    "responses": {
+        "200": {
+            "description": "successful operation",
+            "content": {
+                "application/json": {
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                            "created_at": {
+                                "type": "string",
+                                "format": "date-time"
+                            },
+                            "updated_at": {
+                                "type": "string",
+                                "format": "date-time"
+                            },
+                            "id": {
+                                "type": "integer"
+                            },
+                            "uuid": {
+                                "type": "string"
+                            },
+                            "patient_basic_info_id": {
+                                "type": "integer"
+                            },
+                            "pain_assessment_info_id": {
+                                "type": "integer"
+                            },
+                            "prev_medication_info_id": {
+                                "type": "integer"
+                            },
+                            "decision_info_id": {
+                                "type": "integer"
+                            },
+                            "doctor_id": {
+                                "type": "integer"
+                            },
+                            "previous_medication_issue": {
+                                "type": "string"
+                            },
+                            "recmd": {
+                                "type": "string"
+                            },
+                            "feedback_score": {
+                                "type": "integer"
+                            },
+                            "patient_basic_info": {
+                                **patient_schema
+                            },
+                            "pain_assessment_info": {
+                                **pain_assessment_schema
+                            },
+                            "prev_medication_info": {
+                                **prev_medication_schema
+                            },
+                            "decision_info": {
+                                **decision_schema
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+diagnostic_uuid_post_dict = {
+    "requestBody": {
+        "content": {
+            "application/json": {
+                "schema": {
+                    "type": "object",
+                    "properties": {
+                        "previous_medication_issue": {
+                            "type": "string"
+                        },
+                        "recmd": {
+                            "type": "string"
+                        },
+                        "feedback_score": {
+                            "type": "integer"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "responses": {
+        "200": {
+            "description": "successful operation",
+            "content": {
+                "application/json": {
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                            "uuid": {
+                                "type": "string",
+                                "format": "uuid"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "400": {
+            "description": "invalid input",
+            "content": {
+                "application/json": {
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                                "message": {
+                                    "type": "string",
+                                }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

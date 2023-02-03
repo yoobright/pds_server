@@ -194,7 +194,7 @@ def to_diagnostic_detail(diagnostic):
 
 def get_diagnostic_by_uuid(uuid):
     diagnostic = DB.session.query(models.Diagnostic) \
-        .filter(models.Diagnostic.uuid == uuid).one_or_none()
+        .filter(models.Diagnostic.uuid == uuid).first()
 
     return to_diagnostic_detail(diagnostic)
 

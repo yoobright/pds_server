@@ -306,13 +306,16 @@ class DiagnosticResourceByUUID(Resource):
             diagnostic.patient_basic_info.items())
         return data
 
+    @swag_from(swagger_api.diagnostic_uuid_get_dict)
     def get(self, uuid: str):
         diagnostic = db_api.get_diagnostic_by_uuid(uuid)
         # print(diagnostic)
         if diagnostic is not None:
             return jsonify(self.to_dict(diagnostic))
         return jsonify(None)
+    
 
+    @swag_from(swagger_api.diagnostic_uuid_post_dict)
     @use_args(
         {
             "previous_medication_issue": fields.Str(),
