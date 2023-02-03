@@ -17,7 +17,6 @@ from db import api as db_api
 from db.books import Book
 from defs import swagger_api
 
-
 app = Flask(__name__)
 CORS(app)
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///data/project.db"
@@ -25,7 +24,6 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 if app.config['DEBUG']:
     app.config['SQLALCHEMY_ECHO'] = True
 app.config['JSON_SORT_KEYS'] = False
-
 
 DB_Obj.set_app(app)
 
@@ -313,7 +311,6 @@ class DiagnosticResourceByUUID(Resource):
         if diagnostic is not None:
             return jsonify(self.to_dict(diagnostic))
         return jsonify(None)
-    
 
     @swag_from(swagger_api.diagnostic_uuid_post_dict)
     @use_args(
@@ -364,6 +361,7 @@ class PainAssessmentListResource(Resource):
         # self.pain_assessment_post_parser.add_argument(
         #     'breakout_freq', type=str, required=True)
 
+    @swag_from(swagger_api.pain_assessment_post_dict)
     @use_args(
         {
             "diagnostic_uuid": fields.Str(required=True),
@@ -414,7 +412,7 @@ drug_table_schema = {
 
 
 class DiagnosticResourceByPatient(Resource):
-    
+
     def __init__(self):
         super(DiagnosticResourceByPatient, self).__init__()
         # self.diagnostic_get_parser = reqparse.RequestParser()
@@ -424,7 +422,7 @@ class DiagnosticResourceByPatient(Resource):
         #     'uid', type=str, required=True)
         # self.diagnostic_get_parser.add_argument(
         #     'latest', type=bool, default=False)
-    
+
     @staticmethod
     def to_dict(diagnostic):
         data = dict(diagnostic.items())
@@ -432,13 +430,14 @@ class DiagnosticResourceByPatient(Resource):
             diagnostic.patient_basic_info.items())
         return data
 
+    @swag_from(swagger_api.diagnostic_patient_get_dict)
     @use_args(
         {
             "user_name": fields.Str(required=True),
             "uid": fields.Str(required=True),
             "latest": fields.Bool(default=False),
         },
-        location="json"
+        location="query"
     )
     def get(self, args):
         # args = self.diagnostic_get_parser.parse_args()
@@ -468,7 +467,8 @@ class DecisionListResource(Resource):
         #     'recmd_constraint', type=bool, default=False)
         # self.decision_post_parser.add_argument(
         #     'pcne_constraint', type=bool, default=False)
-        
+
+    @swag_from(swagger_api.decision_post_dict)
     @use_args(
         {
             "diagnostic_uuid": fields.Str(required=True),
@@ -526,6 +526,7 @@ class PreviousMedicationListResource(Resource):
         # self.previous_medication_post_parser.add_argument(
         #     'adverse_reaction_drugs', type=str)
 
+    @swag_from(swagger_api.previous_medication_post_dict)
     @use_args(
         {
             "diagnostic_uuid": fields.Str(required=True),
@@ -575,7 +576,6 @@ app_api.add_resource(DiagnosticResourceByPatient,
 app_api.add_resource(PainAssessmentListResource, '/pain_assessments')
 app_api.add_resource(DecisionListResource, '/decisions')
 app_api.add_resource(PreviousMedicationListResource, '/previous_medications')
-
 
 if __name__ == '__main__':
     ssl_context = ('/root/cert.cer', '/root/cert.key')

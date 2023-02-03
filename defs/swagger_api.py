@@ -474,7 +474,6 @@ diagnostic_get_dict = {
     }
 }
 
-
 diagnostic_post_dict = {
     "requestBody": {
         "content": {
@@ -551,7 +550,6 @@ diagnostic_post_dict = {
         },
     }
 }
-
 
 pain_assessment_schema = {
     "type": "object",
@@ -724,71 +722,74 @@ decision_schema = {
     }
 }
 
-diagnostic_uuid_get_dict = {
-
-    "responses": {
-        "200": {
-            "description": "successful operation",
-            "content": {
-                "application/json": {
-                    "schema": {
-                        "type": "object",
-                        "properties": {
+diagnostic_get_responses = {
+    "200": {
+        "description": "successful operation",
+        "content": {
+            "application/json": {
+                "schema": {
+                    "type": "object",
+                    "properties": {
                             "created_at": {
                                 "type": "string",
                                 "format": "date-time"
                             },
-                            "updated_at": {
+                        "updated_at": {
                                 "type": "string",
                                 "format": "date-time"
                             },
-                            "id": {
+                        "id": {
                                 "type": "integer"
                             },
-                            "uuid": {
+                        "uuid": {
                                 "type": "string"
                             },
-                            "patient_basic_info_id": {
+                        "patient_basic_info_id": {
                                 "type": "integer"
                             },
-                            "pain_assessment_info_id": {
+                        "pain_assessment_info_id": {
                                 "type": "integer"
                             },
-                            "prev_medication_info_id": {
+                        "prev_medication_info_id": {
                                 "type": "integer"
                             },
-                            "decision_info_id": {
+                        "decision_info_id": {
                                 "type": "integer"
                             },
-                            "doctor_id": {
+                        "doctor_id": {
                                 "type": "integer"
                             },
-                            "previous_medication_issue": {
+                        "previous_medication_issue": {
                                 "type": "string"
                             },
-                            "recmd": {
+                        "recmd": {
                                 "type": "string"
                             },
-                            "feedback_score": {
+                        "feedback_score": {
                                 "type": "integer"
                             },
-                            "patient_basic_info": {
+                        "patient_basic_info": {
                                 **patient_schema
                             },
-                            "pain_assessment_info": {
+                        "pain_assessment_info": {
                                 **pain_assessment_schema
                             },
-                            "prev_medication_info": {
+                        "prev_medication_info": {
                                 **prev_medication_schema
                             },
-                            "decision_info": {
+                        "decision_info": {
                                 **decision_schema
                             }
-                        }
                     }
                 }
             }
         }
+    }
+}
+
+diagnostic_uuid_get_dict = {
+    "responses": {
+        **diagnostic_get_responses
     }
 }
 
@@ -846,4 +847,216 @@ diagnostic_uuid_post_dict = {
             }
         }
     }
+}
+
+diagnostic_patient_get_dict = {
+    "parameters": [
+        {
+            "name": "user_name",
+            "in": "query",
+            "required": True,
+            "schema": {
+                "type": "string"
+            }
+        },
+        {
+            
+            "name": "uid",
+            "in": "query",
+            "required": True,
+            "schema": {
+                "type": "string"
+            }
+        },
+        {
+            "name": "latest",
+            "in": "query",
+            "required": False,
+            "schema": {
+                "type": "boolean"
+            }
+        }
+    ],
+    
+    "responses": {
+        **diagnostic_get_responses
+    }
+}
+
+"""
+    @use_args(
+        {
+            "diagnostic_uuid": fields.Str(required=True),
+            "causes": fields.Str(required=True),
+            "body_parts": fields.Str(required=True),
+            "pain_extra": fields.Str(),
+            "character": fields.Str(required=True),
+            "level": fields.Int(required=True),
+            "aggravating_factors": fields.Str(required=True),
+            "relief_factors": fields.Str(required=True),
+            "breakout_type": fields.Str(required=True),
+            "breakout_freq": fields.Str(required=True),
+        },
+        location="json"
+    )
+"""
+
+pain_assessment_post_dict = {
+    "requestBody": {
+        "content": {
+            "application/json": {
+                "schema": {
+                    "type": "object",
+                    "properties": {
+                        "causes": {
+                            "type": "string"
+                        },
+                        "body_parts": {
+                            "type": "string"
+                        },
+                        "pain_extra": {
+                            "type": "string"
+                        },
+                        "character": {
+                            "type": "string"
+                        },
+                        "level": {
+                            "type": "integer"
+                        },
+                        "aggravating_factors": {
+                            "type": "string"
+                        },
+                        "relief_factors": {
+                            "type": "string"
+                        },
+                        "breakout_type": {
+                            "type": "string"
+                        },
+                        "breakout_freq": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "responses": {
+        "201": {
+            "description": "successful operation",
+            "content": {
+                "application/json": {
+                    "schema": {
+                        "type": "object",
+                        "properties": { 
+                            "id": {
+                                "type": "integer"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+         "422": {
+            "description": "diagnostic not created",
+            "content": {
+                "application/json": {
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                            "id": {
+                                "type": "integer",
+                                "enum": [-1]
+                            }
+                        }
+                    }
+                }
+            }
+        },
+    }
+}
+
+drug_table_schema = {
+    "type": "array",
+    "items": {
+        "type": "object",
+        "properties": {
+            "drug_name": {"type": "string"},
+            "spec": {"type": "string"},
+            "dose": {"type": "number"},
+            "dose_unit": {"type": "string"},
+            "freq": {"type": "string"},
+            "freq_unit": {"type": "string"},
+            "duration": {"type": "string"}
+        },
+        "required": ["drug_name", "spec", "dose", "dose_unit",
+                     "freq", "freq_unit", "duration"]
+    }
+}
+
+decision_post_dict = {
+    "requestBody": {
+        "content": {
+            "application/json": {
+                "schema": {
+                    "type": "object",
+                    "properties": {
+                        "drug_table": {
+                            **drug_table_schema
+                        },
+                        "previous_medication_issue": {
+                            "type": "string"
+                        },
+                        "recmd": {
+                            "type": "string"
+                        },
+                        "recmd_constraint": {
+                            "type": "boolean"
+                        },
+                        "pcne_constraint": {
+                            "type": "boolean"
+                        }
+                    }
+                }
+            }
+        }
+    },
+}
+
+
+previous_medication_post_dict = {
+    "requestBody": {
+        "content": {
+            "application/json": {
+                "schema": {
+                    "type": "object",
+                    "properties": {
+                        "diagnostic_uuid": {
+                            "type": "string"
+                        },
+                        "drug_table": {
+                            **drug_table_schema
+                        },
+                        "compliance_q1": {
+                            "type": "string"
+                        },
+                        "compliance_q2": {
+                            "type": "string"
+                        },
+                        "compliance_q3": {
+                            "type": "string"
+                        },
+                        "compliance_q4": {
+                            "type": "string"
+                        },
+                        "adverse_reaction": {
+                            "type": "string"
+                        },
+                        "adverse_reaction_drugs": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        }
+    },
 }
