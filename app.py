@@ -564,6 +564,63 @@ class PreviousMedicationListResource(Resource):
         }), 201)
 
 
+class AdeCaseResource(Resource):
+    def __init__(self):
+        super(AdeCaseResource, self).__init__()
+
+    def get(self):
+        all_case = db_api.get_all_ade_case()
+        res = [dict(c.items()) for c in all_case]
+        return jsonify(res)
+
+    @use_args(
+        {
+            "name": fields.Str(required=True),
+            "id": fields.Str(),
+            "tel": fields.Str(required=True),
+            "gender": fields.Str(required=True),
+            "age": fields.Integer(required=True),
+            "height": fields.Float(),
+            "weight": fields.Float(),
+            "primary_tumor_diagnosis": fields.Str(required=True),
+            "pain_type": fields.List(fields.Str()),
+            "pain_nature": fields.List(fields.Str()),
+            "pain_level": fields.Int(),
+            "cs_drugs": fields.Str(required=True),
+            "bmi": fields.Str(),
+            "smoking_history": fields.Str(),
+            "kps": fields.Str(),
+            "opiate_tolerant": fields.Str(),
+            "serum_creatinine": fields.Str(),
+            "rs1074287": fields.Str(),
+            "proba": fields.Float(),
+        },
+        location="json"
+    )
+    def post(self, args):
+        ade_case = db_api.add_ade_case(args)
+        if ade_case is None:
+            return make_response(
+                jsonify({"pid": -1}),
+                422
+            )
+
+        return make_response(jsonify({
+            "pid": ade_case.pid
+        }), 201)
+
+
+@app.errorhandler(422)
+@app.errorhandler(400)
+def handle_error(err):
+    headers = err.data.get("headers", None)
+    messages = err.data.get("messages", ["Invalid request."])
+    if headers:
+        return jsonify({"errors": messages}), err.code, headers
+    else:
+        return jsonify({"errors": messages}), err.code
+
+
 app_api.add_resource(PatientListResource, '/patients')
 app_api.add_resource(PatientByIdResource, '/patients/<int:pid>')
 app_api.add_resource(BookResource, '/books')
@@ -576,6 +633,7 @@ app_api.add_resource(DiagnosticResourceByPatient,
 app_api.add_resource(PainAssessmentListResource, '/pain_assessments')
 app_api.add_resource(DecisionListResource, '/decisions')
 app_api.add_resource(PreviousMedicationListResource, '/previous_medications')
+app_api.add_resource(AdeCaseResource, '/oert_ade_case')
 
 if __name__ == '__main__':
     ssl_context = ('/ssl/cert.cer', '/ssl/cert.key')

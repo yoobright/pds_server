@@ -322,6 +322,21 @@ def add_decision(values):
     return decision
 
 
+def add_ade_case(values):
+    for k, v in values.items():
+        if type(v) is list:
+            values[k] = ",".join(v)
+    ade_case = models.AdeCase()
+    ade_case.update(values)
+    DB.session.add(ade_case)
+    DB.session.commit()
+    return ade_case
+
+def get_all_ade_case():
+    all_ade_case = DB.session.query(models.AdeCase).all()
+    return all_ade_case
+
+
 def rebuild_drug_table():
     models.Drug.__table__.drop(DB.engine)
     models.Drug.__table__.create(DB.engine)

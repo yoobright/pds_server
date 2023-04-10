@@ -1,5 +1,3 @@
-
-
 patient_schema = {
     "type": "object",
     "properties": {
@@ -90,7 +88,6 @@ patient_schema = {
         }
     }
 }
-
 
 input_patient_schema = {
     "type": "object",
@@ -216,7 +213,6 @@ patient_get_dict = {
     }
 }
 
-
 patient_post_dict = {
     "requestBody": {
         "description": "patient info",
@@ -306,7 +302,6 @@ patient_get_by_id_dict = {
     }
 }
 
-
 drug_schema = {
     "type": "object",
     "properties": {
@@ -337,7 +332,6 @@ drug_schema = {
     }
 }
 
-
 drug_get_dict = {
     "responses": {
         "200": {
@@ -355,7 +349,6 @@ drug_get_dict = {
         },
     }
 }
-
 
 diagnostic_brief_schema = {
     "type": "object",
@@ -730,56 +723,56 @@ diagnostic_get_responses = {
                 "schema": {
                     "type": "object",
                     "properties": {
-                            "created_at": {
-                                "type": "string",
-                                "format": "date-time"
-                            },
+                        "created_at": {
+                            "type": "string",
+                            "format": "date-time"
+                        },
                         "updated_at": {
-                                "type": "string",
-                                "format": "date-time"
-                            },
+                            "type": "string",
+                            "format": "date-time"
+                        },
                         "id": {
-                                "type": "integer"
-                            },
+                            "type": "integer"
+                        },
                         "uuid": {
-                                "type": "string"
-                            },
+                            "type": "string"
+                        },
                         "patient_basic_info_id": {
-                                "type": "integer"
-                            },
+                            "type": "integer"
+                        },
                         "pain_assessment_info_id": {
-                                "type": "integer"
-                            },
+                            "type": "integer"
+                        },
                         "prev_medication_info_id": {
-                                "type": "integer"
-                            },
+                            "type": "integer"
+                        },
                         "decision_info_id": {
-                                "type": "integer"
-                            },
+                            "type": "integer"
+                        },
                         "doctor_id": {
-                                "type": "integer"
-                            },
+                            "type": "integer"
+                        },
                         "previous_medication_issue": {
-                                "type": "string"
-                            },
+                            "type": "string"
+                        },
                         "recmd": {
-                                "type": "string"
-                            },
+                            "type": "string"
+                        },
                         "feedback_score": {
-                                "type": "integer"
-                            },
+                            "type": "integer"
+                        },
                         "patient_basic_info": {
-                                **patient_schema
-                            },
+                            **patient_schema
+                        },
                         "pain_assessment_info": {
-                                **pain_assessment_schema
-                            },
+                            **pain_assessment_schema
+                        },
                         "prev_medication_info": {
-                                **prev_medication_schema
-                            },
+                            **prev_medication_schema
+                        },
                         "decision_info": {
-                                **decision_schema
-                            }
+                            **decision_schema
+                        }
                     }
                 }
             }
@@ -838,9 +831,9 @@ diagnostic_uuid_post_dict = {
                     "schema": {
                         "type": "object",
                         "properties": {
-                                "message": {
-                                    "type": "string",
-                                }
+                            "message": {
+                                "type": "string",
+                            }
                         }
                     }
                 }
@@ -860,7 +853,7 @@ diagnostic_patient_get_dict = {
             }
         },
         {
-            
+
             "name": "uid",
             "in": "query",
             "required": True,
@@ -877,29 +870,11 @@ diagnostic_patient_get_dict = {
             }
         }
     ],
-    
+
     "responses": {
         **diagnostic_get_responses
     }
 }
-
-"""
-    @use_args(
-        {
-            "diagnostic_uuid": fields.Str(required=True),
-            "causes": fields.Str(required=True),
-            "body_parts": fields.Str(required=True),
-            "pain_extra": fields.Str(),
-            "character": fields.Str(required=True),
-            "level": fields.Int(required=True),
-            "aggravating_factors": fields.Str(required=True),
-            "relief_factors": fields.Str(required=True),
-            "breakout_type": fields.Str(required=True),
-            "breakout_freq": fields.Str(required=True),
-        },
-        location="json"
-    )
-"""
 
 pain_assessment_post_dict = {
     "requestBody": {
@@ -947,7 +922,7 @@ pain_assessment_post_dict = {
                 "application/json": {
                     "schema": {
                         "type": "object",
-                        "properties": { 
+                        "properties": {
                             "id": {
                                 "type": "integer"
                             }
@@ -956,7 +931,7 @@ pain_assessment_post_dict = {
                 }
             }
         },
-         "422": {
+        "422": {
             "description": "diagnostic not created",
             "content": {
                 "application/json": {
@@ -1021,7 +996,6 @@ decision_post_dict = {
         }
     },
 }
-
 
 previous_medication_post_dict = {
     "requestBody": {

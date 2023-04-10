@@ -166,7 +166,6 @@ class Patient(DB.Model, AppBase):
             "physical_score": self.physical_score
         }
 
-
     # def to_json(self):
     #     return {
     #         "id": self.id,
@@ -312,3 +311,28 @@ class Doctor(DB.Model):
     doctor_role = DB.Column(DB.Integer, comment='管理权限')
     user_name = DB.Column(DB.String, comment='登录名称')
     user_pwd = DB.Column(DB.String, comment='用户密码')
+
+
+class AdeCase(DB.Model, AppBase):
+    __tablename__ = 'ade_case'
+    pid = DB.Column(DB.Integer, primary_key=True,
+                    autoincrement=True, comment='主键id')
+    name = DB.Column(DB.String, comment='姓名')
+    id = DB.Column(DB.String, comment='身份证号')
+    tel = DB.Column(DB.String, comment='电话')
+    gender = DB.Column(DB.String, comment='性别')
+    age = DB.Column(DB.Integer, comment='年龄')
+    height = DB.Column(DB.Float, comment='身高')
+    weight = DB.Column(DB.Float, comment='体重')
+    primary_tumor_diagnosis = DB.Column(DB.String, comment='原发肿瘤诊断')
+    pain_type = DB.Column(DB.String, comment='疼痛类型')
+    pain_nature = DB.Column(DB.String, comment='疼痛性质')
+    pain_level = DB.Column(DB.Integer, comment='疼痛程度')
+    cs_drugs = DB.Column(DB.String, comment='心脑血管系统药物')
+    bmi = DB.Column(DB.String, comment='BMI')
+    smoking_history = DB.Column(DB.String, comment='吸烟史')
+    kps = DB.Column(DB.String, comment='KPS评分')
+    opiate_tolerant = DB.Column(DB.String, comment='阿片耐受度')
+    serum_creatinine = DB.Column(DB.String, comment='血肌酐')
+    rs1074287 = DB.Column(DB.String, comment='rs1074287基因型')
+    proba = DB.Column(DB.Float, comment='事件发生概率')

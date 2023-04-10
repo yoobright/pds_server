@@ -1,3 +1,176 @@
+GET http://localhost:8089/diagnostics/uuid/28cc8d9a-4a6f-40d6-aec2-59aaba483b70
+Accept: application/json
+
+<> 2023-02-03T032008.200.json
+
+###
+
+GET http://localhost:8089/diagnostics/uuid/test_uuid
+Accept: application/json
+
+<> 2023-02-03T031755.200.json
+
+###
+
+GET http://localhost:8089/diagnostics/uuid/test_uuid
+Accept: application/json
+
+<> 2023-02-03T031236.500.json
+
+###
+
+GET http://localhost:8089/diagnostics
+Accept: application/json
+
+<> 2023-02-02T033824.200.json
+
+###
+
+POST http://localhost:8089/diagnostics
+Content-Type: application/json
+
+{
+  "uuid": "test_uuid",
+  "patient_basic_info_id": 1
+
+}
+
+<> 2023-02-02T033810.201.json
+
+###
+
+POST http://localhost:8089/diagnostics
+Content-Type: application/json
+
+{
+  "patient_basic_info_id": 8
+
+}
+
+<> 2023-02-02T033756.201.json
+
+###
+
+GET http://localhost:8089/patients?user_name=demo
+Accept: application/json
+
+<> 2023-02-02T033718.200.json
+
+###
+
+GET http://localhost:8089/diagnostics/patient
+Content-Type: application/json
+
+{
+  "user_name": "zz",
+  "uid": "11",
+  "latest": true
+}
+
+<> 2023-02-02T023014.200.json
+
+###
+
+GET http://localhost:8089/diagnostics/patient
+Content-Type: application/json
+
+{
+  "user_name": "zz",
+  "uid": "11",
+  "latest": true
+}
+
+<> 2023-02-02T022224.500.json
+
+###
+
+GET http://localhost:8089/diagnostics/patient
+Content-Type: application/json
+
+{
+  "user_name": "zz",
+  "uid": "11",
+  "latest": true
+}
+
+<> 2023-02-02T022124.422.html
+
+###
+
+GET http://localhost:8089/diagnostics/patient
+Content-Type: application/json
+
+{
+  "user_name": "zz",
+  "uid": "11",
+  "latest": true
+}
+
+<> 2023-02-02T022105.200.json
+
+###
+
+PUT http://localhost:8089/diagnostics/uuid/test_uuid
+Content-Type: application/json
+
+{
+  "previous_medication_issue": "p1",
+  "recmd": "s1#6"
+}
+
+<> 2023-02-02T021752.200.json
+
+###
+
+GET http://localhost:8089/diagnostics/uuid/test_uuid
+Accept: application/json
+
+<> 2023-02-02T021732.200.json
+
+###
+
+GET http://localhost:8089/diagnostics
+Accept: application/json
+
+<> 2023-02-02T021623.200.json
+
+###
+
+POST http://localhost:8089/diagnostics
+Content-Type: application/json
+
+{
+  "uuid": "test_uuid",
+  "patient_basic_info_id": 1
+
+}
+
+<> 2023-02-02T021609.201.json
+
+###
+
+GET http://localhost:8089/patients
+Accept: application/json
+
+<> 2023-02-02T021549.200.json
+
+###
+
+GET http://localhost:8089/patients
+Accept: application/json
+
+###
+
+PUT http://localhost:8089/diagnostics/uuid/test_uuid
+Content-Type: application/json
+
+{
+  "previous_medication_issue": "p1",
+  "recmd": "s1#6"
+}
+
+###
+
 GET http://localhost:8089/diagnostics/patient
 Content-Type: application/json
 
@@ -425,250 +598,6 @@ Content-Type: application/json
 }
 
 <> 2022-11-11T110655.201.json
-
-###
-
-POST http://localhost:8089/diagnostics
-Content-Type: application/json
-
-{
-  "patient_basic_info_id": 3
-
-}
-
-<> 2022-11-11T110653.201.json
-
-###
-
-POST http://localhost:8089/diagnostics
-Content-Type: application/json
-
-{
-  "patient_basic_info_id": 3
-
-}
-
-<> 2022-11-11T110652.201.json
-
-###
-
-POST http://localhost:8089/diagnostics
-Content-Type: application/json
-
-{
-  "patient_basic_info_id": 3
-
-}
-
-<> 2022-11-11T110650.201.json
-
-###
-
-POST http://localhost:8089/diagnostics
-Content-Type: application/json
-
-{
-  "patient_basic_info_id": 3
-
-}
-
-<> 2022-11-11T110649.201.json
-
-###
-
-POST http://localhost:8089/patients
-Content-Type: application/json
-
-{
-  "user_name": "test137",
-  "uid": "123123",
-  "gender": 1,
-  "age": 22
-}
-
-<> 2022-11-11T110640.201.json
-
-###
-
-POST http://localhost:8089/patients
-Content-Type: application/json
-
-{
-  "user_name": "test695",
-  "uid": "123123",
-  "gender": 1,
-  "age": 22
-}
-
-<> 2022-11-11T110638.201.json
-
-###
-
-POST http://localhost:8089/patients
-Content-Type: application/json
-
-{
-  "user_name": "test13",
-  "uid": "123123",
-  "gender": 1,
-  "age": 22
-}
-
-<> 2022-11-11T110637.201.json
-
-###
-
-POST http://localhost:8089/patients
-Content-Type: application/json
-
-{
-  "user_name": "test16",
-  "uid": "123123",
-  "gender": 1,
-  "age": 22
-}
-
-<> 2022-11-11T110636.201.json
-
-###
-
-POST http://localhost:8089/patients
-Content-Type: application/json
-
-{
-  "user_name": "test70",
-  "uid": "123123",
-  "gender": 1,
-  "age": 22
-}
-
-<> 2022-11-11T110635.201.json
-
-###
-
-GET http://localhost:8089/diagnostics/uuid/test_uuid
-Accept: application/json
-
-<> 2022-11-11T110511.200.json
-
-###
-
-GET http://localhost:8089/diagnostics/uuid/test_uuid
-Accept: application/json
-
-<> 2022-11-11T105641.200.json
-
-###
-
-GET http://localhost:8089/diagnostics/uuid/test_uuid
-Accept: application/json
-
-<> 2022-11-11T105616.500.json
-
-###
-
-GET http://localhost:8089/diagnostics/uuid/test_uuid
-Accept: application/json
-
-<> 2022-11-11T105539.500.json
-
-###
-
-POST http://localhost:8089/previous_medications
-Content-Type: application/json
-
-{
-  "diagnostic_uuid": "test_uuid",
-  "forget": "1",
-  "carelessly": "2",
-  "withdrawal": "1",
-  "bad_withdrawal": "2",
-  "adverse_reaction": "1,2",
-  "adverse_reaction_drugs": "通便灵胶囊",
-  "drug_table": [{
-    "drug_name": "盐酸阿米替林片",
-    "spec": "25mg",
-    "dose": 10.00,
-    "dose_unit": "mg",
-    "freq": "1",
-    "freq_unit": "2",
-    "duration": "2"
-  },
-    {
-      "drug_name": "盐酸曲马多缓释片",
-      "spec": "100mg",
-      "dose": 10.00,
-      "dose_unit": "mg",
-      "freq": "1",
-      "freq_unit": "2",
-      "duration": "1"
-  }
-  ]
-}
-
-<> 2022-11-11T104848.201.json
-
-###
-
-POST http://localhost:8089/previous_medications
-Content-Type: application/json
-
-{
-  "diagnostic_uuid": "test_uuid",
-  "forget": "1",
-  "carelessly": "2",
-  "withdrawal": "1",
-  "bad_withdrawal": "2",
-  "adverse_reaction": "1,2",
-  "adverse_reaction_drugs": "通便灵胶囊",
-  "drug_table": [{
-    "drug_name": "盐酸阿米替林片",
-    "spec": "25mg",
-    "dose": 10.00,
-    "dose_unit": "mg",
-    "freq": "1",
-    "freq_unit": "2",
-    "duration": "2"
-  },
-    {
-      "drug_name": "盐酸曲马多缓释片",
-      "spec": "100mg",
-      "dose": 10.00,
-      "dose_unit": "mg",
-      "freq": "1",
-      "freq_unit": "2",
-      "duration": "1"
-  }
-  ]
-}
-
-<> 2022-11-11T104804.500.json
-
-###
-
-GET http://localhost:8089/diagnostics/uuid/test_uuid
-Accept: application/json
-
-<> 2022-11-11T103820.200.json
-
-###
-
-PUT http://localhost:8089/diagnostics/uuid/test_uuid
-Content-Type: application/json
-
-{
-  "previous_medication_issue": "p1",
-  "recmd": "s1#6"
-}
-
-<> 2022-11-11T103816.200.json
-
-###
-
-GET http://localhost:8089/diagnostics/uuid/test_uuid
-Accept: application/json
-
-<> 2022-11-11T103615.200.json
 
 ###
 
