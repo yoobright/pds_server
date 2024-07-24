@@ -18,7 +18,7 @@ from db.books import Book
 from defs import swagger_api
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, max_age=3600)
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///data/project.db"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 if app.config['DEBUG']:
