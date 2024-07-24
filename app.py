@@ -324,6 +324,8 @@ class PainAssessmentListResource(Resource):
             "relief_factors": fields.Str(required=True),
             "breakout_type": fields.Str(required=True),
             "breakout_freq": fields.Str(required=True),
+            "illness": fields.Str(),
+            "symptom": fields.Str(),
         },
         location="json"
     )

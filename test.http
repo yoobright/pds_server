@@ -104,7 +104,9 @@ Content-Type: application/json
   "aggravating_factors": "1",
   "relief_factors": "0",
   "breakout_type": "1",
-  "breakout_freq": "0"
+  "breakout_freq": "0",
+  "illness": "1",
+  "symptom": "0"
 }
 
 

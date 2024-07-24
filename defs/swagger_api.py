@@ -909,7 +909,13 @@ pain_assessment_post_dict = {
                         },
                         "breakout_freq": {
                             "type": "string"
-                        }
+                        },
+                        "illness": {
+                            "type": "string"
+                        },
+                        "symptom": {
+                            "type": "string"
+                        },
                     }
                 }
             }
