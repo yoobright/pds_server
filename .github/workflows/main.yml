@@ -23,7 +23,7 @@ jobs:
         uses: fifsky/ssh-action@master
         with:
           command: |
-            cd /root/pds
+            cd ${{ secrets.TARGET }}
             flask db migrate
             flask db upgrade
           host: ${{ secrets.REMOTE_HOST }}
