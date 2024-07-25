@@ -220,8 +220,8 @@ class PainAssessmentInfo(DB.Model, ModelBase):
         DB.String, nullable=False,
         comment='爆发痛类型 0-与特定活动或事件相关联、1-发生在按时给予镇痛药物的剂量间隔结束时、2-控制不佳的持续性疼痛 3-无')
     breakout_freq = DB.Column(DB.String, nullable=False, comment='爆发痛发作频率 0-<3、1-≥3')
-    illness = DB.Column(DB.String, comment='疼痛相关疾病史 多选 0-心源性哮喘、1-高血压、2-糖尿病、3-心血管事件史、4-消化道出血、5-消化道溃疡、6-其他')
-    symptom = DB.Column(DB.String, comment='症状 多选 0-咳嗽、1-≥寒颤')
+    illness = DB.Column(DB.String, comment='疼痛相关疾病史 多选 1-心源性哮喘、2-高血压、3-糖尿病、4-心血管事件史、5-消化道出血、6-消化道溃疡、-1-其他')
+    symptom = DB.Column(DB.String, comment='症状 多选 1-咳嗽、2-寒颤')
 
 
 class PreviousMedicationInfo(DB.Model, ModelBase):
