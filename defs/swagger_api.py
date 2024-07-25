@@ -584,6 +584,12 @@ pain_assessment_schema = {
         "breakout_freq": {
             "type": "string",
         },
+        "illness": {
+            "type": "string",
+        },
+        "symptom": {
+            "type": "string",
+        }
     }
 }
 
