@@ -88,7 +88,7 @@ def get_all_drugs(args=None):
     return drugs, total
 
 
-def add_diagnostic(values):
+def add_diagnostic(values, request_ip):
     patient_basic_info_id = values.get('patient_basic_info_id', None)
     if patient_basic_info_id is None:
         return None
@@ -100,6 +100,7 @@ def add_diagnostic(values):
     diagnostic.update(values)
     if diagnostic.uuid is None:
         diagnostic.uuid = str(uuid.uuid4())
+    diagnostic.request_ip = request_ip
     diagnostic.patient_basic_info = patient
 
     DB.session.add(diagnostic)

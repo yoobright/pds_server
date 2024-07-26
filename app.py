@@ -1,7 +1,7 @@
 import datetime
 
 import jsonschema
-from flask import Flask, jsonify, make_response, abort
+from flask import Flask, jsonify, make_response, abort, request
 from flask.json import JSONEncoder
 from db import DB_Obj
 from flask_restful import Resource, Api
@@ -63,6 +63,7 @@ app.json_encoder = CustomJSONEncoder
 
 @app.route('/api', methods=['POST', 'GET'])
 def hello_world():
+    print(request.remote_addr)
     return 'Hello World!!!'
 
 

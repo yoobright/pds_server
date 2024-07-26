@@ -193,6 +193,7 @@ class Diagnostic(DB.Model, ModelBase, TimestampMixin):
     recmd = DB.Column(DB.String, nullable=False,
                       default="", comment='系统用药决策方案推荐')
     feedback_score = DB.Column(DB.Integer, comment='用户反馈评分')
+    request_ip = DB.Column(DB.String, comment='请求ip')
 
     patient_basic_info = relationship(
         "Patient", uselist=False, back_populates="diagnostics")
@@ -221,7 +222,7 @@ class PainAssessmentInfo(DB.Model, ModelBase):
         comment='爆发痛类型 0-与特定活动或事件相关联、1-发生在按时给予镇痛药物的剂量间隔结束时、2-控制不佳的持续性疼痛 3-无')
     breakout_freq = DB.Column(DB.String, nullable=False, comment='爆发痛发作频率 0-<3、1-≥3')
     illness = DB.Column(DB.String, comment='疼痛相关疾病史 多选 1-心源性哮喘、2-高血压、3-糖尿病、4-心血管事件史、5-消化道出血、6-消化道溃疡、-1-其他')
-    symptom = DB.Column(DB.String, comment='症状 多选 1-咳嗽、2-寒颤')
+    symptom = DB.Column(DB.String, comment='症状 1-咳嗽、2-寒颤')
 
 
 class PreviousMedicationInfo(DB.Model, ModelBase):

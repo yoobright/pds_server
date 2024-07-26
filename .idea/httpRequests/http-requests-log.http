@@ -1,3 +1,45 @@
+POST http://localhost:8089/pain_assessments
+Content-Type: application/json
+
+{
+  "diagnostic_uuid": "test_uuid",
+  "causes": "1",
+  "body_parts": "0",
+  "character": "1",
+  "level": "0",
+  "aggravating_factors": "1",
+  "relief_factors": "0",
+  "breakout_type": "1",
+  "breakout_freq": "0",
+  "illness": "1",
+  "symptom": "0"
+}
+
+<> 2024-07-24T042753.201.json
+
+###
+
+POST http://localhost:8089/pain_assessments
+Content-Type: application/json
+
+{
+  "diagnostic_uuid": "test_uuid",
+  "causes": "1",
+  "body_parts": "0",
+  "character": "1",
+  "level": "0",
+  "aggravating_factors": "1",
+  "relief_factors": "0",
+  "breakout_type": "1",
+  "breakout_freq": "0",
+  "illness": "1",
+  "symptom": "0"
+}
+
+<> 2024-07-24T042348.500.json
+
+###
+
 GET http://localhost:8089/diagnostics/uuid/28cc8d9a-4a6f-40d6-aec2-59aaba483b70
 Accept: application/json
 
@@ -573,31 +615,6 @@ Content-Type: application/json
 }
 
 <> 2022-11-11T110708.201.json
-
-###
-
-POST http://localhost:8089/diagnostics
-Content-Type: application/json
-
-{
-  "uuid": "test_uuid",
-  "patient_basic_info_id": 1
-
-}
-
-<> 2022-11-11T110658.201.json
-
-###
-
-POST http://localhost:8089/diagnostics
-Content-Type: application/json
-
-{
-  "patient_basic_info_id": 3
-
-}
-
-<> 2022-11-11T110655.201.json
 
 ###
 
