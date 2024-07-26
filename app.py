@@ -251,7 +251,7 @@ class DiagnosticListResource(Resource):
     )
     def post(self, args):
         print(args)
-        diagnostic = db_api.add_diagnostic(args)
+        diagnostic = db_api.add_diagnostic(args, request.remote_addr)
 
         if diagnostic is None:
             return make_response(
